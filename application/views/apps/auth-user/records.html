@@ -1,0 +1,46 @@
+{data}
+<tr class="grid-list">
+	<td align="center">{nomor}</td>
+	<td class="text-left {hide_group_name}">{group_name}</td>
+	<td class="text-left">{email}</td>
+	<td class="text-left">{fullname}</td>
+	<td class="text-left">{username}</td>
+	<td class="text-center">{phone}</td>
+	<td class="text-center">{gender}</td>
+	<td class="text-center {hide_group_name}">
+		<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+	</td>
+</tr>
+
+<tr class='grid-normal hide'>
+	<td align="left">
+		<div class="row mb-2" data-hide='group_name'>
+            <div class="col-md-3"><span class="title-header">{lang_group}</span></div>
+            <div class="col-md-4">{group_name}</div>
+        </div>
+        <div class="row mb-2" data-hide='email'>
+            <div class="col-md-3"><span class="title-header">{lang_email}</span></div>
+            <div class="col-md-4">{email}</div>
+        </div>
+        <div class="row mb-2" data-hide='fullname'>
+            <div class="col-md-3"><span class="title-header">{lang_fullname}</span></div>
+            <div class="col-md-4">{fullname}</div>
+        </div>
+        <div class="row mb-2" data-hide='username'>
+            <div class="col-md-3"><span class="title-header">{lang_username}</span></div>
+            <div class="col-md-4">{username}</div>
+        </div>
+        <div class="row mb-2" data-hide='phone'>
+            <div class="col-md-3"><span class="title-header">{lang_phone}</span></div>
+            <div class="col-md-4">{phone}</div>
+        </div>
+        <div class="row mb-2" data-hide='gender'>
+            <div class="col-md-3"><span class="title-header">{lang_gender}</span></div>
+            <div class="col-md-4">{gender}</div>
+        </div>
+	</td>
+</tr>
+
+{/data}
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

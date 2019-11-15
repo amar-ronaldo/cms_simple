@@ -1,0 +1,14 @@
+{data}
+	<tr>
+		<td class="text-right">{no}</td>
+		<td>{provinsi}</td>
+		<td>{kabupaten}</td>
+		<td class="text-center">
+			<a href="{this_controller}add/{id}" title="Edit Data" class="action-form-icon fa fa-pencil"></a>
+			<a title="Hapus Data" class="action-form-icon fa fa-trash tangan hapus" id='{id}' data-url-rm='del'></a>
+		</td> 
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

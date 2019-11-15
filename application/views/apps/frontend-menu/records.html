@@ -1,0 +1,45 @@
+{data}
+<tr class="grid-list">
+	<td align="center">{nomor}</td>
+	<td align="center">{position}</td>
+	<td>{name}</td>
+	<td>{extra_param}</td>
+	<td>{parent}</td>
+	<td>{publish_date}</td>
+	<td>{status_publish}</td>
+	<td align="center">
+		<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+	</td>
+</tr>
+
+<tr class='grid-normal hide'>
+	<td align="left">
+		<div class="row mb-2" data-hide='position'>
+            <div class="col-md-3"><span class="title-header">{lang_position}</span></div>
+            <div class="col-md-4">{position}</div>
+        </div>
+        <div class="row mb-2" data-hide='name'>
+            <div class="col-md-3"><span class="title-header">{lang_name}</span></div>
+            <div class="col-md-4">{name}</div>
+        </div>
+        <div class="row mb-2" data-hide='extra_param'>
+            <div class="col-md-3"><span class="title-header">{lang_page_url}</span></div>
+            <div class="col-md-4">{extra_param}</div>
+        </div>
+        <div class="row mb-2" data-hide='username'>
+            <div class="col-md-3"><span class="title-header">{lang_parent}</span></div>
+            <div class="col-md-4">{parent}</div>
+        </div>
+        <div class="row mb-2" data-hide='publish_date'>
+            <div class="col-md-3"><span class="title-header">{lang_publish_date}</span></div>
+            <div class="col-md-4">{publish_date}</div>
+        </div>
+        <div class="row mb-2" data-hide='status_publish'>
+            <div class="col-md-3"><span class="title-header">{lang_status}</span></div>
+            <div class="col-md-4">{status_publish}</div>
+        </div>
+	</td>
+</tr>
+{/data}
+<tr class="footer-page"><td colspan="8">{paging}</td></tr>

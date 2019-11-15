@@ -1,0 +1,103 @@
+<div class="row page-title mb-2">
+	<div class="page-title-left">
+		<h4 class="page-title-heading">{page_title}</h4> 
+	</div>
+	<!-- <div class="set-right-btn">
+        {btn_add}
+	</div> -->
+</div>
+<div class="my_grid body-table section-row data-table-list" id="grid1" data-perpage='10' data-url='{this_controller}records'>
+	<div class="row mb-2 mt-3">
+        <div class="col collapse" id="collapseExample">
+            <div class="search-panel">
+                <div class="row text-left">
+                    <div class="col filter">
+                        <div class="form-group">
+                            <label for="search_product_name">{lang_news_title}</label>
+                            <input type="text" class="cari form-control" id="search_news_title" name="search_news_title" placeholder="{lang_search}">
+                        </div>
+                        <div class="form-group">
+                            <label for="search_product_name">{lang_tags_name}</label>
+                            <input type="text" class="cari form-control" id="search_tags_name" name="search_tags_name" placeholder="{lang_search}">
+                        </div>
+                        <div class="form-group">
+                            <label for="search_product_name">{lang_uri_path}</label>
+                            <input type="text" class="cari form-control" id="search_tags_uri_path" name="search_tags_uri_path" placeholder="{lang_search}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-12 text-right">
+                        <div class="columns columns-right btn-group pull-right">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-default reload">
+                                    <i class="list-icon feather feather-rotate-cw">
+                                    </i>
+                                </a>
+                                <a href="#" class="btn btn-default toggle_table">
+                                    <i class="feather feather-menu list-icon"></i>
+                                </a>
+                                <a href="#" class=" btn btn-default dropdown-toggle ripple" data-toggle="dropdown"><span class="avatar thumb-xs2">
+                                    <i class="feather feather-grid list-icon rounded-circle mr-1"></i>
+                                    <i class="feather feather-chevron-down list-icon"></i>
+                                </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dm-table">
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox' class="show_col check_total" name='checked_table' data-col="news_title" checked="true"> <span class="label-text">{lang_news_title}</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox' class="show_col check_total" name='checked_table' data-col="tags_name" checked="true"> <span class="label-text">{lang_group}</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox'  checked="true" class="show_col check_total" name='checked_table' data-col="tags_uri_path"> <span class="label-text">{lang_user}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>      
+                        <div class="row">
+                    		<div class="widget-bg">
+                                <div class="widget-body">
+                                    <div class="col-sm-12 col-lg-12 col-md-12">
+                                        <div class="fixed-table-container">
+                                            <div class="bootstrap-table body-table section-row product">
+                                                <div class="fixed-table-header">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-hover table-responsive">
+                    										<thead>
+                    											<tr class="tr-grid">
+                    												<th class="text-center" width="20">{lang_no}</th>
+                                                                    <th class="text-center sort" title="Sort" data-hide="news_title" id='c-title'>{lang_news_title}<span></span></th>
+                    												<th class="text-center sort" title="Sort" data-hide="tags_name" id='b-name'>{lang_tags_name}<span></span></th>
+                    												<th class="text-center sort" title="Sort" data-hide="tags_uri_path" id='b-uri_path'>{lang_uri_path}<span></span></th>
+                                                                    <th class="text-center">{lang_action}<span></span></th>
+                    											</tr>
+                    										</thead>
+                    										<tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                	    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_position} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_menu_position" name="id_menu_position" data-parsley-required="true">{list_menu_position}</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_menu_name} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="name" id="name" value="{name}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_parent" name="id_parent" data-parsley-required="true">{list_parent}</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_menu_type} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_frontend_menu_type" name="id_ref_frontend_menu_type" data-parsley-required="true">{list_frontend_menu_type}</select>
+						</div>
+					</div>
+					<div class="form-group row id_ref_module {hide_module}">
+						<label class="col-md-3 col-form-label" for="l0">{lang_module} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_module" name="id_ref_module">{list_module}</select>
+						</div>
+					</div>
+					<div class="form-group row extra_param {hide_extra_param}">
+						<label class="col-md-3 col-form-label" for="l0">{lang_external_link} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="extra_param" id="extra_param" value="{extra_param}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_image}</label>
+						<div class="col-md-9">
+							{img}
+							<div class="notes-image">{lang_notes_image}</div>
+							<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control datepicker" name="publish_date" id="publish_date" value="{publish_date}" data-date-format="yyyy-mm-dd" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_description}</label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control ckeditor" name="description" id="description">{description}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_status_publish" name="id_ref_status_publish" data-parsley-required="true">{list_status_publish}</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_seo_title} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="seo_title" id="seo_title" value="{seo_title}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_meta_description} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control ckeditor" name="meta_description" id="meta_description" data-parsley-required="true">{meta_description}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_meta_keyword} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="meta_keywords" id="meta_keywords" value="{meta_keywords}" data-parsley-required="true">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}
+{grid_modules}
+
+<script type="text/javascript">
+	$(document).on('change','#id_ref_frontend_menu_type',function(){
+		switch($(this).val()) {
+			case '1':
+				$('.extra_param').addClass('hide');
+				$('.id_ref_module').removeClass('hide');
+				break;
+			case '2':
+				$('.id_ref_module').addClass('hide');
+				$('.extra_param').removeClass('hide');
+				break;
+			default:
+				$('.id_ref_module').addClass('hide');
+				$('.extra_param').addClass('hide');
+				break;
+		}
+	});
+
+	var selected;
+	$(document).on('change','#id_ref_module',function(){
+		var module_id = $(this).val();
+		if(module_id==1){ // pages
+			selected = 'pages';
+			$('#modal-module-pages').modal('show');
+		} else { // news
+			selected = 'news';
+			$('#modal-module-news').modal('show');
+		}
+	});
+	$(document).on('click','.select-data',function(){
+		var uri_path = $(this).attr('data-uripath');
+		$('#extra_param').val(selected+'/'+uri_path);
+		$('#modal-module-news').modal('hide');
+		$('#modal-module-pages').modal('hide');
+	});
+
+</script>

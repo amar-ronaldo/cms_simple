@@ -1,0 +1,98 @@
+.bootstrap-table .table thead>tr>th {
+	padding: 8px;
+}
+.show_page {
+	line-height: 42px;
+	text-align: right;
+}
+.paging-select {
+	position: relative;
+}
+.paging-select .select2-container--default .select2-selection--single .select2-selection__arrow {
+	top: 50%;
+}
+.hide{
+	display: none;
+}
+.search-panel{
+    background: #fff;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: -3px;
+    margin-right: -3px;
+    margin-bottom: 15px;
+}
+.bootstrap-table .table thead>tr>th.sort {
+    cursor: pointer;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+	top: 19px;
+}
+a:not([href]):not([tabindex]) {
+	color: #fff 
+}
+.login-center {
+	width: 390px;
+	max-width: 100%;
+}
+.side-menu li li.active a, .side-menu li li a:hover, .side-menu li li a:focus, .side-menu li li.active a:hover {
+	color: #000;
+}
+.side-menu ul li a {
+	padding-right: 15px;
+}
+.side-menu .sub-menu li a {
+    font-size: 12px;
+    line-height: 15px;
+    padding: 7px 0;
+}
+.side-menu .sub-menu li.menu-item-has-children a {
+	padding-right: 15px;
+}
+.side-menu > li > a {
+	padding-left: 5px;
+}
+.side-menu .sub-menu {
+	margin-left: 3.8em;
+}
+.side-menu .sub-menu li a {
+	font-size: 12px;
+	line-height: 15px;
+	padding: 7px 0;
+}
+.side-menu .sub-menu .sub-menu {
+	margin-left: 15px;
+}
+
+.side-menu .sub-menu li a:after {
+	font-family: 'feather';
+    content: "\e92a";
+    position: absolute;
+    right: 0.55556em;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: #8253eb;
+	left: -15px;
+}
+.set-right-btn a{
+	margin-left: 15px;
+}
+.notes-image{
+	color: green;
+}
+.delete-image{
+	cursor: pointer;
+	color: red !important;
+}
+.text-red-color{
+	color: blue;
+}
+.download-backup{
+	margin-right:10px;
+}
+.req{
+	color: red;
+}

@@ -1,0 +1,48 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_cd_province} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="code_prov" id="code_prov" value="{code_prov}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_code_province} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="code_province" id="code_province" value="{code_province}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_name_province} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="name" id="name" value="{name}" data-parsley-required="true">
+						</div>
+					</div>
+					<!-- <div class="form-group row hide" id="uri_path_form">
+						<label class="col-md-3 col-form-label">URL <i class='req'>*</i></label>
+						
+						<div class="col-md-9">
+							<input type="text" value="{uri_path}" id="uri_path" class='form-control' name="uri_path" data-parsley-required="true" >
+						</div>
+					</div> -->
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_status_province} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select id="id_ref_status_publish" class='form-control' name="id_ref_status_publish" data-parsley-required="true">{list_status_publish}</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

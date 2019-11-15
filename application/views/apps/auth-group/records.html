@@ -1,0 +1,31 @@
+{data}
+
+<tr class="grid-list">
+	<td align="center">{nomor}</td>
+	<td align="left">{group_name}</td>
+	<td align="center">{total_users}</td>
+	<td align="center">
+		<a href="#" onclick="detail_users({id},'{group_name}')" title="{lang_view_user_detail}" class="feather feather-search"></a>
+		<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+	</td>
+</tr>
+
+<tr class='grid-normal hide'>
+	<td align="left">
+		<div class="row mb-2" data-hide='group_name'>
+            <div class="col-md-3"><span class="title-header">{lang_group}</span></div>
+            <div class="col-md-4">{group_name}</div>
+        </div>
+
+        <div class="row mb-2" data-hide='user'>
+            <div class="col-md-3"><span class="title-header">{lang_user}</span></div>
+            <div class="col-md-4">{total_users}</div>
+        </div>
+	</td>
+</tr>
+
+{/data}
+
+
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

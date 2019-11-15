@@ -1,0 +1,149 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+</div>
+
+<div class="row mt-4">
+    <div class="col">
+        <div class="widget-bg">
+            <div class="widget-body">
+            	<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form-email-config' autocomplete="off">
+            		<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_type}</label>
+						<div class="col-md-9">
+							<input type="radio" name="type" value="smtp" class="type smtp" checked> SMTP
+					    	<input type="radio" name="type" value="sendmail" class="type sendmail"> Send Mail
+						</div>
+					</div>
+					<div class="form-group row sendmail_path {hide}">
+						<label class="col-md-3 col-form-label" for="l0">{lang_sendmain_path}</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="sendmail_path" id="sendmail_path" value="{sendmail_path}">
+						</div>
+					</div>
+            		<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_host}</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="smtp_host" id="smtp_host" value="{smtp_host}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_user}</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="smtp_user" id="smtp_user" value="{smtp_user}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_alias_email}</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="smtp_user_alias" id="smtp_user_alias" value="{smtp_user_alias}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_password}</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" name="smtp_pass" id="smtp_pass" value="{smtp_pass}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_port}</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="port" id="port" value="{port}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0"></label>
+						<div class="col-md-9">
+							<button type="submit" class="btn btn-primary submit-button">{lang_save}</button>
+						</div>
+					</div>
+            	</form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="widget-bg col-sm-12">
+            <div class="widget-heading widget-heading-border">
+                <h5 class="widget-title">{lang_email_testing}</h5>
+                <div class="widget-actions">
+                </div>
+            </div>
+            <div class="widget-body">
+            	<form action='{this_controller}process' class="form-horizontal" method='post' id='form-check-email' autocomplete="off">
+	                <div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_sent_to}</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="email" id="email" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0"></label>
+						<div class="col-md-9">
+							<button type="submit" class="btn btn-primary check-button">{lang_check}</button>
+						</div>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
+
+</div>    
+			   
+<script type="text/javascript">
+	function show_hide(val){
+		if(val=='sendmail'){
+			$('.sendmail_path').removeClass('hide');
+		} else {
+			$('.sendmail_path').addClass('hide');
+		}
+	}
+	$(document).on('click','.type',function(){
+		var val = $(this).val();
+		show_hide(val);
+    });
+
+    // form email config
+	$(document).on('submit','#form-email-config',function(){
+		var btn = $('.submit-button').html();
+		$.ajax({
+			url 		: $(this).attr('action'),
+			type 		: "POST",
+			dataType	: 'json',
+			data 		: $(this).serialize(),
+			beforeSend 	: function() { $('.submit-button').html(loading); },
+			success     : function(ret){
+				$('.submit-button').html(btn);
+				if(ret.error==0){ alert(ret.message); }
+			},
+			error 		: function (err){
+				$('.submit-button').html(btn);
+				alert(err.message);
+			},
+		});
+		return false;
+	});
+
+	// form test sent email
+	$(document).on('submit','#form-check-email',function(){
+		var btn = $('.check-button').html();
+		$.ajax({
+			url 		: $(this).attr('action'),
+			type 		: "POST",
+			dataType	: 'json',
+			data 		: $(this).serialize()+"&"+$('#form-email-config').serialize(),
+			beforeSend 	: function() { $('.check-button').html(loading); },
+			success     : function(ret){
+				$('.check-button').html(btn);
+				if(ret.error==0){ alert(ret.message); }
+			},
+			error 		: function (err){
+				$('.check-button').html(btn);
+				alert(err.message);
+			},
+		});
+		return false;
+	});
+
+</script>

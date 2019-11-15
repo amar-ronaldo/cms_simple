@@ -1,0 +1,53 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_language} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' data-live-search='true' name='id_ref_language' id='id_ref_language'>{list_language}</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_template_name} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="template_name" id="template_name" value="{template_name}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_subject} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="subject" id="subject" value="{subject}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_code} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="code" id="code" value="{code}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_content} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content" data-parsley-required="true">{page_content}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' data-live-search='true' name='id_ref_status_publish' id='id_ref_status_publish'>{list_status_publish}</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

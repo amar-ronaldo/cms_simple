@@ -1,0 +1,18 @@
+{data}
+<tr>
+	<td align="center">{nomor}</td>
+	<td align="center">{id}</td>
+	<td>{news_category}</td>
+	<td>{title}</td>
+	<td align="center">{status}</td>
+	<td align="center">{publish_date}</td>
+	<td align="center">{writer}</td>
+	<td align="center">{hits}</td>
+	<td align="center">{language}</td>
+	<td align="center">
+		<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+	</td>
+</tr>
+{/data}
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

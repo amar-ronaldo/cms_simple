@@ -1,0 +1,25 @@
+{data}
+<tr class="grid-list">
+	<td class="text-left">{nomor}</td>
+	<td class="text-left">{name}</td>
+	<td class="text-left">{uri_path}</td>
+	<td class="text-center">
+		<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+	</td>
+</tr>
+
+<tr class='grid-normal hide'>
+	<td align="left">
+		<div class="row mb-2" data-hide='name'>
+            <div class="col-md-3"><span class="title-header">{lang_name}</span></div>
+            <div class="col-md-4">{name}</div>
+        </div>
+        <div class="row mb-2" data-hide='uri_path'>
+            <div class="col-md-3"><span class="title-header">{lang_uri_path}</span></div>
+            <div class="col-md-4">{uri_path}</div>
+        </div>
+	</td>
+</tr>
+{/data}
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

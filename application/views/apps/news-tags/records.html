@@ -1,0 +1,36 @@
+{data}
+
+<tr class="grid-list">
+	<td align="center">{nomor}</td>
+	<td align="left">{news_title}</td>
+	<td align="left">{tags_name}</td>
+	<td align="center">{tags_uri_path}</td>
+    <td align="center">
+        <a href="{base_url}apps/tags/add/{id}/{foreign_controller}" title="{lang_edit_data}" class="feather feather-edit"></a>
+        <a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+    </td>
+</tr>
+
+<tr class='grid-normal hide'>
+	<td align="left">
+		<div class="row mb-2" data-hide='news_title'>
+            <div class="col-md-3"><span class="title-header">{lang_news_title}</span></div>
+            <div class="col-md-4">{news_title}</div>
+        </div>
+        
+		<div class="row mb-2" data-hide='tags_name'>
+            <div class="col-md-3"><span class="title-header">{lang_tags_name}</span></div>
+            <div class="col-md-4">{tags_name}</div>
+        </div>
+
+        <div class="row mb-2" data-hide='tags_uri_path'>
+            <div class="col-md-3"><span class="title-header">{lang_uri_path}</span></div>
+            <div class="col-md-4">{tags_uri_path}</div>
+        </div>
+	</td>
+</tr>
+
+{/data}
+
+
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

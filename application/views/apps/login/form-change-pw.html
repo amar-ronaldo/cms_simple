@@ -1,0 +1,22 @@
+<form id="change-pw" action="{this_controller}{change_code}">
+    <div class="form-group warning"></div>
+    <div class="form-group">
+        <label for="example-email">{lang_new_pw}</label>
+        <input type="password" placeholder="{lang_new_pw}" class="form-control form-control-line" name="password" id="password" required>
+    </div>
+    <div class="form-group">
+        <label for="example-email">{lang_retype_pw}</label>
+        <input type="password" placeholder="{lang_retype_pw}" class="form-control form-control-line" name="re_password" id="re_password" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block btn-lg btn-color-scheme text-uppercase fs-12 fw-600 btn-change-pw">{lang_change_pw}</button>
+    </div>
+    <div class="form-group no-gutters mb-0">
+        <div class="col-md-12 d-flex">
+            <div class="checkbox checkbox-primary mr-auto mr-0-rtl ml-auto-rtl">
+                <label class="d-flex"></label>
+            </div>
+            {have_an_account}
+        </div>
+    </div>
+</form><hr>

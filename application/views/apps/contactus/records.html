@@ -1,0 +1,36 @@
+{data}
+	<tr class="grid-list">
+		<td class="center">{nomor}</td>
+		<td class='text-left'>{fullname}</td>
+		<td class='text-left'>{email}</td>
+		<td class='text-left'>{subject}</td>
+		<td class='text-left'>{pesan}</td>
+		<td class="text-center">
+			<a href="#" title="{lang_view_contact_detail}" class="feather feather-search detail-hubungi-kami action-form-icon" data-id="{id}"></a>
+		</td>
+	</tr>
+
+	<tr class='grid-normal hide'>
+		<td align="left">
+			<div class="row mb-2" data-hide='fullname'>
+	            <div class="col-md-3"><span class="title-header">{lang_name_contactus}</span></div>
+	            <div class="col-md-4">{fullname}</div>
+	        </div>
+	        <div class="row mb-2" data-hide='email'>
+	            <div class="col-md-3"><span class="title-header">{lang_email_contactus}</span></div>
+	            <div class="col-md-4">{email}</div>
+	        </div>
+	        <div class="row mb-2" data-hide='subject'>
+	            <div class="col-md-3"><span class="title-header">{lang_subyek_contactus}</span></div>
+	            <div class="col-md-4">{subject}</div>
+	        </div>
+	        <div class="row mb-2" data-hide='pesan'>
+	            <div class="col-md-3"><span class="title-header">{lang_message_contactus}</span></div>
+	            <div class="col-md-4">{pesan}</div>
+	        </div>
+		</td>
+	</tr>
+{/data}
+<tr class="footer-page">
+	<td colspan="10">{paging}</td>
+</tr>

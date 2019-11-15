@@ -1,0 +1,49 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">{lang_name_province} <i class='req'>*</i></label>
+						<div class="col-md-9"><select class='form-control' name='code_province' id='code_province' onchange="ajax_filter_select('kode_kabupaten','{this_controller}filter_kab/'+this.value);">{list_provinsi}</select></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">{lang_cd_city} <i class='req'>*</i></label>
+						<div class="col-md-9"><input type="text" value="{code_city_note}" data-parsley-required="true" id="code_city_note" class='form-control' name="code_city_note"></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">{lang_code_city} <i class='req'>*</i></label>
+						<div class="col-md-9"><input type="text" value="{code_city}" data-parsley-required="true" id="code_city" class='form-control' name="code_city"></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">{lang_name_city} <i class='req'>*</i></label>
+						<div class="col-md-9"><input type="text" value="{name}" id="title" class='form-control' name="name" data-parsley-required="true"></div>
+					</div>
+
+					<div class="form-group no-margin hide" id="uri_path_form">
+						<label class="col-md-3 control-label">{lang_url_city} <i class='req'>*</i></label>
+						
+						<div class="col-md-9">
+							<input type="text" value="{uri_path}" id="uri_path" class='form-control' name="uri_path" data-parsley-required="true">
+						</div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">{lang_status} <i class='req'>*</i></label>
+						<div class="col-md-9"><select class='form-control' name='id_ref_status_publish' id='id_ref_status_publish' data-parsley-required="true">{list_status_publish}</select></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

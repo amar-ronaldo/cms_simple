@@ -1,0 +1,31 @@
+{data}
+	<tr class="grid-list">
+		<td class="text-center">{nomor}</td>
+		<td class="text-left">{name}</td>
+		<td class="text-left">{code}</td>
+		<td class="text-left">{status_lang}</td>
+		<td class="text-center">
+			<a href="#" onclick="detail_users({id},'{group_name}')" title="{lang_view_user_detail}" class="feather feather-search"></a>
+			<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+			<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+		</td>
+	</tr>
+
+	<tr class='grid-normal hide'>
+		<td align="left">
+			<div class="row mb-2" data-hide='name'>
+	            <div class="col-md-3"><span class="title-header">{lang_language}</span></div>
+	            <div class="col-md-4">{name}</div>
+	        </div>
+	        <div class="row mb-2" data-hide='code'>
+	            <div class="col-md-3"><span class="title-header">{lang_language_code}</span></div>
+	            <div class="col-md-4">{code}</div>
+	        </div>
+	        <div class="row mb-2" data-hide='status_lang'>
+	            <div class="col-md-3"><span class="title-header">{lang_language_status}</span></div>
+	            <div class="col-md-4">{status_lang}</div>
+	        </div>
+		</td>
+	</tr>
+{/data}
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

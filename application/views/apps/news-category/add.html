@@ -1,0 +1,38 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_news_category_name} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="name" id="title" value="{name}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_uri_path} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="uri_path" id="uri_path" value="{uri_path}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_image}</label>
+						<div class="col-md-9">
+							{img}
+							<div class="notes-image">{lang_notes_image}</div>
+							<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}

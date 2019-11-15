@@ -1,0 +1,29 @@
+{data}
+	<tr class="menu grid-list" data-id="{id}" data-parent_menu={parent}>
+		<td class="text-center">{nomor}</td>
+		<td class="text-left">{menus}</td>
+		<td class="text-left">{controllers}</td>
+		<td class="text-center">
+			<a href="#" title="{lang_view_user_detail}" class="feather feather-search" id="view-users-detail"></a>
+			<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+			<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+			{down}{up}
+		</td> 
+	</tr>
+
+	<tr class='grid-normal hide'>
+	<td align="left">
+		<div class="row mb-2" data-hide='menus'>
+            <div class="col-md-3"><span class="title-header">{lang_menu}</span></div>
+            <div class="col-md-4">{menus}</div>
+        </div>
+        <div class="row mb-2" data-hide='controllers'>
+            <div class="col-md-3"><span class="title-header">{lang_controller}</span></div>
+            <div class="col-md-4">{controllers}</div>
+        </div>
+	</td>
+</tr>
+{/data}
+<tr class="footer-page">
+	<td colspan="10">{paging}</td>
+</tr>

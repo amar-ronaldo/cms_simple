@@ -1,0 +1,31 @@
+{data}
+	<tr class="grid-list">
+		<td class="text-center">{nomor}</td>
+		<td class="text-left">{nama_provinsi}</td>
+		<td class="text-left">{nama_kabupaten}</td>
+		<td class="text-center">
+			<a href="#" title="{lang_view_data}" class="action-form-icon feather feather-search"></a>
+			<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+			<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
+			<!-- <a title="Hapus Data" class="action-form-icon fa fa-trash tangan hapus" id='{id}' data-url-rm='del'></a> -->
+		</td> 
+	</tr>
+
+	<tr class='grid-normal hide'>
+		<td align="left">
+			<div class="row mb-2" data-hide='name'>
+	            <div class="col-md-3"><span class="title-header">{lang_name_province}</span></div>
+	            <div class="col-md-4">{name}</div>
+	        </div>
+		</td>
+		<td align="left">
+			<div class="row mb-2" data-hide='name'>
+	            <div class="col-md-3"><span class="title-header">{lang_lang_name_city}</span></div>
+	            <div class="col-md-4">{name}</div>
+	        </div>
+		</td>
+	</tr>
+{/data}
+<tr class="footer-page">
+	<td colspan="10">{paging}</td>
+</tr>

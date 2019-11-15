@@ -1,0 +1,197 @@
+<div class="row page-title mb-2">
+    <div class="page-title-left">
+        <h4 class="page-title-heading">{page_title}</h4> 
+    </div>
+    <div class="set-right-btn">
+        {btn_add_only}
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col">
+        <div class="widget-bg">
+            <div class="widget-heading widget-heading-border">
+                <h5 class="widget-title">{lang_menu_level1}</h5>
+                <div class="widget-actions">
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <div class="row-fluid">
+                        
+                    </div>
+                    <div id='grid1' class='my_grid' data-perpage='10' data-order-id="urut" data-order-direction="asc" data-url="{this_controller}records_level1">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" width="20">{lang_no}</th>
+                                        <th class="text-center" title='Sort' id='menu'>{lang_menu}<span></span></th>
+                                        <th class="text-center" title='Sort' id='controller'>{lang_controller}<span></span></th>
+                                        <th class="text-center" width="100">{lang_action}</th>
+                                    </tr>
+                                    <tr class='filter'>
+                                        <th></th>
+                                        <th><input type='text' class='cari form-control' id='search_menu' placeholder='{lang_search}'></th>
+                                        <th><input type='text' class='cari form-control' id='search_controller' placeholder='{lang_search}'></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col">
+        <div class="widget-bg col-sm-12">
+            <div class="widget-heading widget-heading-border">
+                <h5 class="widget-title">{lang_menu_level2}</h5>
+                <div class="widget-actions">
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <div id='grid2' class='my_grid2' data-perpage='10' data-order-id="urut" data-order-direction="asc" data-url="{this_controller}records_level2/{ids}">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" width="20">{lang_no}</th>
+                                        <th class="text-center"  title='Sort' id='menu'>{lang_menu}<span></span></th>
+                                        <th class="text-center" title='Sort' id='controller'>{lang_controller}<span></span></th>
+                                        <th class="text-center" width="100">{lang_action}</th>
+                                    </tr>
+                                    <tr class='filter'>
+                                        <th></th>
+                                        <th><input type='text' class='cari form-control' id='search_menus' placeholder='{lang_search}'></th>
+                                        <th><input type='text' class='cari form-control' id='search_controller' placeholder='{lang_search}'></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <!-- Buat records nyaa -->
+                                <tbody id="level2">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+<div class="row mt-4">
+    <div class="col">
+        <div class="widget-bg col-sm-12">
+            <div class="widget-heading widget-heading-border">
+                <h5 class="widget-title"> {lang_menu_level3}</h5>
+                <div class="widget-actions">
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <div id='grid3' class='my_grid3' data-perpage='10' data-order-id="urut" data-order-direction="asc" data-url="{this_controller}records_level3/{idx}">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" width="20">{lang_no}</th>
+                                        <th class="text-center"  title='Sort' id='menu'>{lang_menu}<span></span></th>
+                                        <th class="text-center" title='Sort' id='controller'>{lang_controller}<span></span></th>
+                                        <th class="text-center" width="100">{lang_action}</th>
+                                    </tr>
+                                    <tr class='filter'>
+                                        <th></th>
+                                        <th><input type='text' class='cari form-control' id='search_menus' placeholder='{lang_search}'></th>
+                                        <th><input type='text' class='cari form-control' id='search_controller' placeholder='{lang_search}'></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <!-- Buat records nyaa -->
+                                <tbody id="level3">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col"></div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).on('click', '#grid1 tr.menu', function (e) {
+        e.stopPropagation();
+        var $this = $(this);
+        var trid = $this.closest('tr').data('id');
+        $('#grid1 tr.menu').removeClass('selected');
+        $this.addClass('selected');
+        $.ajax({
+            url         : '{base_url}apps/auth_menu/records_level2/'+trid,
+            success     : function(data){
+                $('#level2').empty().html(data);
+                $('#level3').empty();
+                $('#level2').attr('class', trid);
+                $('#grid2').attr('data-url', base_url+'apps/auth_menu/records_level2/'+trid);
+                // location.reload();
+                // $(window).scrollTop(0);
+            }
+        });
+    });
+
+
+    $(document).on("click", ".ubah_urutan", function() {
+        var id      = $(this).attr('data-id');
+        var urutan  = $(this).attr('data-urut');
+        var tipe    = $(this).attr('data-tipe');
+        var parent  = $(this).attr('data-parent');
+        $.ajax({
+                type    : 'post',
+                url     : '{base_url}apps/auth_menu/ubah_urutan/',
+                data    : 'id_menu='+ id+'&urutan='+urutan+'&tipe='+tipe+'&parent='+parent,
+                success : function(msg){
+                        refresh_grid();
+                }
+        });
+    });
+
+
+    $(document).on('click', '#delete-menu', function (e) {
+        var idedit      = $(this).attr('data-id');
+        var base      = "{base_url}";
+        $.ajax({
+                type    : 'POST',
+                url     : '{base_url}apps/auth_menu/del',
+                data    : 'iddel='+ idedit,
+                success : function(msg){
+                        refresh_grid();
+                          // location.reload();
+                }
+        });
+    });
+
+    $(document).on('click', '#grid2 tr.menu', function (e) {
+        e.stopPropagation();
+        var $this = $(this);
+        var trid = $this.closest('tr').data('id');
+        $('#grid2 tr.menu').removeClass('selected');
+        $this.addClass('selected');
+        $.ajax({
+            url         : '{base_url}apps/auth_menu/records_level3/'+trid,
+            success     : function(data){
+                $('#level3').empty().html(data);
+                $('#grid3').attr('data-url', base_url+'apps/auth_menu/records_level3/'+trid);
+                // location.reload();
+                
+            }
+        });
+    });
+</script>

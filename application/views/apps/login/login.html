@@ -1,0 +1,53 @@
+<div class="login-center">
+    <div class="navbar-header text-center mb-5">
+        <a href="{base_url}">
+            <img alt="{lang_my_logo}" src="{base_url}template/assets/demo/logo-expand-dark.png">
+        </a>
+    </div>
+    <form id="form-login" action="{this_controller}check_login">
+        <div class="form-group warning">
+           <!--  <div class="alert alert-icon alert-danger border-danger alert-dismissible fade show"
+                role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button> <i class="material-icons list-icon">not_interested</i>  <strong>Oh snap!</strong> Change a few things up and try submitting again.</div> -->
+        </div>
+        <div class="form-group">
+            <label for="example-email">{lang_user_id}</label>
+            <input type="text" placeholder="{lang_user_id}" class="form-control form-control-line" name="username" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="example-password">{lang_password}</label>
+            <input type="password" placeholder="{lang_password}" class="form-control form-control-line" name="password" id="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-lg btn-color-scheme text-uppercase fs-12 fw-600 btn-submit-login">{lang_login}</button>
+        </div>
+        <div class="form-group no-gutters mb-0">
+            <div class="col-md-12 d-flex">
+                <div class="checkbox checkbox-primary mr-auto mr-0-rtl ml-auto-rtl">
+                    <label class="d-flex">
+                        <!-- <input type="checkbox"> <span class="label-text">Remember me</span> -->
+                    </label>
+                </div>
+                <a href="{base_url}forgot-password" id="to-recover" class="my-auto pb-2 text-right" title="{lang_request_forgot_pw_page}"><i class="material-icons mr-2 fs-18">lock</i> {lang_forgot_pw}</a>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <!-- <div class="row btn-list">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-facebook ripple" data-toggle="tooltip" data-placement="top" title="Login with Facebook"><i class="social-icons list-icon">facebook</i> facebook</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-googleplus ripple" data-toggle="tooltip" data-placement="top" title="Login with Google"><i class="social-icons list-icon">googleplus</i> google</button>
+        </div>
+    </div>
+    <footer class="col-sm-12 text-center">
+        <hr>
+        <p>Don't have an account? <a href="page-register.html" class="text-primary m-l-5"><b>Sign Up</b></a>
+        </p>
+    </footer> -->
+
+</div>

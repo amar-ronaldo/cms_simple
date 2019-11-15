@@ -1,0 +1,16 @@
+{data}
+	<tr class="menu" data-id="{id}" data-parent_menu={parent}>
+		<td class="text-center">{nomor}</td>
+		<td>{menus}</td>
+		<td>{controllers}</td>
+		<td>
+			<a href="#" title="{lang_view_user_detail}" class="feather feather-search" id="view-users-detail"></a>
+			<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+			<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id="delete-menu" data-id='{id}' data-url-rm="del"></a>
+			{down}{up}
+		</td> 
+	</tr>
+{/data}
+<tr class="footer-page">
+	<td colspan="10">{paging}</td>
+</tr>

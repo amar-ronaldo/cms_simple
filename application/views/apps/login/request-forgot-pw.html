@@ -1,0 +1,25 @@
+<div class="login-center">
+    <div class="navbar-header text-center mb-5">
+        <a href="{base_url}">
+            <img alt="{lang_my_logo}" src="{base_url}template/assets/demo/logo-expand-dark.png">
+        </a>
+    </div>
+    <form id="form-forgot-pw" action="{this_controller}">
+        <div class="form-group warning"></div>
+        <div class="form-group">
+            <label for="example-email">{lang_email}</label>
+            <input type="text" placeholder="{lang_your_email}" class="form-control form-control-line" name="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-lg btn-color-scheme text-uppercase fs-12 fw-600 btn-forgot-pw">{lang_request_forgot_pw}</button>
+        </div>
+        <div class="form-group no-gutters mb-0">
+            <div class="col-md-12 d-flex">
+                <div class="checkbox checkbox-primary mr-auto mr-0-rtl ml-auto-rtl">
+                    <label class="d-flex"></label>
+                </div>
+                {have_an_account}
+            </div>
+        </div>
+    </form><hr>
+</div>

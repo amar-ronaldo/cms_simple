@@ -1,0 +1,17 @@
+<form id="form-import-file" action="{this_controller}import_excel" class="form-horizontal" method="post" enctype="multipart/form-data">
+	<fieldset>
+	<div class="form-group no-margin">
+		<label class="col-md-3 control-label">Unggah data</label>
+		<div class="col-md-7"><input type="file" class='form-control' id="file_upload" name="file_upload" >
+		<b><i>File ekstensi yang diperbolehkan .xlsx dan .xls</i></b></div>
+		<a class="btn btn-primary import" id="btn-import-file"><i class="fa fa-upload"></i> Import Excel</a>							
+	</div>
+	</fieldset>
+</form>
+<input type="file" name="file_import" id="file_import" class="btn">
+<a class="btn btn-outline-primary ripple" href="#import" onclick="import_data()" title="{lang_import_data}"><i class="fa fa-download"></i>&nbsp;{lang_import}</a>
+<a class="btn btn-outline-primary ripple" href="#export" onclick="export_to_excel()" title="{lang_export_data}"><i class="fa fa-download"></i>&nbsp;{lang_export}</a>
+<a class="btn btn-primary ripple insert" href="{this_controller}add"><i class="fa fa-plus"></i>&nbsp;{lang_add_new}</a>
+<a class="btn btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+	<i class="feather feather-search list-icon"></i>
+</a>

@@ -1,0 +1,37 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	<div class="set-right-btn">
+		<a id='save-profile' class='btn btn-primary'><i class='list-icon feather feather-save mr-2'></i> {lang_change_pw}</a>
+	</div>
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_old_pw}</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" name="old_pass" id="old_pass" value="{old_pass}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_new_pw}</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" name="new_pass" id="new_pass" value="{new_pass}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_retype_pw}</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" name="re_pass" id="re_pass" value="{re_pass}" data-parsley-required="true">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

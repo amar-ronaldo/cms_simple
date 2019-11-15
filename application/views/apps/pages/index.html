@@ -1,0 +1,106 @@
+<div class="row page-title mb-2">
+	<div class="page-title-left">
+		<h4 class="page-title-heading">{page_title}</h4> 
+	</div>
+	<div class="set-right-btn">{btn_add}</div>
+</div>
+<div class="my_grid body-table section-row data-table-list" id="grid1" data-perpage='10' data-url='{this_controller}records'>
+	<div class="row mb-2 mt-3">
+        <div class="col collapse" id="collapseExample">
+            <div class="search-panel">
+                <div class="row text-left">
+                    <div class="col filter">
+                        <div class="form-group">
+                            <label>{lang_language}</label>
+                            <input type="text" class="cari form-control" id="search_name" name="search_name" placeholder="{lang_search}">
+                        </div>
+                    </div>
+                    <div class="col filter">
+                        <div class="form-group">
+                            <label>{lang_pages_name}</label>
+                            <input type="text" class="cari form-control" id="search_page_name" name="search_page_name" placeholder="{lang_search}">
+                        </div>
+                    </div>
+                    <div class="col filter">
+                        <div class="form-group">
+                            <label>{lang_uri_path}</label>
+                            <input type="text" class="cari form-control" id="search_uri_path" name="search_uri_path" placeholder="{lang_search}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-12 text-right">
+                        <div class="columns columns-right btn-group pull-right">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-default reload">
+                                    <i class="list-icon feather feather-rotate-cw">
+                                    </i>
+                                </a>
+                                <a href="#" class="btn btn-default toggle_table">
+                                    <i class="feather feather-menu list-icon"></i>
+                                </a>
+                                <a href="#" class=" btn btn-default dropdown-toggle ripple" data-toggle="dropdown"><span class="avatar thumb-xs2">
+                                    <i class="feather feather-grid list-icon rounded-circle mr-1"></i>
+                                    <i class="feather feather-chevron-down list-icon"></i>
+                                </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dm-table">
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox' class="show_col check_total" name='checked_table' data-col="language" checked="true"> <span class="label-text">{lang_language}</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox'  checked="true" class="show_col check_total" name='checked_table' data-col="pages_name"> <span class="label-text">{lang_pages_name}</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox'  checked="true" class="show_col check_total" name='checked_table' data-col="uri_path"> <span class="label-text">{lang_uri_path}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    	<div class="row">
+                    		<div class="widget-bg">
+                                <div class="widget-body">
+                                    <div class="col-sm-12 col-lg-12 col-md-12">
+                                        <div class="fixed-table-container">
+                                            <div class="bootstrap-table body-table section-row product">
+                                                <div class="fixed-table-header">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-hover">
+                    										<thead>
+                    											<tr class="tr-grid">
+                    												<th class="text-center" width="20">{lang_no}</th>
+                                                                    <th class="text-center sort" title="Sort" data-hide='language' id='language'>{lang_language}<span></span></th>
+                    												<th class="text-center sort" title="Sort" data-hide='pages_name' id='pages_name'>{lang_pages_name}<span></span></th>
+                    												<th class="text-center sort" title="Sort" id='uri_path' data-hide='uri_path'>{lang_uri_path}<span></span></th>
+                    												<th class="text-center">{lang_action}<span></span></th>
+                    											</tr>
+                    										</thead>
+                    										<tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

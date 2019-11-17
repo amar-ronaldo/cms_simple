@@ -9,106 +9,123 @@
 	<div class="row">
 		<div class="widget-bg">
 			<div class="widget-body clearfix">
-				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_language} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<select class='form-control' id="id_ref_language" name="id_ref_language" data-parsley-required="true">{list_language}</select>
+				<div class="tabs tabs-bordered">
+					<!-- tab -->
+					<ul class="nav nav-tabs">
+						<li class="nav-item active" aria-expanded="false"><a class="nav-link" href="#form-detail" data-toggle="tab" aria-expanded="true">Detail</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#form-multiImage" data-toggle="tab" aria-expanded="false">Multiple image</a>
+						</li>
+					</ul>
+					<!-- /.nav-tabs -->
+					<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="tab-content">
+							<div class="tab-pane active" id="form-detail" aria-expanded="true">
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_language} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select class='form-control' id="id_ref_language" name="id_ref_language" data-parsley-required="true">{list_language}</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_news_category} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select class='form-control' id="id_ref_news_category" name="id_ref_news_category" data-parsley-required="true">{list_news_category}</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_title} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="title" id="title" value="{title}" data-parsley-required="true">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_uri_path} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="uri_path" id="uri_path" value="{uri_path}" data-parsley-required="true">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_teaser} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<textarea type="text" class="form-control" name="teaser" id="teaser" data-parsley-required="true">{teaser}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_image}</label>
+									<div class="col-md-9">
+										{img}
+										<div class="notes-image">{lang_notes_image}</div>
+										<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_link_youtube}</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="youtube_link" id="youtube_link" value="{youtube_link}">
+										<small>{lang_notes_link_youtube}</small>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="publish_date" id="publish_date" value="{publish_date}" data-parsley-required="true">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select class='form-control' id="id_ref_status_publish" name="id_ref_status_publish" data-parsley-required="true">{list_status}</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_page_content} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content" data-parsley-required="true">{page_content}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_seo_title}</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="seo_title" id="seo_title" value="{seo_title}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_meta_description}</label>
+									<div class="col-md-9">
+										<textarea type="text" class="form-control ckeditor" name="meta_description" id="meta_description">{meta_description}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_meta_keyword}</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="meta_keywords" id="meta_keywords" value="{meta_keywords}">
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="form-multiImage" aria-expanded="false">
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Multiple Image</label>
+									<div class="col-md-9">
+										
+										<div class="list_multi_img">
+											<div class="multi_img">
+												{img_multi}
+												<div class="notes-image mb-5">Ukuran : 960 x 540px</div>
+												<button type="button" class="add_multi-image btn btn-primary" title="Tambah Gambar" onclick="add_multi_image()">Tambah Gambar</button>
+												<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_news_category} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<select class='form-control' id="id_ref_news_category" name="id_ref_news_category" data-parsley-required="true">{list_news_category}</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_title} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="title" id="title" value="{title}" data-parsley-required="true">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_uri_path} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="uri_path" id="uri_path" value="{uri_path}" data-parsley-required="true">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_news_tag}</label>
-						<div class="col-md-9">
-							<select id="tags" multiple class='form-control' name="tags[]"></select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_teaser} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<textarea type="text" class="form-control" name="teaser" id="teaser" data-parsley-required="true">{teaser}</textarea>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_image}</label>
-						<div class="col-md-9">
-							{img}
-							<div class="notes-image">{lang_notes_image}</div>
-							<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_link_youtube}</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="youtube_link" id="youtube_link" value="{youtube_link}">
-							<small>{lang_notes_link_youtube}</small>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="publish_date" id="publish_date" value="{publish_date}" data-parsley-required="true">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<select class='form-control' id="id_ref_status_publish" name="id_ref_status_publish" data-parsley-required="true">{list_status}</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_page_content} <i class='req'>*</i></label>
-						<div class="col-md-9">
-							<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content" data-parsley-required="true">{page_content}</textarea>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_seo_title}</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="seo_title" id="seo_title" value="{seo_title}">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_meta_description}</label>
-						<div class="col-md-9">
-							<textarea type="text" class="form-control ckeditor" name="meta_description" id="meta_description">{meta_description}</textarea>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-3 col-form-label" for="l0">{lang_meta_keyword}</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="meta_keywords" id="meta_keywords" value="{meta_keywords}">
-						</div>
-					</div>
-				</form>
+					</form>
+					<!-- /.tab-content -->
+				</div>
+
 			</div>
 		</div>
 	</div>
 </div>
 {imagemanager_config}
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#tags").select2({tags: [{tags_data}],tokenSeparators: [","]});
-		var selectedValues = "{tags}".split(',');
-		$("#tags").select2('val',selectedValues);
-
-	});
-</script>

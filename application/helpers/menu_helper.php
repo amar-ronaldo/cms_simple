@@ -248,3 +248,12 @@ function generate_title(){
 	$parent_name 	= $data['breadcrumb'];
 	return $parent_name;
 }
+
+function menu_frontend()
+{
+	$CI = &get_instance();
+	$data 	= $CI->db->get_where('frontend_menu',['id_parent'=>null])->result_array();
+	print_r($data);
+	exit;
+
+}

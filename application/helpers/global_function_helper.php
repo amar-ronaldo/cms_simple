@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * fungsi untuk generate passwrd
@@ -11,14 +11,15 @@
  * @return string untuk password siswa dan orang tua
  *
  */
-function generate_password() {  
-	$characters 	= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
-	$password 		= "";  
-	$panjang 		= 6;  
-	for($i=0; $i<$panjang; $i++) {
-		$password .= $characters[rand(0, 63)];  
-	}  
-	return $password;  
+function generate_password()
+{
+	$characters 	= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	$password 		= "";
+	$panjang 		= 6;
+	for ($i = 0; $i < $panjang; $i++) {
+		$password .= $characters[rand(0, 63)];
+	}
+	return $password;
 }
 
 /**
@@ -26,10 +27,11 @@ function generate_password() {
  * @param  $data 		[session data that defined, default is admin_id: admin_id, admin_id_ref_auth_user_group, admin_gender, admin_fullname, admin_username, admin_email, admin_phone, admin_img]
  * @return [data] 		[session data selected]
  */
-function id_user($data='id'){
-	$CI =& get_instance();
-	$user_sess 	= $CI->session->userdata('ADM_SESS'); 
-	$field 		= 'admin_'.$data;
+function id_user($data = 'id')
+{
+	$CI = &get_instance();
+	$user_sess 	= $CI->session->userdata('ADM_SESS');
+	$field 		= 'admin_' . $data;
 	return $user_sess[$field];
 }
 
@@ -39,9 +41,12 @@ function id_user($data='id'){
  * @param $data 		[array data sent to view]
  * @param $layout 	[main page that choosen]
  */
-function render($view='',$data=array(),$layout='',$ret=false){
-	$CI =& get_instance();
-	if(empty($data)){ $data = array(); }
+function render($view = '', $data = array(), $layout = '', $ret = false)
+{
+	$CI = &get_instance();
+	if (empty($data)) {
+		$data = array();
+	}
 	// $CI->data = array();
 	// if(!$layout){
 	// 	if(LANGUAGE=="english"){
@@ -100,16 +105,16 @@ function render($view='',$data=array(),$layout='',$ret=false){
 	$data['page_title'] = generate_title();
 	$user_sess_data 	= $CI->session->userdata('ADM_SESS');
 
-	if(!isset($data['page_name'])){
+	if (!isset($data['page_name'])) {
 		$data['page_name'] = generate_title();
 	}
-	if($user_sess_data){
+	if ($user_sess_data) {
 		$data['profile_picture'] = $user_sess_data['admin_img'];
 	}
 
 	// start multilanguage for static data
 	$language 	= lang_data('name');
-	$CI->lang->load("general",$language);
+	$CI->lang->load("general", $language);
 	$lang 		= $CI->lang->language;
 	$find 		= LANG_CONTROLLER_FIND();
 	$replace 	= LANG_CONTROLLER_REPLACE();
@@ -118,18 +123,87 @@ function render($view='',$data=array(),$layout='',$ret=false){
 	}
 	// end of multilanguage for static data
 
-	if(is_array($data)){
-		$CI->data = array_merge($CI->data,$data);
+	if (is_array($data)) {
+		$CI->data = array_merge($CI->data, $data);
 	}
 
-	if(!$layout){
-		$CI->parser->parse($view.'.html', $CI->data);
+	if (!$layout) {
+		$CI->parser->parse($view . '.html', $CI->data);
 	} else {
-		$CI->data['content'] = $CI->parser->parse($view.'.html', $CI->data,true);
-		if($ret==true){
-			return $CI->parser->parse("layout/$layout.html",$CI->data,true);
+		$CI->data['content'] = $CI->parser->parse($view . '.html', $CI->data, true);
+		if ($ret == true) {
+			return $CI->parser->parse("layout/$layout.html", $CI->data, true);
 		} else {
-			$CI->parser->parse("layout/$layout.html",$CI->data);
+			$CI->parser->parse("layout/$layout.html", $CI->data);
+		}
+	}
+}
+/**
+ * to merge template with all contents
+ * @param $view 		[file name]
+ * @param $data 		[array data sent to view]
+ * @param $layout 	[main page that choosen]
+ */
+function render_front($view = '', $data = array(), $layout = '', $ret = false)
+{
+	
+	$CI = &get_instance();
+	$CI->load->helper('front_helper');
+	if (empty($data)) {
+		$data = array();
+	}
+	$data['base_url'] 		= base_url();
+	$data['app_name'] 		= APP_NAME;
+	$data['language']		= LANGUAGE;
+	$data['this_year'] 		= date('Y');
+	$data['token_name'] 	= $CI->security->get_csrf_token_name();
+	$data['token_value'] 	= $CI->security->get_csrf_hash();
+	$user_sess_data 	= $CI->session->userdata('ADM_SESS');
+	
+	if (!isset($data['page_name'])) {
+		$data['page_name'] = generate_title();
+	}
+	if ($user_sess_data) {
+		$data['profile_picture'] = $user_sess_data['admin_img'];
+	}
+	
+	// start multilanguage for static data
+	$language 	= lang_data('name');
+	$CI->lang->load("general", $language);
+	$lang 		= $CI->lang->language;
+	$find 		= LANG_CONTROLLER_FIND();
+	$replace 	= LANG_CONTROLLER_REPLACE();
+	foreach ($lang as $key => $value) {
+		$data[$key] = str_replace($find, $replace, $value);
+	}
+	// end of multilanguage for static data
+	
+	$data['web_config'] = $CI->db->get('ref_web_config')->result_array();
+	foreach ($data['web_config'] as $key => $value) {
+		$CI->data['config_'.$value['name']] = $value['value'];
+	}	
+	if (is_array($data)) {
+		$CI->data = array_merge($CI->data, $data);
+	}
+	// generate page 
+	$data['breadcrumb'] = breadcrumb();
+	$data['page_title'] = generate_title();
+	$data['footer']     = front_footer();
+	$data['header_top'] = front_header_top();
+	$data['header']     = front_header();
+
+	if (is_array($data)) {
+		$CI->data = array_merge($CI->data, $data);
+	}
+	
+	if (!$layout) {
+		$CI->parser->parse($view . '.html', $CI->data);
+	} else {
+		$CI->data['content'] = $CI->parser->parse($view . '.html', $CI->data, true);
+		if ($ret == true) {
+			return $CI->parser->parse("layout/$layout.html", $CI->data, true);
+		} else {
+			$CI->parser->parse("layout/$layout.html", $CI->data);
 		}
 	}
 }
@@ -138,12 +212,13 @@ function render($view='',$data=array(),$layout='',$ret=false){
  * get data of language search by field, default is id
  * @return [int] 	[id lang that found]
  */
-function lang_data($field='id'){
-	$CI =& get_instance();
-	if(IS_MULTI_LANG){ // multilanguage active
-	    $lang 	= $CI->uri->segment(1);
-	    $result = db_get_one('ref_language',$field,array('code'=>$lang));
-	    return strtolower($result);
+function lang_data($field = 'id')
+{
+	$CI = &get_instance();
+	if (IS_MULTI_LANG) { // multilanguage active
+		$lang 	= $CI->uri->segment(1);
+		$result = db_get_one('ref_language', $field, array('code' => $lang));
+		return strtolower($result);
 	} else {
 		$lang_data = lang_data_in_cache();
 		return strtolower($lang_data[$field]);
@@ -155,29 +230,31 @@ function lang_data($field='id'){
  * @param  string 	$cache_name 	[description]
  * @return [type]             		[language data with status actived]
  */
-function lang_data_in_cache($cache_name='language_data'){
-    $CI =& get_instance();
-   	$CI->load->driver('cache',array('adapter' => 'apc', 'backup' => 'file'));
-   	$CI->load->model('Language_model');
-   	if ( ! $data = $CI->cache->get($cache_name)) {
-		$data = $CI->Language_model->findBy(array('status_lang'=>1),1);
-    	$CI->cache->save($cache_name, $data, 300);
-    	$data = $CI->cache->get($cache_name);
-    }
-    return $data;
+function lang_data_in_cache($cache_name = 'language_data')
+{
+	$CI = &get_instance();
+	$CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+	$CI->load->model('Language_model');
+	if (!$data = $CI->cache->get($cache_name)) {
+		$data = $CI->Language_model->findBy(array('status_lang' => 1), 1);
+		$CI->cache->save($cache_name, $data, 300);
+		$data = $CI->cache->get($cache_name);
+	}
+	return $data;
 }
 
 /**
  * Clear data cache that stored in --> application/cache/*
  */
-function clear_data_cache(){
-    $CI =& get_instance();
-    // just add cache name in this array
-    $file_name_cache = array('language_data','module_data');
-    foreach ($file_name_cache as $key => $value) {
-	    $CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+function clear_data_cache()
+{
+	$CI = &get_instance();
+	// just add cache name in this array
+	$file_name_cache = array('language_data', 'module_data');
+	foreach ($file_name_cache as $key => $value) {
+		$CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
 		$CI->cache->delete($value);
-    }
+	}
 }
 
 /**
@@ -185,10 +262,11 @@ function clear_data_cache(){
  * @param  [int] 	$selected 	[key of month in year, started from 0 to 11]
  * @return [html]	$opt 		[select option that contain list of month]
  */
-function list_month($selected=''){
-	$bulan = array(1=>'January','February','March','April','May','June','July','August','September','October','November','December');
+function list_month($selected = '')
+{
+	$bulan = array(1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 	$opt = "<option value=''></option>";
-	foreach($bulan as $key => $bln){
+	foreach ($bulan as $key => $bln) {
 		$terpilih = ($selected == $key) ? 'selected' : '';
 		$opt .= "<option value=\"$key\" $terpilih>$bln</option>";
 	}
@@ -201,13 +279,14 @@ function list_month($selected=''){
  * @param  [int] 	$len 		[current 10 years]
  * @return [html]	$opt 		[select option that contain list of years]
  */
-function list_year($selected='',$len=10){
+function list_year($selected = '', $len = 10)
+{
 	$opt 		= "<option value=''></option>";
 	$this_year 	= date('Y');
-	$year_bef 	= (int)$this_year - $len;
-	$year_aft	= (int)$this_year ;//+ $len;
-	$year 		= range($year_bef,$year_aft);
-	foreach($year as $y){
+	$year_bef 	= (int) $this_year - $len;
+	$year_aft	= (int) $this_year; //+ $len;
+	$year 		= range($year_bef, $year_aft);
+	foreach ($year as $y) {
 		$terpilih 	= ($selected == $y) ? 'selected' : '';
 		$opt 		.= "<option $terpilih value=\"$y\">$y</option>";
 	}
@@ -219,10 +298,11 @@ function list_year($selected='',$len=10){
  * @author Agung Iskandar
  * @param $fname nama file
  */
-function export_to($fname){
+function export_to($fname)
+{
 	header("Content-type: application/x-msdownload");
-	$fname = str_replace(' ','_',$fname);
-	header ("Content-Disposition: attachment; filename=$fname");
+	$fname = str_replace(' ', '_', $fname);
+	header("Content-Disposition: attachment; filename=$fname");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 }
@@ -233,9 +313,10 @@ function export_to($fname){
  * @param $array datanya
  * @return array dengan tambahan element id urut
  */
-function set_nomor_urut($array,$nomor=0){
+function set_nomor_urut($array, $nomor = 0)
+{
 	$datas = array();
-	foreach($array as $n => $data){
+	foreach ($array as $n => $data) {
 		$datas[$n] = $data;
 		$datas[$n]['nomor'] = ++$nomor;
 	}
@@ -249,11 +330,12 @@ function set_nomor_urut($array,$nomor=0){
  * @param $mark (optional) separator date, default -
  * @return string format date time
  */
-function iso_date_time($datetime,$mark='-'){
-	if(!$datetime) return;
-	list($date,$time) = explode(' ', $datetime);
-	list($thn,$bln,$tgl) = explode('-',$date);
-	return $tgl.$mark.$bln.$mark.$thn.' '.substr($time, 0,8);
+function iso_date_time($datetime, $mark = '-')
+{
+	if (!$datetime) return;
+	list($date, $time) = explode(' ', $datetime);
+	list($thn, $bln, $tgl) = explode('-', $date);
+	return $tgl . $mark . $bln . $mark . $thn . ' ' . substr($time, 0, 8);
 }
 
 /**
@@ -263,11 +345,12 @@ function iso_date_time($datetime,$mark='-'){
  * @param $mark (optional) separator date, default -
  * @return string format date
  */
-function iso_date($date,$mark='-'){
-	if(!$date) return;
-	list($thn,$bln,$tgl) = explode($mark,$date);
+function iso_date($date, $mark = '-')
+{
+	if (!$date) return;
+	list($thn, $bln, $tgl) = explode($mark, $date);
 	$tgl = explode(' ', $tgl);
-	return $tgl[0].$mark.$bln.$mark.$thn;
+	return $tgl[0] . $mark . $bln . $mark . $thn;
 }
 
 /**
@@ -276,10 +359,11 @@ function iso_date($date,$mark='-'){
  * @param  [char] 	$mark 	[mark between hour and minute]
  * @return [time]       	[reshaped time]
  */
-function generate_time($time,$mark='.'){
-	if(!$time) return;
-	list($jam,$menit) = explode(':',$time);
-	return $jam.$mark.$menit;
+function generate_time($time, $mark = '.')
+{
+	if (!$time) return;
+	list($jam, $menit) = explode(':', $time);
+	return $jam . $mark . $menit;
 }
 
 /**
@@ -291,14 +375,19 @@ function generate_time($time,$mark='.'){
  * @return string
  *
  */
-function db_get_one($table='',$field='',$where=''){
-	$CI =& get_instance();
-	if($where != ''){
-		$query = $CI->db->select($field)->get_where($table,$where)->row();
+function db_get_one($table = '', $field = '', $where = '')
+{
+	$CI = &get_instance();
+	if ($where != '') {
+		$query = $CI->db->select($field)->get_where($table, $where)->row();
 	} else {
 		$query = $CI->db->select($field)->get($table)->row();
 	}
-	if(!$query){ return $query;	} else { return $query->$field;	}
+	if (!$query) {
+		return $query;
+	} else {
+		return $query->$field;
+	}
 }
 
 /**
@@ -307,8 +396,9 @@ function db_get_one($table='',$field='',$where=''){
  * @param $alert_message alert message yg ditampilkan dalam dialog box
  * @return string javascript <script>alert(message)</script>
  */
-function alert($alert_message){
-	if($alert_message != ''){
+function alert($alert_message)
+{
+	if ($alert_message != '') {
 		return "<script>$(document).ready(function(){notify('$alert_message','success')})</script>";
 	}
 }
@@ -320,21 +410,22 @@ function alert($alert_message){
  * @param $return_if_null (optional) return value if keyword is null
  * @return string
  */
-function get($keyword,$return_if_null=''){
-	$arr 	= array('http://','https://','https://www.','http://www.');
-	$host	= str_replace($arr,'',base_url());
-	$host 	= array($host,'apps/');
-	$uri 	= explode('/',str_replace($host,'',$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']));
-	foreach ($uri as $key => $val){
-		if($key > 1){
-			if($key % 2 == 0){
-				if($val != ''){
-					$data[$val] = $uri[$key+1];
+function get($keyword, $return_if_null = '')
+{
+	$arr 	= array('http://', 'https://', 'https://www.', 'http://www.');
+	$host	= str_replace($arr, '', base_url());
+	$host 	= array($host, 'apps/');
+	$uri 	= explode('/', str_replace($host, '', $_SERVER['HTTP_HOST'] . $_SERVER['REDIRECT_URL']));
+	foreach ($uri as $key => $val) {
+		if ($key > 1) {
+			if ($key % 2 == 0) {
+				if ($val != '') {
+					$data[$val] = $uri[$key + 1];
 				}
 			}
 		}
 	}
-	return ($data[$keyword]=='') ? $return_if_null : $data[$keyword];
+	return ($data[$keyword] == '') ? $return_if_null : $data[$keyword];
 }
 
 /**
@@ -343,8 +434,9 @@ function get($keyword,$return_if_null=''){
  *@param $len jumlah digit yg diinginkan
  *@example zero_first(1,3) return 001; zero_first(12,5) return 00012;
  */
-function zero_first($var,$len){
-	return sprintf("%0{$len}s",$var);
+function zero_first($var, $len)
+{
+	return sprintf("%0{$len}s", $var);
 }
 
 /**
@@ -352,8 +444,11 @@ function zero_first($var,$len){
  * @param  [data] 	$datadebug 	[data debug]
  * @return [data]            	[data debug]
  */
-function debugvar($datadebug){
-	echo "<pre>"; print_r ($datadebug); echo "</pre>";
+function debugvar($datadebug)
+{
+	echo "<pre>";
+	print_r($datadebug);
+	echo "</pre>";
 }
 
 /**
@@ -362,20 +457,22 @@ function debugvar($datadebug){
  * @param  [int] 	$max_size  	[maximum file size that enabled]
  * @return [data]             	[notification]
  */
-function check_file_size($file_size,$max_size=2097152){
-	if ($file_size > $max_size || $file_size =='') {
-		die('Error, Maximum file size is: ' .($max_size/1024).' Kb');
+function check_file_size($file_size, $max_size = 2097152)
+{
+	if ($file_size > $max_size || $file_size == '') {
+		die('Error, Maximum file size is: ' . ($max_size / 1024) . ' Kb');
 	};
 }
- /**
-  * clear html with 'kutip'
-  * @param  [html] 	$html 	[tag html with 'kutip']
-  * @return [html]       	[tag html without 'kutip']
-  */
-function clear_html($html){
-	$html = str_replace("\n","",$html);
-	$html = str_replace("\r"," ",$html);
-	return str_replace ("	",'',(trim(strip_tags($html))));
+/**
+ * clear html with 'kutip'
+ * @param  [html] 	$html 	[tag html with 'kutip']
+ * @return [html]       	[tag html without 'kutip']
+ */
+function clear_html($html)
+{
+	$html = str_replace("\n", "", $html);
+	$html = str_replace("\r", " ", $html);
+	return str_replace("	", '', (trim(strip_tags($html))));
 }
 
 /**
@@ -383,9 +480,10 @@ function clear_html($html){
  * @author Agung Iskandar
  * @param $string string yg ingin ditampilkan dalam form
  */
-function quote_form($string){
-	if(is_array($string)){
-		foreach($string as $key=>$val){
+function quote_form($string)
+{
+	if (is_array($string)) {
+		foreach ($string as $key => $val) {
 			$new_str[$key] = htmlspecialchars($val, ENT_QUOTES);
 		}
 		return $new_str;
@@ -400,19 +498,20 @@ function quote_form($string){
  * @param  [date] $strDateTo   	[end date]
  * @return [int]              	[range days between start and end date]
  */
-function date_range($strDateFrom,$strDateTo){
-    $aryRange	= array();
-    $iDateFrom 	= mktime(1,0,0,substr($strDateFrom,5,2),substr($strDateFrom,8,2),substr($strDateFrom,0,4));
-    $iDateTo 	= mktime(1,0,0,substr($strDateTo,5,2),substr($strDateTo,8,2),substr($strDateTo,0,4));
+function date_range($strDateFrom, $strDateTo)
+{
+	$aryRange	= array();
+	$iDateFrom 	= mktime(1, 0, 0, substr($strDateFrom, 5, 2), substr($strDateFrom, 8, 2), substr($strDateFrom, 0, 4));
+	$iDateTo 	= mktime(1, 0, 0, substr($strDateTo, 5, 2), substr($strDateTo, 8, 2), substr($strDateTo, 0, 4));
 
-    if ($iDateTo >= $iDateFrom){
-        array_push($aryRange,date('Y-m-d',$iDateFrom)); // first entry
-        while ($iDateFrom<$iDateTo){
-            $iDateFrom+=86400; // add 24 hours
-            array_push($aryRange,date('Y-m-d',$iDateFrom));
-        }
-    }
-    return count($aryRange);
+	if ($iDateTo >= $iDateFrom) {
+		array_push($aryRange, date('Y-m-d', $iDateFrom)); // first entry
+		while ($iDateFrom < $iDateTo) {
+			$iDateFrom += 86400; // add 24 hours
+			array_push($aryRange, date('Y-m-d', $iDateFrom));
+		}
+	}
+	return count($aryRange);
 }
 
 /**
@@ -420,33 +519,36 @@ function date_range($strDateFrom,$strDateTo){
  * @param  [text] 	$str_date 	[month in English]
  * @return [text]           	[month in Indonesia]
  */
-function month_indo($str_date){
-	$string = array('January','February','March','May','June','July','August','October','December');
-	$string_replace = array('Januari','Februari','Maret','Mei','Juni','Juli','Agustus','Oktober','Desember');
-	return str_replace($string,$string_replace,$str_date);
+function month_indo($str_date)
+{
+	$string = array('January', 'February', 'March', 'May', 'June', 'July', 'August', 'October', 'December');
+	$string_replace = array('Januari', 'Februari', 'Maret', 'Mei', 'Juni', 'Juli', 'Agustus', 'Oktober', 'Desember');
+	return str_replace($string, $string_replace, $str_date);
 }
 
 /**
  * Insert user activities
  * @param  [text] 	$activity 	[user activity]
  */
-function insert_log($activity){
-	$CI =& get_instance();
+function insert_log($activity)
+{
+	$CI = &get_instance();
 	$data['activity'] 		= $activity;
 	$data['detail'] 		= $CI->detail_log;
 	$data['ip'] 			= $_SERVER['REMOTE_ADDR'];
 	$data['id_ref_auth_user'] 	= id_user();
 	$data['log_date'] 		= date('Y-m-d H:i:s');
-	$CI->db->insert('access_log',$data);
+	$CI->db->insert('access_log', $data);
 }
 
 /**
  * Detail log of user activities
  * @param  [text] 	$detail 	[user activity]
  */
-function detail_log($detail=''){
-	$CI =& get_instance();
-	$detail .= $CI->db->last_query() .";\n";
+function detail_log($detail = '')
+{
+	$CI = &get_instance();
+	$detail .= $CI->db->last_query() . ";\n";
 	$CI->detail_log = $detail;
 }
 
@@ -455,8 +557,9 @@ function detail_log($detail=''){
  * @param  [array] 	$data 	[data in array]
  * @return [array] 	$ret 	[data in string]
  */
-function arr_to_str($data){
-	foreach ($data as $key => $val){
+function arr_to_str($data)
+{
+	foreach ($data as $key => $val) {
 		$ret .= "$key : $val <br>";
 	}
 	return $ret;
@@ -467,24 +570,27 @@ function arr_to_str($data){
  * @param  [array] 	$conf 	[configuration in array]
  * @return [html]       	[select option in html]
  */
-function select_list($conf=array()){
-	$CI =& get_instance();
+function select_list($conf = array())
+{
+	$CI = &get_instance();
 	$tbl      = $conf['table'];
 	$id       = (!empty($conf['id'])) ? $conf['id'] : 'id';
 	$name     = (!empty($conf['name'])) ? $conf['name'] : 'name';
-	$where    = (!empty($conf['where'])) ? $conf['where'] : array('id_ref_delete'=>0);
+	$where    = (!empty($conf['where'])) ? $conf['where'] : array('id_ref_delete' => 0);
 	$selected = (!empty($conf['selected'])) ? $conf['selected'] : 'name';
 	$title    = (!empty($conf['title'])) ? $conf['title'] : 'select'; //$conf['title'];
 	$order    = (!empty($conf['order'])) ? $conf['order'] : $name;
 	$custome  = (!empty($conf['custome'])) ? $conf['custome'] : '';
-	if(!empty($conf['not_where'])) {unset($where);}
-	
-	$list     = $CI->db->order_by($order,'asc')->select("$id, $name, $custome")->get_where($tbl,$where)->result_array();
+	if (!empty($conf['not_where'])) {
+		unset($where);
+	}
+
+	$list     = $CI->db->order_by($order, 'asc')->select("$id, $name, $custome")->get_where($tbl, $where)->result_array();
 	$opt      = (!empty($conf['no_title'])) ? '' : "<option value=''>$title</option>";
-	$opt      .= (!empty($conf['add_new'])) ? ("<option value='addNew'>+ Add $conf[add_new]</option>"): '';
+	$opt      .= (!empty($conf['add_new'])) ? ("<option value='addNew'>+ Add $conf[add_new]</option>") : '';
 
 	foreach ($list as $key => $value) {
-		$custome_field = (!empty($conf['custome'])) ? 'data-custome="'.$value[$custome].'"':'';
+		$custome_field = (!empty($conf['custome'])) ? 'data-custome="' . $value[$custome] . '"' : '';
 		$terpilih      = ($selected == $value[$id]) ? 'selected' : '';
 		$opt           .= "<option $terpilih value='$value[$id]' $custome_field> $value[$name]</option>";
 	}
@@ -499,16 +605,17 @@ function select_list($conf=array()){
  * @param  integer 	$uri_segment 	[total uri segment]
  * @return [paging]               	[paging]
  */
-function paging($total_row,$url,$perpage=10,$uri_segment=4){
-	 $CI =& get_instance();
-	 $CI->load->library('pagination');
-	 $config['uri_segment'] 	= $uri_segment;
-	 $config['base_url'] 		= $url;
-	 $config['total_rows'] 		= $total_row;
-	 $config['per_page'] 		= $perpage;
-	 $config['anchor_class'] 	= 'class="paging" ';
-	 $CI->pagination->initialize($config);
-	 return	 $CI->pagination->create_links();
+function paging($total_row, $url, $perpage = 10, $uri_segment = 4)
+{
+	$CI = &get_instance();
+	$CI->load->library('pagination');
+	$config['uri_segment'] 	= $uri_segment;
+	$config['base_url'] 		= $url;
+	$config['total_rows'] 		= $total_row;
+	$config['per_page'] 		= $perpage;
+	$config['anchor_class'] 	= 'class="paging" ';
+	$CI->pagination->initialize($config);
+	return	 $CI->pagination->create_links();
 }
 
 /**
@@ -516,14 +623,15 @@ function paging($total_row,$url,$perpage=10,$uri_segment=4){
  * @param  string 	$param 	[parameters]
  * @return [text]        	[current controller accessed]
  */
-function current_controller($param=''){
-	$CI =& get_instance();
+function current_controller($param = '')
+{
+	$CI = &get_instance();
 	$dir				= $CI->router->directory;
 	$class				= $CI->router->fetch_class();
-	$func				= ($param=='function') ? ('/'.$CI->router->fetch_method()) : "/$param";
-	$base_url			= str_replace('http://'.$_SERVER['HTTP_HOST'],'',base_url());
-	$data['base_url'] 	= str_replace('https://'.$_SERVER['HTTP_HOST'],'',$base_url);//jika https
-	return $data['base_url'].$dir.$class.$func;
+	$func				= ($param == 'function') ? ('/' . $CI->router->fetch_method()) : "/$param";
+	$base_url			= str_replace('http://' . $_SERVER['HTTP_HOST'], '', base_url());
+	$data['base_url'] 	= str_replace('https://' . $_SERVER['HTTP_HOST'], '', $base_url); //jika https
+	return $data['base_url'] . $dir . $class . $func;
 }
 
 /**
@@ -532,15 +640,16 @@ function current_controller($param=''){
  * @param  integer 		$isTotal 	[is show in number]
  * @return [query]           		[query grid]
  */
-function query_grid($alias,$isTotal=0){
-	$CI =& get_instance();
+function query_grid($alias, $isTotal = 0)
+{
+	$CI = &get_instance();
 	$param 		= $_GET;
-	$where 		= where_grid($param,$alias);
+	$where 		= where_grid($param, $alias);
 	$sort_field	= ($param['sort_field']) ? $param['sort_field'] : 'id';
 	$sort_type	= ($param['sort_type']) ? $param['sort_type'] : 'desc';
-	$CI->db->order_by(str_replace('-','.',$sort_field),$sort_type);
-	if($isTotal!=1){
-		$CI->db->limit($param['perpage'],$param['page']);
+	$CI->db->order_by(str_replace('-', '.', $sort_field), $sort_type);
+	if ($isTotal != 1) {
+		$CI->db->limit($param['perpage'], $param['page']);
 	}
 }
 
@@ -551,9 +660,10 @@ function query_grid($alias,$isTotal=0){
  * @param  integer 		$uri_segment 	[total segment]
  * @return [array]               		[data]
  */
-function ddi_grid($data,$ttl_row,$uri_segment=4){
-	$data['data'] 	= set_nomor_urut($data,$_GET['page']);
-	$data['paging'] = paging_grid($ttl_row,$uri_segment);
+function ddi_grid($data, $ttl_row, $uri_segment = 4)
+{
+	$data['data'] 	= set_nomor_urut($data, $_GET['page']);
+	$data['paging'] = paging_grid($ttl_row, $uri_segment);
 	return $data;
 }
 
@@ -563,8 +673,9 @@ function ddi_grid($data,$ttl_row,$uri_segment=4){
  * @param  integer 		$uri_segment 	[total of segment]
  * @return [tag html]               	[paging]
  */
-function paging_grid($total_row,$uri_segment=4){
-	$CI =& get_instance();
+function paging_grid($total_row, $uri_segment = 4)
+{
+	$CI = &get_instance();
 	$CI->load->library('pagination');
 	$param 						= $_GET;
 	$config['base_url'] 		= current_controller('function');
@@ -593,9 +704,9 @@ function paging_grid($total_row,$uri_segment=4){
 	$config['cur_tag_open'] 	= '<nav aria-label="Page navigation"><ul class="pagination"><li class="page-item active"><a class="page-link">';
 	$config['cur_tag_close'] 	= '</a></li>';
 	$saa = $CI->pagination->initialize($config);
-	
+
 	$n 		 = $param['page'];
-	$n2 	 = $n+1;
+	$n2 	 = $n + 1;
 	$sd 	 = $n + $param['perpage'];
 	$sd 	 = ($total_row < $sd) ? $total_row : $sd;
 	$remark	 = ($sd > 0) ? ("$n2 - $sd Total $total_row") : '';
@@ -608,7 +719,7 @@ function paging_grid($total_row,$uri_segment=4){
 	$paging .= '</div>
 					</div>
 					<div class="col-3 col-md-3 text-right pr-2">
-						<span class="show_page">'.$remark.'</span>
+						<span class="show_page">' . $remark . '</span>
 					</div>
 					<div class="col-2 col-md-2">
 						<span class="paging-select"></span>
@@ -623,58 +734,58 @@ function paging_grid($total_row,$uri_segment=4){
  * @param  [text] 	$alias 	[alias parameters]
  * @return [query]        	[query]
  */
-function where_grid($param,$alias){
-	$CI =& get_instance();
-	foreach($param as $key => $val){
-		if(substr($key,0,6)=='search'){
-			$field  = ($alias[$key]!='') ? $alias[$key] : substr($key,7);
-			if($val){
+function where_grid($param, $alias)
+{
+	$CI = &get_instance();
+	foreach ($param as $key => $val) {
+		if (substr($key, 0, 6) == 'search') {
+			$field  = ($alias[$key] != '') ? $alias[$key] : substr($key, 7);
+			if ($val) {
 				// $where .= "and $field like '%$val%' ";
-		        $field_explode = explode('_',$field,-1);
-		       	if($field=='a.datestart'){
-					$CI->db->where("a.create_date >=",iso_date_custom_format($val,'Y-m-d'));
-				} else if($field=='a.dateend'){
-					$CI->db->where("a.create_date <=",iso_date_custom_format($val,'Y-m-d'));
-				} else if($field_explode[0]!='or'){
-					if($val!=='null'){
-			            if($field=='c.id'){
+				$field_explode = explode('_', $field, -1);
+				if ($field == 'a.datestart') {
+					$CI->db->where("a.create_date >=", iso_date_custom_format($val, 'Y-m-d'));
+				} else if ($field == 'a.dateend') {
+					$CI->db->where("a.create_date <=", iso_date_custom_format($val, 'Y-m-d'));
+				} else if ($field_explode[0] != 'or') {
+					if ($val !== 'null') {
+						if ($field == 'c.id') {
 							$CI->db->where("$field = $val");
-			            } 
-			            else{
-	                    	$CI->db->like($field, "$val");
-			            }
-			        }
-		            // $CI->db->like($field, "$val");
+						} else {
+							$CI->db->like($field, "$val");
+						}
+					}
+					// $CI->db->like($field, "$val");
 					// $CI->db->where("$field like N'%$val%'");
-		        } else {
-					$CI->db->or_where(str_replace('or_','',$field)," like N'%$val%'");
-		            // $CI->db->or_like(str_replace('or_','',$field), "$val");
-		        }
+				} else {
+					$CI->db->or_where(str_replace('or_', '', $field), " like N'%$val%'");
+					// $CI->db->or_like(str_replace('or_','',$field), "$val");
+				}
 			}
-		} else if(substr($key,0,7)=='between') {
-			$start = (strpos($key,'to') ? 11 : 8);
-			$field  = ($alias[$key]!='') ? $alias[$key] : substr($key,$start);
-			if($val){
+		} else if (substr($key, 0, 7) == 'between') {
+			$start = (strpos($key, 'to') ? 11 : 8);
+			$field  = ($alias[$key] != '') ? $alias[$key] : substr($key, $start);
+			if ($val) {
 				$explode = explode('.', $field);
-				if($field == 'a.daterange'){					
-					$from 	= iso_date_custom_format($param['between_from'],'Y-m-d');
-					$to 	= iso_date_custom_format($param['between_to'],'Y-m-d','+1 day');
-					if($param['between_from'] != '' && $param['between_to'] != '') {
+				if ($field == 'a.daterange') {
+					$from 	= iso_date_custom_format($param['between_from'], 'Y-m-d');
+					$to 	= iso_date_custom_format($param['between_to'], 'Y-m-d', '+1 day');
+					if ($param['between_from'] != '' && $param['between_to'] != '') {
 						$CI->db->where("a.date between '$from' and '$to'");
-					} else if($param['between_from'] != '' && $param['between_to'] == '') {
-						$to = iso_date_custom_format(date('Y-m-d'),'Y-m-d','+1 day');
+					} else if ($param['between_from'] != '' && $param['between_to'] == '') {
+						$to = iso_date_custom_format(date('Y-m-d'), 'Y-m-d', '+1 day');
 						$CI->db->where("a.date between '$from' and '$from 23:59:59'");
 					}
 				} else { //$field == appropriate field name on database/not using alias name
-					$field_explode = (count($explode) > 1) ? '_'.$explode[1] : '_'.$explode[0];
-					$field = substr($field_explode,1);
-					$from = iso_date_custom_format($param['between_from'.$field_explode],'Y-m-d');
-					$to = iso_date_custom_format($param['between_to'.$field_explode],'Y-m-d','+1 day');
-					if($param['between_from'.$field_explode] != '' && $param['between_to'.$field_explode] != '') {
-						$CI->db->where('a.'.$field." between '$from' and '$to'");
-					} else if($param['between_from'.$field_explode] != '' && $param['between_to'.$field_explode] == '') {
-						$to = iso_date_custom_format(date('Y-m-d'),'Y-m-d','+1 day');
-						$CI->db->where('a.'.$field." between '$from' and '$from 23:59:59'");
+					$field_explode = (count($explode) > 1) ? '_' . $explode[1] : '_' . $explode[0];
+					$field = substr($field_explode, 1);
+					$from = iso_date_custom_format($param['between_from' . $field_explode], 'Y-m-d');
+					$to = iso_date_custom_format($param['between_to' . $field_explode], 'Y-m-d', '+1 day');
+					if ($param['between_from' . $field_explode] != '' && $param['between_to' . $field_explode] != '') {
+						$CI->db->where('a.' . $field . " between '$from' and '$to'");
+					} else if ($param['between_from' . $field_explode] != '' && $param['between_to' . $field_explode] == '') {
+						$to = iso_date_custom_format(date('Y-m-d'), 'Y-m-d', '+1 day');
+						$CI->db->where('a.' . $field . " between '$from' and '$from 23:59:59'");
 					}
 				}
 			}
@@ -688,11 +799,12 @@ function where_grid($param,$alias){
  * @param  [text] 	$fname 	[file name]
  * @return [type]        	[new file name]
  */
-function filename($fname){
-	$ext 		= explode('.',$fname);
+function filename($fname)
+{
+	$ext 		= explode('.', $fname);
 	$extension 	= end($ext);
-	$fname 		= implode('-',$ext[0]);
-	return date('ymdHis').'-'.url_title($fname).'.'.$extension;
+	$fname 		= implode('-', $ext[0]);
+	return date('ymdHis') . '-' . url_title($fname) . '.' . $extension;
 }
 
 /**
@@ -700,15 +812,16 @@ function filename($fname){
  * @param  string 	$tgl 	[date Y-m-d]
  * @return [text]      		[day in Indonesia spelling]
  */
-function get_day($tgl=''){
-	$day_in_eng = date('l',$tgl);
+function get_day($tgl = '')
+{
+	$day_in_eng = date('l', $tgl);
 	if ($day_in_eng == 'Sunday') return "Minggu";
 	else if ($day_in_eng == 'Monday') return "Senin";
 	else if ($day_in_eng == 'Tuesday') return "Selasa";
 	else if ($day_in_eng == 'Wednesday') return "Rabu";
 	else if ($day_in_eng == 'Thursday') return "Kamis";
 	else if ($day_in_eng == 'Friday') return "Jumat";
-	else if ($day_in_eng == 'Saturday') return "Sabtu"; 
+	else if ($day_in_eng == 'Saturday') return "Sabtu";
 }
 
 /**
@@ -718,11 +831,12 @@ function get_day($tgl=''){
  * @param  integer $ttl_comma [description]
  * @return [type]             [description]
  */
-function number_formating($data,$field,$ttl_comma=0){
-	foreach ($data as $index => $value){
-		foreach($value as $idx => $val){
-			if($idx == $field){
-				$data[$index][$idx] = number_format($val,$ttl_comma);
+function number_formating($data, $field, $ttl_comma = 0)
+{
+	foreach ($data as $index => $value) {
+		foreach ($value as $idx => $val) {
+			if ($idx == $field) {
+				$data[$index][$idx] = number_format($val, $ttl_comma);
 			}
 		}
 	}
@@ -734,10 +848,11 @@ function number_formating($data,$field,$ttl_comma=0){
  * @param  array  	$data
  * @return array	$data
  */
-function access_log_user($data=array()){
-	$CI =& get_instance();
+function access_log_user($data = array())
+{
+	$CI = &get_instance();
 	$data['log_date'] =  date('Y-m-d H:i:s');
-	$CI->db->insert('access_log',$data);
+	$CI->db->insert('access_log', $data);
 	return $data;
 }
 
@@ -745,27 +860,30 @@ function access_log_user($data=array()){
  * Html of add + export + import button
  * @return [html] 	[html of add+export button]
  */
-function btn_add_export_import(){
-	$CI =& get_instance();
-	return $CI->parser->parse('layout/btn-html/btn-add-export-import.html',$CI->data,true);
+function btn_add_export_import()
+{
+	$CI = &get_instance();
+	return $CI->parser->parse('layout/btn-html/btn-add-export-import.html', $CI->data, true);
 }
 
 /**
  * Html of add + export button
  * @return [html] 	[html of add+export button]
  */
-function btn_add_export(){
-	$CI =& get_instance();
-	return $CI->parser->parse('layout/btn-html/btn-add-export.html',$CI->data,true);
+function btn_add_export()
+{
+	$CI = &get_instance();
+	return $CI->parser->parse('layout/btn-html/btn-add-export.html', $CI->data, true);
 }
 
 /**
  * Html of add button
  * @return [html] 	[html of add button]
  */
-function btn_add(){
-	$CI =& get_instance();
-	return $CI->parser->parse('layout/btn-html/btn-add.html',$CI->data,true);
+function btn_add()
+{
+	$CI = &get_instance();
+	return $CI->parser->parse('layout/btn-html/btn-add.html', $CI->data, true);
 }
 
 
@@ -773,18 +891,20 @@ function btn_add(){
  * Html of only add button
  * @return [html] 	[html of only add button]
  */
-function btn_add_only(){
-	$CI =& get_instance();
-	return $CI->parser->parse('layout/btn-html/btn-add-only.html',$CI->data,true);
+function btn_add_only()
+{
+	$CI = &get_instance();
+	return $CI->parser->parse('layout/btn-html/btn-add-only.html', $CI->data, true);
 }
 
 /**
  * Html of only add button
  * @return [html] 	[html of only add button]
  */
-function btn_search_only(){
-	$CI =& get_instance();
-	return $CI->parser->parse('layout/btn-html/btn-search-only.html',$CI->data,true);
+function btn_search_only()
+{
+	$CI = &get_instance();
+	return $CI->parser->parse('layout/btn-html/btn-search-only.html', $CI->data, true);
 }
 
 
@@ -793,19 +913,21 @@ function btn_search_only(){
  * @param  string 	$proses 	[title of button]
  * @return [type]         		[html of process button]
  */
-function btn_process($proses=''){
-	$CI =& get_instance();
+function btn_process($proses = '')
+{
+	$CI = &get_instance();
 	$CI->data['title'] = $proses;
-	return $CI->parser->parse('layout/btn-html/btn-process.html',$CI->data,true);
+	return $CI->parser->parse('layout/btn-html/btn-process.html', $CI->data, true);
 }
 
 /**
  * Update profile in session
  * @param  string 	$user_id 	[user id]
  */
-function update_profile_session($user_id=''){
-	$CI =& get_instance();
-    $CI->load->model('Auth_user_model');
+function update_profile_session($user_id = '')
+{
+	$CI = &get_instance();
+	$CI->load->model('Auth_user_model');
 	$query = $CI->Auth_user_model->findById($user_id);
 	$data = array(
 		'admin_id' => $query['id'],
@@ -817,7 +939,7 @@ function update_profile_session($user_id=''){
 		'admin_phone' => $query['phone'],
 		'admin_img' => get_profile_picture_url($query['img']),
 	);
-	$CI->session->set_userdata('ADM_SESS',$data);
+	$CI->session->set_userdata('ADM_SESS', $data);
 }
 
 /**
@@ -826,10 +948,11 @@ function update_profile_session($user_id=''){
  * @param  string 	$path 	[path of picture]
  * @return [type]       	[full path of profile picture]
  */
-function get_profile_picture_url($img='',$path='small'){
-	$CI =& get_instance();
-	$img = ($img) ? $img:'default-avatar.jpg';
-	return base_url()."images/article/$path/".$img;
+function get_profile_picture_url($img = '', $path = 'small')
+{
+	$CI = &get_instance();
+	$img = ($img) ? $img : 'default-avatar.jpg';
+	return base_url() . "images/article/$path/" . $img;
 }
 
 /**
@@ -838,13 +961,14 @@ function get_profile_picture_url($img='',$path='small'){
  * @param  [int] 	$limit 	[limit of length]
  * @return [type]        	[limited text]
  */
-function limit_text($text, $limit) {
-    if (str_word_count($text, 0) > $limit) {
-        $words = str_word_count($text, 2);
-        $pos = array_keys($words);
-        $text = substr($text, 0, $pos[$limit]) . '...';
-    }
-    return $text;
+function limit_text($text, $limit)
+{
+	if (str_word_count($text, 0) > $limit) {
+		$words = str_word_count($text, 2);
+		$pos = array_keys($words);
+		$text = substr($text, 0, $pos[$limit]) . '...';
+	}
+	return $text;
 }
 
 /**
@@ -854,16 +978,17 @@ function limit_text($text, $limit) {
  * @param  integer 	$ret  	[description]
  * @return [text]        	[full path of image]
  */
-function image($img,$path,$ret=0){
-	$CI =& get_instance();
+function image($img, $path, $ret = 0)
+{
+	$CI = &get_instance();
 	$path 	= "$path/";
 	$path 	= str_replace('//', '', $path);
-	$no_img = $ret == '404' ? $CI->baseUrl.'asset/images/404.png' : ($CI->baseUrl.'images/article/'.$path.'no_image.png');
-	$cek 	= is_file_exsist(UPLOAD_DIR.$path,$img);
-	if($ret==1){
+	$no_img = $ret == '404' ? $CI->baseUrl . 'asset/images/404.png' : ($CI->baseUrl . 'images/article/' . $path . 'no_image.png');
+	$cek 	= is_file_exsist(UPLOAD_DIR . $path, $img);
+	if ($ret == 1) {
 		return $cek;
 	} else {
-		return $cek ? ($CI->baseUrl.'images/article/'.$path.$img) : $no_img;
+		return $cek ? ($CI->baseUrl . 'images/article/' . $path . $img) : $no_img;
 	}
 }
 
@@ -874,38 +999,39 @@ function image($img,$path,$ret=0){
  * @param  [text] 	$to 	[target email]
  * @return [text] 			[sent email notification]
  */
-function sent_email_with_template($code='',$data=array(),$to=''){
+function sent_email_with_template($code = '', $data = array(), $to = '')
+{
 
-    $CI=& get_instance();
-    $CI->load->helper('mail');
-    $CI->load->model('Email_tmp_model');
-    $CI->load->model('Log_email_model');
- 
-    $data_email_template = $CI->Email_tmp_model->findBy(array('code'=>$code,'id_ref_language'=>lang_data()),1);
-    if($data_email_template){
-        $path 			= email_template_path();
-        $email['to'] 	= $to;
-        $config 		= array(
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'priority' => '1',
-        );
-        $CI->email->initialize($config);
-        $email['subject'] 			= $data_email_template['subject'];
-        $data['data_email_content'] = $data_email_template['page_content'];
+	$CI = &get_instance();
+	$CI->load->helper('mail');
+	$CI->load->model('Email_tmp_model');
+	$CI->load->model('Log_email_model');
 
-	    $message_content['app_name'] 	= APP_NAME;
-	    $message_content['fb_page'] 	= FB_PAGE;
-	    $message_content['tw_page'] 	= TW_PAGE;
-	    $message_content['ig_page'] 	= IG_PAGE;
-	    $message_content['logos'] 		= image('logos.png','small');
-	    $message_content['base_url'] 	= base_url();
-	    $message_content['this_year'] 	= date('Y');
-	    $message_content['content'] 	= $CI->parser->parse('layout/email-template/'.preg_replace("/&#?[a-z0-9]+;/i","",$data_email_template['template_name']).'.html', $data,true);
-    	$message = $CI->parser->parse('layout/email-template/default-email-template.html', $message_content,true);
-        
-    	$email['content'] 	= $message;
-        $ret 				= sent_mail($email);
+	$data_email_template = $CI->Email_tmp_model->findBy(array('code' => $code, 'id_ref_language' => lang_data()), 1);
+	if ($data_email_template) {
+		$path 			= email_template_path();
+		$email['to'] 	= $to;
+		$config 		= array(
+			'mailtype' => 'html',
+			'charset' => 'utf-8',
+			'priority' => '1',
+		);
+		$CI->email->initialize($config);
+		$email['subject'] 			= $data_email_template['subject'];
+		$data['data_email_content'] = $data_email_template['page_content'];
+
+		$message_content['app_name'] 	= APP_NAME;
+		$message_content['fb_page'] 	= FB_PAGE;
+		$message_content['tw_page'] 	= TW_PAGE;
+		$message_content['ig_page'] 	= IG_PAGE;
+		$message_content['logos'] 		= image('logos.png', 'small');
+		$message_content['base_url'] 	= base_url();
+		$message_content['this_year'] 	= date('Y');
+		$message_content['content'] 	= $CI->parser->parse('layout/email-template/' . preg_replace("/&#?[a-z0-9]+;/i", "", $data_email_template['template_name']) . '.html', $data, true);
+		$message = $CI->parser->parse('layout/email-template/default-email-template.html', $message_content, true);
+
+		$email['content'] 	= $message;
+		$ret 				= sent_mail($email);
 
 		$data_email['from_email']       = $CI->db->query('Select smtp_user from email_config')->row()->smtp_user;
 		$data_email['to_email']         = $to;
@@ -914,9 +1040,8 @@ function sent_email_with_template($code='',$data=array(),$to=''){
 
 		$log_email                      = $CI->Log_email_model->insert($data_email);
 
-        return $ret;
-    }
-
+		return $ret;
+	}
 }
 
 /**
@@ -925,26 +1050,28 @@ function sent_email_with_template($code='',$data=array(),$to=''){
  * @param  [array] 	$data      	[content in email template]
  * @return 						[generate file of email template]
  */
-function generate_email_template_file($file_name,$data){
-    $CI =& get_instance();
-    $CI->load->helper('file');
-    $path = email_template_path();
-    if(!file_exists($path)){
-        mkdir($path);
-    }
-    if(!is_writable($path)){//kalo ga bisa nulis
-        die('ga bisa nulis!');
-    }
-    if(!write_file($path.preg_replace("/&#?[a-z0-9]+;/i","",$file_name).'.html', $data)){
-        echo 'error create file <br>';
-    }
+function generate_email_template_file($file_name, $data)
+{
+	$CI = &get_instance();
+	$CI->load->helper('file');
+	$path = email_template_path();
+	if (!file_exists($path)) {
+		mkdir($path);
+	}
+	if (!is_writable($path)) { //kalo ga bisa nulis
+		die('ga bisa nulis!');
+	}
+	if (!write_file($path . preg_replace("/&#?[a-z0-9]+;/i", "", $file_name) . '.html', $data)) {
+		echo 'error create file <br>';
+	}
 }
 
 /**
  * Get path of email template 
  * @return [text] 	[full url of email]
  */
-function email_template_path(){
+function email_template_path()
+{
 	return EMAIL_TEMPLATE_DIR;
 }
 
@@ -955,33 +1082,36 @@ function email_template_path(){
  * @param  string 	$language 	[default of language]
  * @return [type]            	[description]
  */
-function language($field='',$language=LANGUAGE,$file_name='default'){
-    $CI =& get_instance();
-    if($file_name=='default'){
-    	$file = "general"; // default
-    } else {
-    	$file = $file_name;
-    }
-    $CI->lang->load($file,$language);
-    $lang = $CI->lang->language;
-    $find       = LANG_CONTROLLER_FIND();
-    $replace    = LANG_CONTROLLER_REPLACE();
-    return str_replace($find, $replace, $lang['lang_'.$field]);
+function language($field = '', $language = LANGUAGE, $file_name = 'default')
+{
+	$CI = &get_instance();
+	if ($file_name == 'default') {
+		$file = "general"; // default
+	} else {
+		$file = $file_name;
+	}
+	$CI->lang->load($file, $language);
+	$lang = $CI->lang->language;
+	$find       = LANG_CONTROLLER_FIND();
+	$replace    = LANG_CONTROLLER_REPLACE();
+	return str_replace($find, $replace, $lang['lang_' . $field]);
 }
 
 /**
  * [LANG_CONTROLLER_FIND description]
  */
-function LANG_CONTROLLER_FIND(){
-    return array('{base_url}');
+function LANG_CONTROLLER_FIND()
+{
+	return array('{base_url}');
 }
 
 /**
  * [LANG_CONTROLLER_REPLACE description]
  */
-function LANG_CONTROLLER_REPLACE(){
-    $CI =& get_instance();
-    return array(base_url());
+function LANG_CONTROLLER_REPLACE()
+{
+	$CI = &get_instance();
+	return array(base_url());
 }
 
 /**
@@ -991,22 +1121,23 @@ function LANG_CONTROLLER_REPLACE(){
  * @param      string  $cache_name  [cache name]
  * @return     integer 1 = does, 0 = doesn't
  */
-function check_username($username='',$cache_name='username_data'){
-    $CI =& get_instance();
-   	$CI->load->driver('cache',array('adapter' => 'apc', 'backup' => 'file'));
-   	$CI->load->model('Auth_user_model');
-   	if ( ! $data = $CI->cache->get($cache_name)) {
-		$data = $CI->Auth_user_model->findBy(array('id_ref_active'=>2,'activation_code'=>NULL));
-    	$CI->cache->save($cache_name, $data, 300);
-    	$data = $CI->cache->get($cache_name);
-    }
-    foreach ($data as $key => $value) {
-    	$uname[] = $value['username'];
-    }
+function check_username($username = '', $cache_name = 'username_data')
+{
+	$CI = &get_instance();
+	$CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+	$CI->load->model('Auth_user_model');
+	if (!$data = $CI->cache->get($cache_name)) {
+		$data = $CI->Auth_user_model->findBy(array('id_ref_active' => 2, 'activation_code' => NULL));
+		$CI->cache->save($cache_name, $data, 300);
+		$data = $CI->cache->get($cache_name);
+	}
+	foreach ($data as $key => $value) {
+		$uname[] = $value['username'];
+	}
 
-    if(in_array($username, $uname)){ // username match
-    	return 1;
-    } else {
-    	return 0;
-    }
+	if (in_array($username, $uname)) { // username matchf
+		return 1;
+	} else {
+		return 0;
+	}
 }

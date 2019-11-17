@@ -1,0 +1,71 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_language} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_language" name="id_ref_language" data-parsley-required="true">{list_language}</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_title} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<textarea  class="form-control" name="title" id="title" data-parsley-required="true">{title}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_teaser} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control" name="teaser" id="teaser" data-parsley-required="true">{teaser}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_image}</label>
+						<div class="col-md-9">
+							{img}
+							<div class="notes-image">{lang_notes_image}</div>
+							<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">Button Link</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="link" id="link" value="{link}" >
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="publish_date" id="publish_date" value="{publish_date}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_status_publish" name="id_ref_status_publish" data-parsley-required="true">{list_status}</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tags").select2({tags: [{tags_data}],tokenSeparators: [","]});
+		var selectedValues = "{tags}".split(',');
+		$("#tags").select2('val',selectedValues);
+
+	});
+</script>

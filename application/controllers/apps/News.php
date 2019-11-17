@@ -11,8 +11,6 @@ class News extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('News_model');
-		$this->load->model('News_tags_model');
-		$this->load->model('Tags_model');
 	}
 
 	function index(){
@@ -37,14 +35,6 @@ class News extends CI_Controller {
 			if(!$data){ die('404'); } // data not found
 
 			$data['btn_process'] = btn_process(language('update',$lang_name));
-			$tags                = $this->News_tags_model->findBy(array('id_ref_news'=>$id));
-			
-			foreach ($tags as $key => $value) 
-            {
-                $tag .=  ','.$value['tags'];
-            }
-
-            $data['tags']             = substr($tag,1);
 
 		} else {
 			$data['btn_process']      = btn_process(language('add',$lang_name));
@@ -52,7 +42,6 @@ class News extends CI_Controller {
 			$data['name']             = '';
 			$data['uri_path']         = '';
 			$data['title']            = '';
-            $data['tags']             = '';
 			$data['teaser']           = '';
 			$data['publish_date']     = date('Y-m-d');
 			$data['page_content']     = '';
@@ -62,23 +51,19 @@ class News extends CI_Controller {
 			$data['youtube_link']     = '';
 		}
 
-		$tags_data = $this->News_tags_model->records_tags_all();
-        foreach ($tags_data as $key => $value_tags) 
-        {
-            $tags_data_val .=  ",'".$value_tags['name']."'";
-        }
-
-        $data['tags_data']           = substr($tags_data_val,1);
 
 		$img_thumb                   = image($data['img'],'small');
 		$imagemanager                = imagemanager('img',$img_thumb);
 		$data['img']                 = $imagemanager['browse'];
 		$data['imagemanager_config'] = $imagemanager['config'];
 
+		$imagemanager                = imagemanager('img[]',$img_thumb);
+		$data['img_multi']                 = $imagemanager['browse'];
+
+
 		$data['list_language']      = select_list(array('table'=>'ref_language','title'=>language('select_language', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_language'],'where'=>"id_ref_delete='0'"));
 		$data['list_news_category'] = select_list(array('table'=>'ref_news_category','title'=>language('select_news_category', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_news_category'],'where'=>"id_ref_delete='0'"));
 		$data['list_status']        = select_list(array('table'=>'ref_status_publish','title'=>language('select_status', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_status_publish'],'where'=>"id_ref_delete='0'"));
-		$data['list_tags'] = select_list(array('table'=>'ref_tags','title'=>'','where'=> 'id_ref_delete=0'));
 
 		render('apps/news/add',$data,'main-apps');
 	}
@@ -104,8 +89,6 @@ class News extends CI_Controller {
 		} else if($unik){
 			$ret['message']	= "Page URL $post[uri_path] already taken";
 		} else {
-			$tags = $post['tags'];
-			unset($post['tags']);
 
 			$this->db->trans_start();   
 			if($idedit){
@@ -121,36 +104,6 @@ class News extends CI_Controller {
 			}
 			detail_log();
 
-			foreach ($tags as $key => $value) 
-            {
-                $value = strtolower($tags[$key]);
-                if ($value)
-                {
-                    $cek = $this->Tags_model->fetchRow(array('name'=>$value));//liat tags name di tabel ref
-                    if (!$cek)
-                    {//kalo belom ada
-                        $id_tags = $this->Tags_model->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
-                        detail_log();
-                    }
-                    else
-                    {
-                        $id_tags = $cek['id']; //kalo udah ada, tinggal ambil idnya
-                    }
-                    $cekTagsNews = $this->News_tags_model->fetchRow(array('id_ref_news'=>$idedit,'id_ref_tags'=>$id_tags)); //liat di tabel news tags, (utk edit)
-                    if (!$cekTagsNews)
-                    {//kalo blm ada ya di insert
-                        $tag['id_ref_news'] = $idedit;
-                        $tag['id_ref_tags'] = $id_tags;
-                        $id_news_tags = $this->News_tags_model->insert($tag);
-                    }
-                    else
-                    {//kalo udah ada, ambil id nya utk di simpen sbg array utk kebutuhan delete
-                        $id_news_tags = $cekTagsNews['id'];
-                    }
-
-                }
-
-            }
 			insert_log($act);
 			$this->db->trans_complete();
 			set_flash_session('message',$ret['message']);

@@ -1,0 +1,248 @@
+    <!--  
+        <!-- Slider -->
+        <div class="tp-banner-container">
+            <div class="tp-banner">
+                <ul>
+                    {banner}
+                    <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
+                        <img src="{base_url}images/article/large/{img}" alt="slider-image" />
+                        
+                        <div class="tp-caption sfb title-slide color-white style1" data-x="15" data-y="254" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">{title}</div>
+                        <div class="tp-caption sfb desc-slide color-white" data-x="15" data-y="398" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">
+                            {teaser}</div>
+                            <div class="tp-caption sfb center color-white flat-button-slide {hide_link}" data-x="15" data-y="528" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut">
+                                <a href="{link}">Selengkapnya</a>
+                            </div>
+                        </li>
+                    {/banner}
+                </ul>
+            </div>
+        </div> 
+        <div class="flat-divider d55px"></div>
+    -->
+    <!--  
+        <!-- Sejarah style1 -->
+        <section class="flat-row">
+            <div class="container">
+                <div class="row">
+                    <div class="flat-about-us clearfix">
+                        <div class="col-md-7">
+                            <div class="about-us-img clearfix">
+                                <div class="v1">
+                                    <div class="overly-img"></div>
+                                    <img src="{{base_url}}front_asset/images/about2.jpg" alt="image">
+                                </div>
+                                <div class="v2">
+                                    <div class="overly-img"></div>
+                                    <img src="{{base_url}}front_asset/images/about6.jpg" alt="image">
+                                </div>
+                                <div class="v3">
+                                    <div class="overly-img"> </div>
+                                    <img src="{{base_url}}front_asset/images/about1.jpg" alt="image">
+                                </div>
+                            </div><!-- /.about-us-img -->
+                        </div><!-- /.col-md-7 -->
+
+                        <div class="col-md-5">
+                            <div class="about-us style1">
+                                <h2 class="title-about-us">Sejarah</h2>
+                                <div class="desc">
+                                    <p>Sebagai upaya membantu pemerintah dalam penyelenggaraan pendidikan guna mencerdaskan bangsa, dan untuk menampung minat alumni Institut PTIQ yang ingin mengikuti studi lanjut, serta melihat perkembangan kebutuhan masyarakat akan lembaga yang mampu melahirkan ahli dalam Ilmu Agama setingkat Magister, maka dengan mengacu kepada Peraturan Pemerintah Republik Indonesia Nomor 60 Tahun 1999...</p>
+                                    <a href="sejarah.html" class="flat-button style1">Selengkapnya</a>
+                                </div>
+                            </div><!-- /.about-us -->
+                        </div><!-- /.col-md-5 -->
+                    </div><!-- /.flat-about-us -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.flat-row -->
+
+        <div class="flat-divider d88px"></div>
+    -->
+
+
+        <section class="flat-row parallax parallax3">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-section cl-white">
+                            <h1 class="title">{pengumuman_page_name}</h1>
+                            <div class="desc">
+                                <p> {pengumuman_teaser}</p>
+                            </div>
+                        </div><!-- /.title-section -->
+
+                        <div class="row">
+                            <div class="flat-divider d50px"></div>
+                        </div>
+
+                        <!-- Fillter courses -->
+                        <div class="row">
+                            {pengumuman}
+                            <div class="col-md-3">
+                                <div class="wg-border">
+                                    <a href="#" class="title">
+                                        <h6>Pengumuman Kelulusan Mahasiswa Baru Semester Ganjil T.A 2017/2018 Gel. II</h6>
+                                    </a>
+                                    <span>27 Agustus 2019</span>
+                                </div>
+                            </div>
+                            {/pengumuman}
+                            <div class="col-md-12 text-center"><a href="{base_url}pengumuman.html" class="flat-button style1">Pengumuman Lainnya</a></div>
+                        </div>
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+
+        <!-- Flat courses -->
+        <section class="flat-row pad-bottom90px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-section style1">
+                            <h1 class="title">{gallery_page_name}</h1>
+                            <div class="desc">
+                                <p>{gallery_teaser}</p>
+                            </div>
+                        </div><!-- /.title-section -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+
+                <div class="row">
+                    <div class="flat-divider d55px"></div>
+                </div>
+
+                <div class="row">
+                    {gallery}
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="flat-courses">
+                            <div class="courses-thumbnail">
+                                <a href="gallery-detail.html"><img src="{{base_url}}front_asset/images/cat1.jpg" alt="image"></a>
+                                <a class="courses-viewmore" href="gallery-detail.html">Selengkapnya</a>
+                            </div>
+                            <div class="courses-content">
+                                <a href="gallery-detail.html">
+                                    <h6 class="courses-topic">Workshop Bahasa Arab</h6>
+                                </a>
+                            </div>
+                        </div><!-- /.flat-courses -->
+                    </div><!-- /.col-md-3 -->
+                    {/gallery}
+
+                    <div class="col-md-12 text-center"><a href="{base_url}gallery.html" class="flat-button style1">Gallery Lainnya</a></div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.flat-row -->
+
+        <section class="flat-row bg-color-themes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="flat-divider d33px"></div>
+                        <div class="title-section cl-white style3 v3">
+                            <h1 class="title">{tarbiyah_page_name}</h1>
+                            <div class="desc">
+                                <p>{tarbiyah_teaser}</p>
+                            </div>
+                            {tarbiyah_page_content}
+                        </div>
+                        <div class="flat-divider d33px"></div>
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+
+
+        <div class="flat-divider d90px"></div>
+
+        <!-- Team member style1-->
+        <section class="flat-row">
+            <div class="container">
+                <div class="row">
+                    <div class="flat-teammember clearfix">
+                        <div class="col-md-9 col-xs-12">
+                            {testimonial_page_content}
+                        </div><!-- /.col-md-9 -->
+
+                        <div class="col-md-3 col-xs-12">
+                            <div class="team-image">
+                                <img src="{base_url}images/article/large/{testimonial_img}" alt="image">
+                            </div><!-- /.team-image -->
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.flat-teammember -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+
+
+        <!-- Blog -->
+        <section class="flat-row main-content blog pad-bottom60px" style="padding-top: 70px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-section style1">
+                            <h1 class="title">{news_page_name}</h1>
+                            <div class="desc">
+                                <p>{news_teaser}</p>
+                            </div>
+                        </div><!-- /.title-section -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+
+                <div class="flat-divider d50px"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post-wrap">
+                            {news}
+                            <article class="entry clearfix images-{aligment}">
+                                {image_left}
+
+                                <div class="main-post">
+                                    <h2 class="title-post"><a href="{link}">{title}</a></h2>
+                                    <div class="meta-post clearfix">
+                                        <ul>
+                                            <li class="post-date">{publish_date}</li>
+                                        </ul>
+                                    </div><!-- /.meta-post -->
+                                    <div class="entry-post">
+                                        <p>{teaser}</p>
+                                        <a class="read-more" href="{link}">Read more</a>
+                                    </div><!-- /.entry-post -->
+                                </div><!-- /.main-post -->
+                                {image_right}
+                            </article><!-- /.entry -->
+
+                            {/news}
+                        </div><!-- /.post-wrap -->
+                        <div class="load-more">
+                            <a class="flat-button" href="{base_url}news">Berita Lainnya</a>
+                        </div>
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+        <section class="flat-row pad-top85px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-section style1">
+                            <h1 class="title">{akreditasi_page_name}</h1>
+                            <div class="desc">
+                                <p>{akreditasi_teaser}}</p>
+                            </div>
+                            <div class="text-center">
+                                {akreditasi_page_content}
+                            </div>
+                        </div><!-- /.title-section -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div>
+        </section>
+
+
+        <section class="maps">
+            {maps_page_content}
+        </section>

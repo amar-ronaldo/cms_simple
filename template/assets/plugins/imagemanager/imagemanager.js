@@ -1,14 +1,18 @@
 $(document).ready(function(){
 
-	$('.browse-image').click(function(){
+	$(document).on('click','.browse-image',function(){		
 		$('#list-image-manager').html("<i class='fa fa-spinner fa-spin'></i> Loading...");
 		$('#popImageManager').modal('show');
+
 		var id = $(this).attr('id');
+		var category = $(this).attr('data-category');
+		$('#imagemanager-save').attr('data-category',category);
 		$('#popImageManager').attr('data-image-id',id);
 		$('#popImageManager').removeAttr('data-is-ckeditor');
 		$.ajax({
 			url         : base_url+"apps/home/imagemanager",
 			type        : "POST",
+			data 		: "category="+category,
 			error		: function (a,b,c) {
 							alert('error loading image');
 						},
@@ -18,8 +22,11 @@ $(document).ready(function(){
 		});
 
 	})
+
+
 	$('#upload-img').click(function(){
 		if($('#imagemanagersource').val()){
+			$('#popImageManager').removeClass('show');
 			ajaxFileUpload();
 		}
 		else{
@@ -41,6 +48,7 @@ $(document).ready(function(){
 			return;
 		}
 
+
 		var btn = $(this);
 		if(btn.html() == 'Loading...'){
 			return;
@@ -55,14 +63,13 @@ $(document).ready(function(){
 			error		: function (a,b,c) {alert('error')},
 			success     : function(ret){
 							$('#modal-crop').modal('hide');
+							$('#popImageManager').addClass('show');
 							$('.browse-image').trigger('click');
-							// console.log(is_popImage);
 							if(is_ckeditor){
 								$('#popImageManager').attr('data-image-id',is_popImage);
 								$('#popImageManager').attr('data-is-ckeditor','1');
 							}
 							btn.html('Save');
-							
 						}
 		});
 
@@ -95,8 +102,6 @@ $(document).ready(function(){
 		$('#popImageManagerDetail').modal('show');
 	})
 
-
-	
 	function ajaxFileUpload() {
 		var btn = $('#upload-img');
 		if(btn.html() == 'Loading...'){
@@ -119,10 +124,11 @@ $(document).ready(function(){
 								$('#file_thumb').val('');
 								$('#file,#imagemanager-name').val(data.file);
 								$('#modal-crop').modal('show');
+								$('#popImageManager').modal('hide');
 								btn.html('Upload');
 								function_pagination=0;
-								return false;
 							} else {
+								$('#popImageManager').addClass('show');
 								alert(data.message);
 							}
 			},

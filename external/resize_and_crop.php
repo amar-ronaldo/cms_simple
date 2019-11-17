@@ -1,33 +1,33 @@
 <?php
 ini_set('memory_limit', '-1');
-$file = $_POST["imageSource"];
+$file                 = $_POST["imageSource"];
 list($width, $height) = getimagesize($file);
-$viewPortW = $_POST["viewPortW"];
-$viewPortH = $_POST["viewPortH"];
-$pWidth = $_POST["imageW"];
-$pHeight =  $_POST["imageH"];
-$ext = explode(".",$file);
-$ext = strtolower($ext[count($ext)-1]);
-$function = returnCorrectFunction($ext);
-$image = $function($file);
-$width = imagesx($image);
-$height = imagesy($image);
+$viewPortW            = $_POST["viewPortW"];
+$viewPortH            = $_POST["viewPortH"];
+$pWidth               = $_POST["imageW"];
+$pHeight              =  $_POST["imageH"];
+$ext                  = explode(".",$file);
+$ext                  = strtolower($ext[count($ext)-1]);
+$function             = returnCorrectFunction($ext);
+$image                = $function($file);
+$width                = imagesx($image);
+$height               = imagesy($image);
 // Resample
-$image_p = imagecreatetruecolor($pWidth, $pHeight);
+$image_p              = imagecreatetruecolor($pWidth, $pHeight);
 setTransparency($image,$image_p,$ext);
 imagecopyresampled($image_p, $image, 0, 0, 0, 0, $pWidth, $pHeight, $width, $height);
 imagedestroy($image);
-$widthR = imagesx($image_p);
-$hegihtR = imagesy($image_p);
+$widthR               = imagesx($image_p);
+$hegihtR              = imagesy($image_p);
 
 $selectorX = $_POST["selectorX"];
 $selectorY = $_POST["selectorY"];
 
 if($_POST["imageRotate"]){
-	$angle = 360 - $_POST["imageRotate"];
+	$angle   = 360 - $_POST["imageRotate"];
 	$image_p = imagerotate($image_p,$angle,0);
 	
-	$pWidth = imagesx($image_p);
+	$pWidth  = imagesx($image_p);
 	$pHeight = imagesy($image_p);
 	
 

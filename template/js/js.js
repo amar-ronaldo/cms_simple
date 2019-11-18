@@ -382,43 +382,58 @@ $(function() {//datepi3r
 	});
 })( jQuery );
 
+$(document).ready(function() {
+	$('body').find('.ckeditor').each(function(){
+		var id = $(this).attr('id');
+		//alert(id);
+        CKEDITOR.instances[id].destroy()
+		var editor = ckeditor(id);	
+	})
+	
+
+})
 
 function ckeditor(id,lebar,tinggi){
+	console.log('large');
 	if(lebar == null){
 		lebar = 805;
 	}
 	if(tinggi == null){
 		tinggi = 300;
 	}
-	CKEDITOR.replace(id,
-	{
-		//skin : '',
-		width:lebar ,
-		height:tinggi,
-		
-		filebrowserBrowseUrl 		: base_url+'assets/js/ckfinder/ckfinder.html',
-		filebrowserImageBrowseUrl 	: base_url+'assets/js/ckfinder/ckfinder.html?Type=Images',
-		filebrowserFlashBrowseUrl 	: base_url+'assets/js/ckfinder/ckfinder.html?Type=Flash',
-		filebrowserUploadUrl 		: base_url+'assets/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-		filebrowserImageUploadUrl 	: base_url+'assets/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		filebrowserFlashUploadUrl 	: base_url+'assets/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-		toolbar 							:
-												[
-													['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-													['Bold','Italic','Underline'],
-													['Image'],
-													['Cut','Copy','Paste'],
-													['NumberedList','BulletedList'],
-													['TextColor','BGColor'],
-													['Table','HorizontalRule','Strike'],
-													['Format','FontSize','Preview','Source']
+	CKEDITOR.config.contentsCss  = ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'];
+	CKEDITOR.replace(id, {
+		filebrowserBrowseUrl 		: base_url+'asset/js/ckfinder/ckfinder.html',
+		filebrowserImageBrowseUrl 	: base_url+'asset/js/ckfinder/ckfinder.html?Type=Images',
+		filebrowserFlashBrowseUrl 	: base_url+'asset/js/ckfinder/ckfinder.html?Type=Flash',
+		filebrowserUploadUrl 		: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+		filebrowserImageUploadUrl 	: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+		filebrowserFlashUploadUrl 	: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+
+	});
+
+	// CKEDITOR.replace(id,
+	// {
+	// 	//skin : '',
+	// 	width:lebar ,
+	// 	height:tinggi,
+	// 	toolbar 							:
+	// 											[
+	// 												['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+	// 												['Bold','Italic','Underline'],
+	// 												['Image'],
+	// 												['Cut','Copy','Paste'],
+	// 												['NumberedList','BulletedList'],
+	// 												['TextColor','BGColor'],
+	// 												['Table','HorizontalRule','Strike'],
+	// 												['Format','FontSize','Preview','Source']
 													
-													//,'/',
-													//['Source','Preview','Templates','Cut','Copy','Paste'],
-													//['Bold','Italic','Underline','Strike','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','NumberedList','BulletedList','Subscript','Superscript','-'],
-													//['Link','Unlink','-','Image','Flash','Table','HorizontalRule','Smiley','SpecialChar'],['TextColor','BGColor','-','Font','FontSize']
-												]
-	});	
+	// 												//,'/',
+	// 												//['Source','Preview','Templates','Cut','Copy','Paste'],
+	// 												//['Bold','Italic','Underline','Strike','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','NumberedList','BulletedList','Subscript','Superscript','-'],
+	// 												//['Link','Unlink','-','Image','Flash','Table','HorizontalRule','Smiley','SpecialChar'],['TextColor','BGColor','-','Font','FontSize']
+	// 											]
+	// });	
 	
 }
 function InsertHtmlToCkEditor(v,oEditor){
@@ -564,6 +579,7 @@ $(function () {
 
 
 function ckSmall(id){
+	console.log('small');
 		CKEDITOR.replace( id, {
 			width: 625,
 			height:200,

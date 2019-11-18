@@ -1,0 +1,49 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_title} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<textarea  class="form-control" name="title" id="title" data-parsley-required="true">{title}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">Jenis Kegiatan</label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_kerjasama_category" name="id_ref_kerjasama_category" data-parsley-required="true">{list_ref_kerjasama_category}</select>
+						</div>
+					</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="l0">Kurun Waktu <i class='req'>*</i></label>
+							<div class="col-md-4 form-inline">
+								<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="kurun_waktu_awal" id="kurun_waktu_awal" value="{kurun_waktu_awal}" >
+								S/d
+								<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="kurun_waktu_akhir" id="kurun_waktu_akhir" value="{kurun_waktu_akhir}" >
+							</div>
+						</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="publish_date" id="publish_date" value="{publish_date}" data-parsley-required="true">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select class='form-control' id="id_ref_status_publish" name="id_ref_status_publish" data-parsley-required="true">{list_status}</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

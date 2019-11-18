@@ -1,0 +1,74 @@
+<section class="main-content blog-single blog-single-sidebar">
+    <div class="post-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <article class="entry">
+                        <div class="banner-kagiatan">
+                            <div class="flat-portfolio v1">
+                                <div class="portfolio-flexslides">
+                                    <ul class="slides" id="fasilitasGallery">
+                                        {images}
+                                            <li>
+                                                <img src="{base_url}images/article/large/{news_image}" alt="slider-image {news_image}">
+                                            </li>
+                                        {/images}
+                                    </ul>
+                                </div><!-- /.portfolio-flexslides -->
+                            </div><!-- /.flat-portfolio -->
+                        </div>
+                        <div class="main-post">
+                            <h2 class="title-post"><a href="#">{news_title}</a></h2>
+                            <div class="meta-post clearfix">
+                                <ul>
+                                    <li class="post-author">
+                                        <span><a href="#">{news_writer}</a></span>
+                                    </li>
+                                    <li class="post-date">{news_publish_date}</li>
+                                </ul>
+                            </div><!-- /.meta-post -->
+                            <div class="entry-post">
+                                {news_page_content}
+                            </div><!-- /.entry-post -->
+                            <ul class="flat-socials">
+                                <li>
+                                    <a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" title="twitter"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" title="google-plus"><i class="fa fa-youtube-play"></i></a>
+                                </li>
+                            </ul>
+                        </div><!-- /.main-post -->
+                    </article><!-- /.entry -->
+                </div><!-- /.col-md-9 -->
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <div class="widget widget-recent-post style1">
+                            <h5 class="widget-title">{news_category} Lainnya</h5>
+                            <ul class="post-news clearfix">
+                                {related_content}
+                                <li>
+                                    <div class="thumb">
+                                        <a href="{base_url}news/detail/{related_uri_path_category}/{related_uri_path}"><img src="{base_url}images/article/small/{related_img}" alt="image"></a>
+                                    </div>
+                                    <div class="text">
+                                        <h4><a href="{base_url}news/detail/{related_uri_path_category}/{related_uri_path}">{related_name}</a></h4>
+                                        <p>{related_publish_date}</p>
+                                    </div>
+                                </li>
+                                {/related_content}
+                            </ul><!-- /.post-news -->
+                        </div>
+                    </div><!-- /.sidebar -->
+                </div><!-- /.col-md-3 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.post-wrap -->
+</section>
+

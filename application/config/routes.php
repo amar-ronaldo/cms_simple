@@ -60,3 +60,6 @@ $route['forgot-password'] = "apps/login/request_forgot_pw";
 $route['change-password/(:any)'] = "apps/login/change_pw/$1";
 $route['change-password/'] = "apps/login/change_pw";
 $route['change-password'] = "apps/login/change_pw";
+$route['pages/(:any)'] = "pages/detail/$1";
+$route['gallery/(:any)'] = "gallery/index/$1";
+$route['news/(:any)'] = "news/index/$1";

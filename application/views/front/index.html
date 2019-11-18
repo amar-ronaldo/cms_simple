@@ -20,7 +20,6 @@
         </div> 
         <div class="flat-divider d55px"></div>
     -->
-    <!--  
         <!-- Sejarah style1 -->
         <section class="flat-row">
             <div class="container">
@@ -28,27 +27,21 @@
                     <div class="flat-about-us clearfix">
                         <div class="col-md-7">
                             <div class="about-us-img clearfix">
-                                <div class="v1">
-                                    <div class="overly-img"></div>
-                                    <img src="{{base_url}}front_asset/images/about2.jpg" alt="image">
-                                </div>
-                                <div class="v2">
-                                    <div class="overly-img"></div>
-                                    <img src="{{base_url}}front_asset/images/about6.jpg" alt="image">
-                                </div>
-                                <div class="v3">
-                                    <div class="overly-img"> </div>
-                                    <img src="{{base_url}}front_asset/images/about1.jpg" alt="image">
-                                </div>
+                                {sejarah_image}
+                                    <div class="v{index_sejarah}">
+                                        <div class="overly-img"></div>
+                                        <img src="{base_url}images/article/large/{img}" alt="image">
+                                    </div>
+                                {/sejarah_image}
                             </div><!-- /.about-us-img -->
                         </div><!-- /.col-md-7 -->
 
                         <div class="col-md-5">
                             <div class="about-us style1">
-                                <h2 class="title-about-us">Sejarah</h2>
+                                <h2 class="title-about-us">{sejarah_page_name}</h2>
                                 <div class="desc">
-                                    <p>Sebagai upaya membantu pemerintah dalam penyelenggaraan pendidikan guna mencerdaskan bangsa, dan untuk menampung minat alumni Institut PTIQ yang ingin mengikuti studi lanjut, serta melihat perkembangan kebutuhan masyarakat akan lembaga yang mampu melahirkan ahli dalam Ilmu Agama setingkat Magister, maka dengan mengacu kepada Peraturan Pemerintah Republik Indonesia Nomor 60 Tahun 1999...</p>
-                                    <a href="sejarah.html" class="flat-button style1">Selengkapnya</a>
+                                    <p>{sejarah_teaser}</p>
+                                    <a href="{base_url}news/detail/{sejarah_uri_path_category}/{sejarah_uri_path}" class="flat-button style1">Selengkapnya</a>
                                 </div>
                             </div><!-- /.about-us -->
                         </div><!-- /.col-md-5 -->
@@ -58,7 +51,6 @@
         </section><!-- /.flat-row -->
 
         <div class="flat-divider d88px"></div>
-    -->
 
 
         <section class="flat-row parallax parallax3">
@@ -82,14 +74,14 @@
                             {pengumuman}
                             <div class="col-md-3">
                                 <div class="wg-border">
-                                    <a href="#" class="title">
-                                        <h6>Pengumuman Kelulusan Mahasiswa Baru Semester Ganjil T.A 2017/2018 Gel. II</h6>
+                                    <a href="{link}" class="title">
+                                        <h6>{title}</h6>
                                     </a>
-                                    <span>27 Agustus 2019</span>
+                                    <span>{publish_date}</span>
                                 </div>
                             </div>
                             {/pengumuman}
-                            <div class="col-md-12 text-center"><a href="{base_url}pengumuman.html" class="flat-button style1">Pengumuman Lainnya</a></div>
+                            <div class="col-md-12 text-center"><a href="{base_url}news/{pengumuman_uri_path}" class="flat-button style1">Pengumuman Lainnya</a></div>
                         </div>
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
@@ -119,19 +111,19 @@
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="flat-courses">
                             <div class="courses-thumbnail">
-                                <a href="gallery-detail.html"><img src="{{base_url}}front_asset/images/cat1.jpg" alt="image"></a>
-                                <a class="courses-viewmore" href="gallery-detail.html">Selengkapnya</a>
+                                <a href="{link}"><img src="{base_url}front_asset/images/{img}" alt="image"></a>
+                                <a class="courses-viewmore" href="{link}">Selengkapnya</a>
                             </div>
                             <div class="courses-content">
-                                <a href="gallery-detail.html">
-                                    <h6 class="courses-topic">Workshop Bahasa Arab</h6>
+                                <a href="{link}">
+                                    <h6 class="courses-topic">{title}</h6>
                                 </a>
                             </div>
                         </div><!-- /.flat-courses -->
                     </div><!-- /.col-md-3 -->
                     {/gallery}
 
-                    <div class="col-md-12 text-center"><a href="{base_url}gallery.html" class="flat-button style1">Gallery Lainnya</a></div>
+                    <div class="col-md-12 text-center"><a href="{base_url}gallery/{gallery_uri_path_category}" class="flat-button style1">Gallery Lainnya</a></div>
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </section><!-- /.flat-row -->
@@ -218,7 +210,7 @@
                             {/news}
                         </div><!-- /.post-wrap -->
                         <div class="load-more">
-                            <a class="flat-button" href="{base_url}news">Berita Lainnya</a>
+                            <a class="flat-button" href="{base_url}news/{news_uri_path_category}">Berita Lainnya</a>
                         </div>
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->

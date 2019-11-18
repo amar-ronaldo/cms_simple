@@ -58,7 +58,7 @@ class Frontend_menu_model extends CI_Model{
 	}
 	
 	function findBy($where=array(),$is_single_row=0){
-		$where['id_ref_delete'] = 0;
+		$where['a.id_ref_delete'] = 0;
 		$this->db->select("a.*,b.name as position,c.name as parent,d.name as status_publish");
 		$this->db->join('menu_position b','b.id = a.id_menu_position','left');
 		$this->db->join('frontend_menu c','c.id_parent = a.id','left');

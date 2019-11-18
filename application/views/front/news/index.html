@@ -1,0 +1,42 @@
+<section class="flat-row pad-top50px pad-bottom50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section style1">
+                    <h1 class="title">{news_name}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="flat-divider d55px"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="course-list">
+                    <ul>
+                        {content_news}
+                    </ul>
+                </div>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+<script>
+    $(document).on('click','.more_list',function (e) {
+        e.preventDefault()
+        $btn = $(this)
+        $.ajax({
+            url: $(this).attr('href'),
+            type: "GET",
+            dataType: 'html',
+            error: function (err) {
+                alert('error')
+            },
+            success: function (ret) {
+                $btn.parents('ul').append(ret)
+                $btn.remove()
+            },
+        });
+    })
+</script>

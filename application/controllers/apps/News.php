@@ -17,13 +17,14 @@ class News extends CI_Controller {
 		$lang_name                  = lang_data('name');
 		$data['btn_add']            = btn_add_export();
 		$data['list_language']      = select_list(array('table'=>'ref_language','title'=>language('select_language', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_language'],'where'=>"id_ref_delete='0'"));
-		$data['list_news_category'] = select_list(array('table'=>'ref_news_category','title'=>language('select_news_category', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_news_category'],'where'=>"id_ref_delete='0'"));
+		$data['list_news_category'] = select_list(array('table'=>'ref_news_category','title'=>language('select_news_category', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_news_category'],'where'=>"id_ref_delete='0' and id != '5'"));
 		$data['list_status']        = select_list(array('table'=>'ref_status_publish','title'=>language('select_status', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_status_publish'],'where'=>"id_ref_delete='0'"));
 		render('apps/news/index',$data,'main-apps');
 	}
 
 	function records(){
-		$data = $this->News_model->records();
+		$where['id_ref_news_category !=']  =5;
+		$data = $this->News_model->records($where);
 		render('apps/news/records',$data,'blank');
 	}
 
@@ -57,12 +58,17 @@ class News extends CI_Controller {
 		$data['img']                 = $imagemanager['browse'];
 		$data['imagemanager_config'] = $imagemanager['config'];
 
-		$imagemanager                = imagemanager('img[]',$img_thumb);
-		$data['img_multi']                 = $imagemanager['browse'];
+		$imagemanager                = imagemanager('img_multi[]',$img_thumb);
+		$data['img_multi']			= $imagemanager['browse'];
+		$this->load->model('News_image_model');
+
+		$data_img_multi = $this->News_image_model->findById($data['id']);
+		$data['data_img_multi'] = json_encode($data_img_multi);
+
 
 
 		$data['list_language']      = select_list(array('table'=>'ref_language','title'=>language('select_language', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_language'],'where'=>"id_ref_delete='0'"));
-		$data['list_news_category'] = select_list(array('table'=>'ref_news_category','title'=>language('select_news_category', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_news_category'],'where'=>"id_ref_delete='0'"));
+		$data['list_news_category'] = select_list(array('table'=>'ref_news_category','title'=>language('select_news_category', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_news_category'],'where'=>"id_ref_delete='0' and id != '5'"));
 		$data['list_status']        = select_list(array('table'=>'ref_status_publish','title'=>language('select_status', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_status_publish'],'where'=>"id_ref_delete='0'"));
 
 		render('apps/news/add',$data,'main-apps');
@@ -73,11 +79,12 @@ class News extends CI_Controller {
 		$post              = purify($this->input->post());
 		$ret['error']      = 1;
 		$where['a.uri_path'] = $post['uri_path'];
-
+		
 		if($idedit){
 			$where['a.id !='] = $idedit;
 		}
-
+		
+		
 		$unik = $this->News_model->findBy($where);
 		$this->form_validation->set_rules('title', '"Group Name"', 'required'); 
 		$this->form_validation->set_rules('uri_path', '"Uri Path Name"', 'required'); 
@@ -89,8 +96,11 @@ class News extends CI_Controller {
 		} else if($unik){
 			$ret['message']	= "Page URL $post[uri_path] already taken";
 		} else {
-
+			
 			$this->db->trans_start();   
+			$img_multi = array_filter($post['img_multi']);
+			
+			unset($post['img_multi']);
 			if($idedit){
 				auth_update();
 				$ret['message'] = 'Update Success';
@@ -102,8 +112,13 @@ class News extends CI_Controller {
 				$act			= "Insert News";
 				$idedit = $this->News_model->insert($post);
 			}
+			$this->load->model('News_image_model');
+			
+			if ($img_multi) {
+				$this->News_image_model->insert_all($idedit, $img_multi);
+			}
 			detail_log();
-
+			
 			insert_log($act);
 			$this->db->trans_complete();
 			set_flash_session('message',$ret['message']);
@@ -111,7 +126,7 @@ class News extends CI_Controller {
 		}
 		echo json_encode($ret);
 	}
-
+	
 	function del(){
 		auth_delete();
         $id     = $this->input->post('iddel');
@@ -119,7 +134,7 @@ class News extends CI_Controller {
         detail_log();
         insert_log("Delete News");
 	}
-
+	
 	function select_category(){
 		$this->load->model('News_category_model');
 		$data = $this->News_category_model->records();

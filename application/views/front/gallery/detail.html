@@ -1,0 +1,43 @@
+<section class="sect-fasilitas">
+    <div class="owl-carousel owl-theme" id="fasilitasGallery">
+        {images}
+            <div><img src="{base_url}images/article/large/{gallery_image}" alt="{gallery_image}"></div>
+        {/images}
+    </div>
+</section>
+
+
+<section class="flat-row pad-bottom90px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section style1">
+                    <h1 class="title">{gallery_category} Lain</h1>
+                </div><!-- /.title-section -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="flat-divider d55px"></div>
+        </div>
+
+        <div class="row">
+            {related_content}
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="flat-courses">
+                    <div class="courses-thumbnail">
+                        <a href="{base_url}gallery/detail/{related_uri_path_category}/{related_uri_path}"><img src="{base_url}images/article/large/{related_img}" alt="image"></a>
+                        <a class="courses-viewmore" href="{base_url}gallery/detail/{related_uri_path_category}/{related_uri_path}">Selengkapnya</a>
+                    </div>
+                    <div class="courses-content">
+                        <a href="{base_url}gallery/detail/{related_uri_path_category}/{related_uri_path}">
+                            <h6 class="courses-topic">{related_name}</h6>
+                        </a>
+                    </div>
+                </div><!-- /.flat-courses -->
+            </div><!-- /.col-md-3 -->
+            {/related_content}
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</section><!-- /.flat-row -->

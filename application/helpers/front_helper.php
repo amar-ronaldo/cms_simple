@@ -50,3 +50,39 @@ function front_menu()
 	}
 	return $menu;
 }
+
+function front_breadcrumb()
+{
+	$CI =& get_instance();
+	$CI->load->model('Frontend_menu_model');
+
+	$uri = $CI->uri->segment_array();
+	$extra_param = implode('/', $uri);
+	
+	$bread = $CI->Frontend_menu_model->findBy([
+		'a.extra_param'	=>$extra_param
+	],1);
+	if (!$extra_param || !$bread) {
+		return '';
+	}
+	$id_parent = $bread['id_parent'];
+	$bread['link'] = '#';
+	$breadcrumb[] = $bread;
+	
+	while (
+		$sub_menu = $CI->Frontend_menu_model->findById($id_parent)
+	) {
+		$sub_menu['link'] = '#';
+		$id_parent = $sub_menu['id_parent'];
+		$breadcrumb[] = $sub_menu;
+	}
+	$breadcrumb[] =[
+		'name'=> 'Home',
+		'link'=> base_url()
+	];
+	sort($breadcrumb);
+	$data['data'] = $breadcrumb;
+	$data['page_name'] = end($breadcrumb)['name'];	
+
+	return $CI->parser->parse("front/component/breadcrumb.html", $data, true);
+}

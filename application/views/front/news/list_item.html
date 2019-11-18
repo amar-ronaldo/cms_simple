@@ -1,0 +1,22 @@
+{list_item}
+
+        <li>
+            <div class="thumb">
+                <a href="{base_url}news/detail/{news_uri_path_category}/{news_uri_path}"><img src="{base_url}images/article/large/{news_img}" alt="image"></a>
+            </div>
+            <div class="list-content">
+                <div class="courses-content">
+                    <h6 class="courses-topic"><a href="{base_url}news/detail/{news_uri_path_category}/{news_uri_path}">{news_title}</a></h6>
+                </div>
+                <ul class="courses-meta">
+                    <li class="courses-author"><a href="#">{news_writer}</a></li>
+                    <li class="courses-date"><a href="#">{news_publish_date}</a></li>
+                </ul>
+                <div class="content">
+                    {news_teaser}
+                </div>
+            </div>
+        </li>    
+{/list_item}
+
+<div class="col-md-12 text-center {news_more}"><a href="{base_url}news/detail/{news_uri_path_category}?page={news_page}" class="flat-button style1 more_list">news Lainnya</a></div>

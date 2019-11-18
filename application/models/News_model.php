@@ -24,7 +24,7 @@ class News_model extends CI_Model{
 		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
 		$this->db->where("a.id_ref_delete", 0);
 
-		$query = $this->db->get($this->tableAs);
+		$query = $this->db->get_where($this->tableAs,$where);
 		if($isTotal==0){
 			$data = $query->result_array();
 		} else {

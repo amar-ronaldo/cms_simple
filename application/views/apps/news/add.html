@@ -22,12 +22,6 @@
 					<div class="tab-content">
 							<div class="tab-pane active" id="form-detail" aria-expanded="true">
 								<div class="form-group row">
-									<label class="col-md-3 col-form-label" for="l0">{lang_language} <i class='req'>*</i></label>
-									<div class="col-md-9">
-										<select class='form-control' id="id_ref_language" name="id_ref_language" data-parsley-required="true">{list_language}</select>
-									</div>
-								</div>
-								<div class="form-group row">
 									<label class="col-md-3 col-form-label" for="l0">{lang_news_category} <i class='req'>*</i></label>
 									<div class="col-md-9">
 										<select class='form-control' id="id_ref_news_category" name="id_ref_news_category" data-parsley-required="true">{list_news_category}</select>
@@ -109,11 +103,11 @@
 									<div class="col-md-9">
 										
 										<div class="list_multi_img">
-											<div class="multi_img">
+											<div class="multi_img-first hide">
 												{img_multi}
 												<div class="notes-image mb-5">Ukuran : 960 x 540px</div>
-												<button type="button" class="add_multi-image btn btn-primary" title="Tambah Gambar" onclick="add_multi_image()">Tambah Gambar</button>
-												<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+												<button type="button" class="add_multi-image btn btn-primary" title="Tambah Gambar" >Tambah Gambar</button>
+												<a class="delete_multi-image btn btn-danger" title="{lang_delete_image}" >{lang_delete_image}</a>
 											</div>
 										</div>
 									</div>
@@ -129,3 +123,42 @@
 	</div>
 </div>
 {imagemanager_config}
+<script>
+	var jml_multi_img = 0;
+	$(document).on('click', '.delete_multi-image', function () {
+		let parent_del = $(this).parents('.multi_img');
+		if($('.multi_img').length == 1){
+			parent_del.find('img').attr('src', base_url + 'images/article/small/no_image.png')
+			parent_del.find('input').val('')
+		}else{
+			parent_del.remove()
+		}
+	})
+	$(document).on('click', '.add_multi-image', function () {
+		add_multi_img()
+		$(this).remove();
+	})
+	add_multi_img('{data_img_multi}')
+	function add_multi_img($data = '[]'){
+		$data = JSON.parse($data);
+		if ($data.length > 0) {
+			$data.forEach((val, key, arr) => {
+				temp_html = $('.multi_img-first').clone();
+				if (!Object.is(arr.length - 1, key)) {
+					temp_html.find('.add_multi-image').remove()
+				}
+				temp_html.find('img').attr('src',base_url+'images/article/small/'+val.img)
+				temp_html.find('input').val(val.img)
+				temp_html.find('.browse-image').attr('id', 'multi_img_'+jml_multi_img++)
+				$('.multi_img-first').parents('.list_multi_img').append('<div class="multi_img mb-5">'+temp_html.html()+'</div>')
+			});	
+
+		}else{
+			temp_html = $('.multi_img-first').clone();
+			temp_html.find('img').attr('src', base_url + 'images/article/small/no_image.png')
+			temp_html.find('input').val('')
+			temp_html.find('.browse-image').attr('id', 'multi_img_' + jml_multi_img++)
+			$('.multi_img-first').parents('.list_multi_img').append('<div class="multi_img mb-5">' + temp_html.html() + '</div>')
+		}
+	}
+</script>

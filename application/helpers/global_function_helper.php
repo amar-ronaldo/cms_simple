@@ -186,7 +186,7 @@ function render_front($view = '', $data = array(), $layout = '', $ret = false)
 		$CI->data = array_merge($CI->data, $data);
 	}
 	// generate page 
-	$data['breadcrumb'] = breadcrumb();
+	$data['breadcrumb'] = front_breadcrumb();
 	$data['page_title'] = generate_title();
 	$data['footer']     = front_footer();
 	$data['header_top'] = front_header_top();

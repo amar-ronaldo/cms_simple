@@ -20,6 +20,8 @@ class News_category extends CI_Controller {
 	}
 
 	function records(){
+		$this->db->where('id !=', 5);
+		
 		$data = $this->News_category_model->records();
 		render('apps/news-category/records',$data,'blank');
 	}

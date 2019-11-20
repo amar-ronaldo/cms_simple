@@ -1,13 +1,8 @@
 {data}
-<tr>
-	<td align="center">{nomor}</td>
-	<td>{title}</td>
-	<td>{category}</td>
-	<td>{kerjasama_type}</td>
-	<td align="center">{status}</td>
-	<td align="center">{publish_date}</td>
-	<td align="center">{writer}</td>
-	<td align="center">
+<tr class="grid-list">
+	<td class="text-left">{nomor}</td>
+	<td class="text-left">{name}</td>
+	<td class="text-center">
 		<a href="{this_controller}add/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
 		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del"></a>
 	</td>

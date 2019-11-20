@@ -1,0 +1,15 @@
+{
+    "editor.fontFamily": "'Fira Code','Source Code Pro',Consolas, 'Courier New', monospace",
+    "editor.fontSize": 20,
+    "files.exclude": {
+        "**/images": true,
+        "**/system": true
+    },
+    "debug.console.fontSize": 20,
+    "markdown.preview.fontSize": 20,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "angularConsole.enableTelemetry": false,
+    "blade.format.enable": true,
+    "editor.fontWeight": "500"
+}

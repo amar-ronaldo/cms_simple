@@ -99,6 +99,9 @@ class Gallery extends CI_Controller {
 			unset($post['img_multi']);
 			if($idedit){
 				auth_update();
+				if (!$post['img']) {
+					unset($post['img']);
+				}
 				$ret['message'] = 'Update Success';
 				$act			= "Update News";
 				$this->Gallery_model->update($post,$idedit);

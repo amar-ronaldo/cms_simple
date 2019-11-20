@@ -69,6 +69,9 @@ class Web_config extends CI_Controller {
 			$this->db->trans_start();   
 			if($idedit){
 				auth_update();
+				if (!$post['img']) {
+					unset($post['img']);
+				}
 				$ret['message'] = 'Update Success';
 				$act			= "Update Web_config";
 				$this->Web_config_model->update($post,$idedit);

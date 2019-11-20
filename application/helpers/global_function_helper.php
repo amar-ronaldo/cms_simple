@@ -913,10 +913,11 @@ function btn_search_only()
  * @param  string 	$proses 	[title of button]
  * @return [type]         		[html of process button]
  */
-function btn_process($proses = '')
+function btn_process($proses = '',$data_back = '')
 {
 	$CI = &get_instance();
 	$CI->data['title'] = $proses;
+	$CI->data['data_back'] = $data_back;
 	return $CI->parser->parse('layout/btn-html/btn-process.html', $CI->data, true);
 }
 

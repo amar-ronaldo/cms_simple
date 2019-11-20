@@ -18,6 +18,7 @@ class Kerjasama extends CI_Controller {
 		$data['btn_add']            = btn_add_export();
 		$data['list_language']      = select_list(array('table'=>'ref_language','title'=>language('select_language', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_language'],'where'=>"id_ref_delete='0'"));
 		$data['list_ref_kerjasama_category']      = select_list(array('table'=> 'ref_kerjasama_category','title'=>'Pilih Category','id_ref_delete'=>0,'selected'=>$data['id_ref_kerjasama_category'],'where'=>"id_ref_delete='0'"));
+		$data['list_ref_kerjasama_type']      = select_list(array('table'=> 'ref_kerjasama_type','title'=>'Pilih Lokasi','id_ref_delete'=>0,'selected'=>$data['id_ref_kerjasama_type'],'where'=>"id_ref_delete='0'"));
 		$data['list_status']        = select_list(array('table'=>'ref_status_publish','title'=>language('select_status', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_status_publish'],'where'=>"id_ref_delete='0'"));
 		render('apps/kerjasama/index',$data,'main-apps');
 	}
@@ -60,6 +61,7 @@ class Kerjasama extends CI_Controller {
 
 		$data['list_language']      = select_list(array('table'=>'ref_language','title'=>language('select_language', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_language'],'where'=>"id_ref_delete='0'"));
 		$data['list_ref_kerjasama_category']      = select_list(array('table' => 'ref_kerjasama_category', 'title' => 'Pilih Category', 'id_ref_delete' => 0, 'selected' => $data['id_ref_kerjasama_category'], 'where' => "id_ref_delete='0'"));
+		$data['list_ref_kerjasama_type']      = select_list(array('table'=> 'ref_kerjasama_type', 'title' =>'Pilih Lokasi', 'id_ref_delete' => 0, 'selected' => $data['id_ref_kerjasama_type '],'where' => "id_ref_delete='0'"));
 		$data['list_status']        = select_list(array('table'=>'ref_status_publish','title'=>language('select_status', $lang_name),'id_ref_delete'=>0,'selected'=>$data['id_ref_status_publish'],'where'=>"id_ref_delete='0'"));
 
 		render('apps/kerjasama/add',$data,'main-apps');
@@ -79,6 +81,9 @@ class Kerjasama extends CI_Controller {
 			$this->db->trans_start();   
 			if($idedit){
 				auth_update();
+				if (!$post['img']) {
+					unset($post['img']);
+				}
 				$ret['message'] = 'Update Success';
 				$act			= "Update News";
 				$this->Kerjasama_model->update($post,$idedit);

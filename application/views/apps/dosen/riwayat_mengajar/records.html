@@ -1,0 +1,16 @@
+{data}
+<tr>
+	<td align="center">{nomor}</td>
+	<td align="center">{program_studi}</td>
+	<td align="center">{mata_kuliah}</td>
+	<td align="center">{tahun_akademik}</td>
+	<td align="center">{semester}</td>
+	<td align="center">{jumlah_sks}</td>
+	<td align="center">{kelas}</td>
+	<td align="center">
+		<a href="{this_controller}add_{custom_url}/{id_dosen}/{id}" title="{lang_edit_data}" class="feather feather-edit"></a>
+		<a href="#" title="{lang_delete_data}" class="feather feather-trash-2 tangan hapus" id='{id}' data-url-rm="del_{custom_url}"></a>
+	</td>
+</tr>
+{/data}
+<tr class="footer-page"><td colspan="11">{paging}</td></tr>

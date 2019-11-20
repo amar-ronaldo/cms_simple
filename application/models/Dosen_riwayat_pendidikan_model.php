@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Kerjasama_model extends CI_Model{
+class Dosen_riwayat_pendidikan_model extends CI_Model{
 
-	var $table 		= 'ref_kerjasama';
-	var $tableAs 	= 'ref_kerjasama a';
+	var $table 		= 'ref_dosen_riwayat_pendidikan';
+	var $tableAs 	= 'ref_dosen_riwayat_pendidikan a';
 	
 	function __construct(){
 		parent::__construct();
@@ -12,26 +12,17 @@ class Kerjasama_model extends CI_Model{
 	function records($where=array(),$isTotal=0){
 		$alias['search_id'] = 'a.id';
 		$alias['search_status'] = 'c.id';
-		$alias['search_ref_kerjasama_category'] = 'b.id';
 		$alias['search_writer'] = 'd.fullname';
-		$alias['search_language'] = 'e.id';
 
-		query_grid($alias, $isTotal);
-		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language,f.name as kerjasama_type");
-		$this->db->join('ref_kerjasama_category b', 'b.id=a.id_ref_kerjasama_category','left');
+	 	query_grid($alias, $isTotal);
+		$this->db->select("a.*,c.name as status,d.fullname as writer");
 		$this->db->join('ref_status_publish c','c.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_auth_user d','d.id=a.id_ref_auth_user_create','left');
-		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
-		$this->db->join('ref_kerjasama_type f','f.id=a.id_ref_kerjasama_type','left');
 		$this->db->where("a.id_ref_delete", 0);
 
-		$query = $this->db->get($this->tableAs);
+		$query = $this->db->get_where($this->tableAs,$where);
 		if($isTotal==0){
 			$data = $query->result_array();
-			foreach ($data as $key => &$value) {
-				$value['title'] = str_replace(PHP_EOL, "<br>", $value["title"]);
-				$value['teaser'] = str_replace(PHP_EOL, "<br>", $value["teaser"]);
-			}
 		} else {
 			return $query->num_rows();
 		}
@@ -58,23 +49,17 @@ class Kerjasama_model extends CI_Model{
 	function findById($id){
 		$where['a.id'] = $id;
 		$where['a.id_ref_delete'] = 0;
-		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language,f.name as kerjasama_type");
-		$this->db->join('ref_kerjasama_category b','b.id=a.id_ref_status_publish','left');
+		$this->db->select("a.*,c.name as status,d.fullname as writer");
 		$this->db->join('ref_status_publish c','c.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_auth_user d','d.id=a.id_ref_auth_user_create','left');
-		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
-		$this->db->join('ref_kerjasama_type f','f.id=a.id_ref_kerjasama_type','left');
 		return 	$this->db->get_where($this->tableAs,$where)->row_array();
 	}
 	
 	function findBy($where=array(),$is_single_row=0){
 		$where['a.id_ref_delete'] = 0;
-		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language,f.name as kerjasama_type");
-		$this->db->join('ref_kerjasama_category b','b.id=a.id_ref_status_publish','left');
+		$this->db->select("a.*,c.name as status,d.fullname as writer");
 		$this->db->join('ref_status_publish c','c.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_auth_user d','d.id=a.id_ref_auth_user_create','left');
-		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
-		$this->db->join('ref_kerjasama_type f','f.id=a.id_ref_kerjasama_type','left');
 		if($is_single_row==1){
 			return 	$this->db->get_where($this->tableAs,$where)->row_array();
 		}
@@ -95,6 +80,6 @@ class Kerjasama_model extends CI_Model{
 }
 
 /*
- * End of file News_model.php
- * Location: ./application/models/News_model.php
+ * End of file dosen_model.php
+ * Location: ./application/models/dosen_model.php
  */

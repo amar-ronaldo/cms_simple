@@ -1,0 +1,181 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<div class="tabs tabs-bordered">
+					<!-- tab -->
+					<ul class="nav nav-tabs">
+						<li class="nav-item active" aria-expanded="false"><a class="nav-link" href="#form-detail" data-toggle="tab" aria-expanded="true">Detail</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-riwayat-pendidikan" data-toggle="tab" aria-expanded="false">Riwayat Pendidikan</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-jurnal" data-toggle="tab" aria-expanded="false">Jurnal</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-buku" data-toggle="tab" aria-expanded="false">Buku</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-penelitian" data-toggle="tab" aria-expanded="false">Penelitian</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-penghargaan" data-toggle="tab" aria-expanded="false">Penghargaan</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-pengabdian" data-toggle="tab" aria-expanded="false">Pengabdian</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-karya" data-toggle="tab" aria-expanded="false">Karya</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-kegiatan-ilmiah" data-toggle="tab" aria-expanded="false">Kegiatan Ilmiah</a></li>
+						<li class="nav-item"><a class="nav-link" href="#form-riwayat-mengajar" data-toggle="tab" aria-expanded="false">Riwayat Mengajar</a></li>
+					</ul>
+					<!-- /.nav-tabs -->
+					<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="tab-content">
+						<div class="tab-pane active" id="form-detail" aria-expanded="true">
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Category <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select class='form-control' id="id_ref_dosen_category" name="id_ref_dosen_category" data-parsley-required="true">{list_dosen_category}</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Nama <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<input type="text" class="form-control uri_path_source" name="name" id="name" value="{name}" data-parsley-required="true">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_uri_path} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="uri_path" id="uri_path" value="{uri_path}" data-parsley-required="true">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_image}</label>
+									<div class="col-md-9">
+										{img}
+										<div class="notes-image">{lang_notes_image}</div>
+										<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Detail <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content" data-parsley-required="true">{page_content}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Pangkat </label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="pangkat" id="pangkat" value="{pangkat}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Terhitung Tanggal Pangkat </label>
+									<div class="col-md-9">
+										<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="pangkat_date" id="pangkat_date" value="{pangkat_date}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Jabatan Akademik </label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="jabatan" id="jabatan" value="{jabatan}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Alamat Kantor <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<textarea type="text" class="form-control" name="alamat" id="alamat" data-parsley-required="true">{alamat}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">No. Telp Kantor </label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="no_telepon" id="no_telepon" value="{no_telepon}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Prodi Homebase </label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="prodi" id="prodi" value="{prodi}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Status Dosen <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select class='form-control' id="id_ref_dosen_status" name="id_ref_dosen_status" data-parsley-required="true">{list_dosen_status}</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="publish_date" id="publish_date" value="{publish_date}" data-parsley-required="true">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_status} <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select class='form-control' id="id_ref_status_publish" name="id_ref_status_publish" data-parsley-required="true">{list_status}</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_seo_title}</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="seo_title" id="seo_title" value="{seo_title}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_meta_description}</label>
+									<div class="col-md-9">
+										<textarea type="text" class="form-control ckeditor" name="meta_description" id="meta_description">{meta_description}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">{lang_meta_keyword}</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="meta_keywords" id="meta_keywords" value="{meta_keywords}">
+									</div>
+								</div>
+						</div>
+						<div class="tab-pane" id="form-riwayat-pendidikan" aria-expanded="false">
+							{index_riwayat_pendidikan}
+						</div>
+
+						<div class="tab-pane" id="form-jurnal" aria-expanded="false">
+							{index_jurnal}
+						</div>
+
+						<div class="tab-pane" id="form-buku" aria-expanded="false">
+							{index_buku}
+						</div>
+
+						<div class="tab-pane" id="form-penelitian" aria-expanded="false">
+							{index_penelitian}
+						</div>
+
+						<div class="tab-pane" id="form-penghargaan" aria-expanded="false">
+							{index_penghargaan}
+						</div>
+
+						<div class="tab-pane" id="form-pengabdian" aria-expanded="false">
+							{index_pengabdian}
+						</div>
+
+						<div class="tab-pane" id="form-karya" aria-expanded="false">
+							{index_karya}
+						</div>
+
+						<div class="tab-pane" id="form-kegiatan-ilmiah" aria-expanded="false">
+							{index_kegiatan_ilmiah}
+						</div>
+
+						<div class="tab-pane" id="form-riwayat-mengajar" aria-expanded="false">
+							{index_riwayat_mengajar}
+						</div>
+					</div>
+									</form>
+
+					<!-- /.tab-content -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}

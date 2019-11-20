@@ -14,12 +14,6 @@
                     <div class="row text-left">
                         <div class="col filter">
                             <div class="form-group">
-                                <label for="search_product_name">ID Kerjasama</label>
-                                <input type="text" class="cari form-control" id="search_id" name="search_id" placeholder="{lang_search}">
-                            </div>
-                        </div>
-                        <div class="col filter">
-                            <div class="form-group">
                                 <label for="search_product_name">{lang_title}</label>
                                 <input type="text" class="cari form-control" id="search_title" name="search_title" placeholder="{lang_search}">
                             </div>
@@ -27,7 +21,13 @@
                         <div class="col filter">
                             <div class="form-group">
                                 <label for="search_product_name">Category</label>
-                                <select class='cari form-control' id="search_id_ref_kegiatan_category" name="search_id_ref_kegiatan_category">{list_ref_kerjasama_category}</select>
+                                <select class='cari form-control' id="search_id_ref_kerjasama_category" name="search_id_ref_kerjasama_category">{list_ref_kerjasama_category}</select>
+                            </div>
+                        </div>
+                        <div class="col filter">
+                            <div class="form-group">
+                                <label for="search_product_name">Lokasi</label>
+                                <select class='cari form-control' id="search_id_ref_kerjasama_type" name="search_id_ref_kerjasama_type">{list_ref_kerjasama_type}</select>
                             </div>
                         </div>
                         <div class="col filter">
@@ -46,12 +46,6 @@
                             <div class="form-group">
                                 <label for="search_product_name">{lang_writer}</label>
                                 <input type="text" class="cari form-control" id="search_writer" name="search_writer" placeholder="{lang_search}">
-                            </div>
-                        </div>
-                        <div class="col filter">
-                            <div class="form-group">
-                                <label for="search_product_name">{lang_language}</label>
-                                <select class='cari form-control' id="search_language" name="search_language">{list_language}</select>
                             </div>
                         </div>
                     </div> 
@@ -82,17 +76,17 @@
                                 <div class="dropdown-menu dropdown-menu-right dm-table">
                                     <div class="checkbox checkbox-primary pl-2">
                                         <label>
-                                            <input type='checkbox' class="show_col check_total" name='checked_table' data-col="id" checked="true"> <span class="label-text">ID Kerjasama</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-primary pl-2">
-                                        <label>
                                             <input type='checkbox'  checked="true" class="show_col check_total" name='checked_table' data-col="title"> <span class="label-text">{lang_title}</span>
                                         </label>
                                     </div>
                                     <div class="checkbox checkbox-primary pl-2">
                                         <label>
-                                            <input type='checkbox'  checked="true" class="show_col " name='checked_table' data-col="id_ref_kegiatan_category"> <span class="label-text">Category</span>
+                                            <input type='checkbox'  checked="true" class="show_col " name='checked_table' data-col="id_ref_kerjasama_type"> <span class="label-text">Category</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox checkbox-primary pl-2">
+                                        <label>
+                                            <input type='checkbox'  checked="true" class="show_col " name='checked_table' data-col="id_ref_kerjasama_type"> <span class="label-text">Lokasi</span>
                                         </label>
                                     </div>
                                     <div class="checkbox checkbox-primary pl-2">
@@ -110,11 +104,6 @@
                                             <input type='checkbox'  checked="true" class="show_col check_total" name='checked_table' data-col="writer"> <span class="label-text">{lang_writer}</span>
                                         </label>
                                     </div>
-                                    <div class="checkbox checkbox-primary pl-2">
-                                        <label>
-                                            <input type='checkbox'  checked="true" class="show_col check_total" name='checked_table' data-col="language"> <span class="label-text">{lang_language}</span>
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -130,13 +119,12 @@
                     										<thead>
                     											<tr class="tr-grid">
                     												<th class="text-center" width="20">{lang_no}</th>
-                                                                    <th class="text-center" title="Sort" data-hide='id' id='a-id'>ID Kerjasama<span></span></th>
                                                                     <th class="text-center" title="Sort" data-hide='title' id='title'>{lang_title}<span></span></th>
-                                                                    <th class="text-center" title="Sort" data-hide='id_ref_kegiatan_category' id='id_ref_kegiatan_category'>Category<span></span></th>
+                                                                    <th class="text-center" title="Sort" data-hide='id_ref_kerjasama_type' id='id_ref_kerjasama_type'>Category<span></span></th>
+                                                                    <th class="text-center" title="Sort" data-hide='id_ref_kerjasama_type' id='id_ref_kerjasama_type'>Lokasi<span></span></th>
                                                                     <th class="text-center" title="Sort" data-hide='status' id='status'>{lang_status}<span></span></th>
                                                                     <th class="text-center" title="Sort" data-hide='publish_date' id='publish_date'>{lang_publish_date}<span></span></th>
                                                                     <th class="text-center" title="Sort" data-hide='writer' id='writer'>{lang_writer}<span></span></th>
-                                                                    <th class="text-center" title="Sort" data-hide='language' id='language'>{lang_language}<span></span></th>
                     												<th class="text-center">{lang_action}<span></span></th>
                     											</tr>
                     										</thead>

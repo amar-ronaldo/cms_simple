@@ -49,7 +49,8 @@ function auth_menu(){
 				}
 			} else {
 				if ($ref_menu != 'home') { //kalo kontrolernya blm di daftarin di db..
-					die('Forbiden');
+					redirect("apps/home");
+					// die('Forbiden');
 				}
 			}
 		} else if($ref_menu !='login') { //kalo ga ada sessionya...

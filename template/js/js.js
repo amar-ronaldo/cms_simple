@@ -394,7 +394,6 @@ $(document).ready(function() {
 })
 
 function ckeditor(id,lebar,tinggi){
-	console.log('large');
 	if(lebar == null){
 		lebar = 805;
 	}
@@ -408,7 +407,8 @@ function ckeditor(id,lebar,tinggi){
 		filebrowserFlashBrowseUrl 	: base_url+'asset/js/ckfinder/ckfinder.html?Type=Flash',
 		filebrowserUploadUrl 		: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
 		filebrowserImageUploadUrl 	: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		filebrowserFlashUploadUrl 	: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+		filebrowserFlashUploadUrl 	: base_url+'asset/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		extraAllowedContent:"*(*)"
 
 	});
 

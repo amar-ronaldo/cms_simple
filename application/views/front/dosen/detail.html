@@ -1,0 +1,487 @@
+<section class="flat-row pad-bottom95px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="image">
+                    <img src="{img}" alt="image">
+                </div>
+            </div><!-- /.col-md-4 -->
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="about-us">
+                            <h2 class="title-about-us">{name}</h2>
+                            <div class="desc pad-bottom30px">
+                                {page_content}
+                            </div>
+                        </div><!-- /.about-us -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.col-md-8 -->
+            <div class="col-md-12">
+                <hr>
+                <div class="about-us pad-top50px">
+                    <h2 class="title-about-us">Data Dosen</h2>
+                    <table role="table" class="table-data-dosen">
+                        <tbody>
+                            <tr>
+                                <td>Pangkat</td>
+                                <td>{pangkat}</td>
+                            </tr>
+                            <tr>
+                                <td>Terhitung Tanggal Pangkat</td>
+                                <td>{pangkat_date}</td>
+                            </tr>
+                            <tr>
+                                <td>Jabatan Akademik</td>
+                                <td>{jabatan}</td>
+                            </tr>
+                            <tr>
+                                <td>Alamat Kantor</td>
+                                <td>{alamat}</td>
+                            </tr>
+                            <tr>
+                                <td>No. Telp Kantor</td>
+                                <td>{no_telepon}</td>
+                            </tr>
+                            <tr>
+                                <td>Prodi Homebase</td>
+                                <td>{prodi}</td>
+                            </tr>
+                            <tr>
+                                <td>Status Dosen</td>
+                                <td>{dosen_status}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="panel-group  pad-top50px" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Riwayat Pendidikan
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <table id="example1" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Jenjang</th>
+                                                <th>Instansi</th>
+                                                <th>Bidang</th>
+                                                <th>Tahun Ijazah</th>
+                                                <th>Skripsi/Tesis/Disertasi</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Jurnal
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <table id="example2" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <td>Jurnal</td>
+                                                <td>Judul</td>
+                                                <td>Tahun</td>
+                                                <td>Deskripsi</td>
+                                                <td>ISSN</td>
+                                                <td>Volume</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Buku
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <table id="example3" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Judul Buku</th>
+                                                <th>ISBN</th>
+                                                <th>Tahun</th>
+                                                <th>Penerbit</th>
+                                                <th>Klasifikasi</th>
+                                                <th>Tingkat</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Penelitian
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body">
+                                    <table id="example4" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                            <td>Jenis Kegiatan</td>
+                                            <td>Tempat</td>
+                                            <td>Mulai</td>
+                                            <td>Berakhir</td>
+                                            <td>Keterangan</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFive">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        Penghargaan
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <div class="panel-body">
+                                    <table id="example5" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <td>Judul</td>
+                                                <td>Jabatan</td>
+                                                <td>Tahun</td>
+                                                <td>Sumberdana</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingSix">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        Pengabdian
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                <div class="panel-body">
+                                    <table id="example6" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <td>Judul</td>
+                                                <td>Jabatan</td>
+                                                <td>Tahun</td>
+                                                <td>Sumberdana</td>
+                                                <td>Tingkat Pendukung</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading7">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                        Karya
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+                                <div class="panel-body">
+                                    <table id="example7" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                            <td>Judul</td>
+                                            <td>Jenis</td>
+                                            <td>Tahun</td>
+                                            <td>Tingkat Pendukung</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading8">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                        Kegiatan Ilmiah
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                                <div class="panel-body">
+                                    <table id="example8" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Jenis Kegiatan</th>
+                                                <th>Tempat</th>
+                                                <th>Mulai</th>
+                                                <th>Berakhir</th>
+                                                <th>Keterangan</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading9">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                        Riwayat Mengajar
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                                <div class="panel-body">
+                                    <table id="example9" class="table table-striped table-bordered table-resp" style="width:100%" role="table">
+                                        <thead>
+                                        <td>No.</td>
+                                        <td>Program Studi</td>
+                                        <td>Mata Kuliah</td>
+                                        <td>Tahun Akhir Akademik</td>
+                                        <td>Semester</td>
+                                        <td>Jumlah SKS</td>
+                                        <td>Kelas</td>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- /.col-md-8 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+<link rel="stylesheet" type="text/css" href="{base_url}design_front/plugins/DataTables/datatables.min.css" />
+<script type="text/javascript" src="{base_url}design_front/plugins/DataTables/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var t = $('#example1').DataTable({
+            "ajax": this_controller+"records_riwayat_pendidikan",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "jenjang" },
+                { "data": "instansi" },
+                { "data": "bidang" },
+                { "data": "tahun" },
+                { "data": "skripsi_dll" }
+            ]
+        });
+        t.on('order.dt search.dt', function () {
+            t.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t2 = $('#example2').DataTable({
+            "ajax": this_controller+"records_jurnal",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "jurnal" },
+                { "data": "judul" },
+                { "data": "tahun" },
+                { "data": "deskripsi" },
+                { "data": "issn" },
+                { "data": "volume" }
+            ]
+        });
+        t2.on('order.dt search.dt', function () {
+            t2.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t7 = $('#example7').DataTable({
+            "ajax": this_controller+"records_karya",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "judul" },
+                { "data": "jenis" },
+                { "data": "tahun" },
+                { "data": "pendukung" }
+            ]
+        });
+        t7.on('order.dt search.dt', function () {
+            t7.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t8 = $('#example8').DataTable({
+            "ajax": this_controller+"records_kegiatan_ilmiah",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "jenis" },
+                { "data": "tempat" },
+                { "data": "mulai" },
+                { "data": "akhir" },
+                { "data": "keterangan" }
+            ]
+        });
+        t8.on('order.dt search.dt', function () {
+            t8.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t4 = $('#example4').DataTable({
+            "ajax": this_controller+"records_penelitian",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "judul" },
+                { "data": "jabatan" },
+                { "data": "tahun" },
+                { "data": "sumberdana" }
+            ]
+        });
+        t4.on('order.dt search.dt', function () {
+            t4.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t6 = $('#example6').DataTable({
+            "ajax": this_controller+"records_pengabdian",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "judul" },
+                { "data": "jabatan" },
+                { "data": "tahun" },
+                { "data": "sumberdana" },
+                { "data": "pendukung" }
+            ]
+        });
+        t6.on('order.dt search.dt', function () {
+            t6.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t5 = $('#example5').DataTable({
+            "ajax": this_controller+"records_penghargaan",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "judul" },
+                { "data": "jenis" },
+                { "data": "tahun" },
+                { "data": "pendukung" }
+            ]
+        });
+        t5.on('order.dt search.dt', function () {
+            t5.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t9 = $('#example9').DataTable({
+            "ajax": this_controller+"records_riwayat_mengajar",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "program_studi" },
+                { "data": "mata_kuliah" },
+                { "data": "tahun_akademik" },
+                { "data": "semester" },
+                { "data": "jumlah_sks" },
+                { "data": "kelas" }
+            ]
+        });
+        t9.on('order.dt search.dt', function () {
+            t9.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        var t3 = $('#example3').DataTable({
+            "ajax": this_controller+"records_buku",
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "columns": [
+                { "data": null },
+                { "data": "judul" },
+                { "data": "isbn" },
+                { "data": "tahun" },
+                { "data": "penerbit" },
+                { "data": "klasifikasi" },
+                { "data": "tingkat" }
+            ]
+        });
+        t3.on('order.dt search.dt', function () {
+            t3.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+    });
+
+</script>

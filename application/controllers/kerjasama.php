@@ -42,7 +42,8 @@ class Kerjasama extends CI_Controller {
 		$where['id_ref_kerjasama_type'] = 2;
 		$data = $this->Kerjasama_model->findBy($where);
 		if (!$data) {
-			show_404();
+			echo \json_encode(['data'=>[]]);
+			exit;
 		}
 		foreach ($data as $key => &$value)  {
 			$value['kurun_waktu'] = $value['kurun_waktu_awal'] . " S/d ". $value['kurun_waktu_akhir'];

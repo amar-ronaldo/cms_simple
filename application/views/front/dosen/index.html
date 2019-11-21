@@ -1,0 +1,42 @@
+<section class="flat-row pad-top95px pad-bottom40px" style="background-color: #eef1f6;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section style2">
+                    <h1 class="title">{dosen_title}</h1>
+                    <div class="desc">
+                        {dosen_desc}
+                    </div>
+                </div><!-- /.title-section -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="flat-divider d60px"></div>
+        </div>
+
+        <div class="row">
+            {content}
+            <!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+<script>
+    $(document).on('click','.more_list',function (e) {
+        e.preventDefault()
+        $btn = $(this)
+        $.ajax({
+            url: $(this).attr('href'),
+            type: "GET",
+            dataType: 'html',
+            error: function (err) {
+                alert('error')
+            },
+            success: function (ret) {
+                $btn.parents('ul').append(ret)
+                $btn.remove()
+            },
+        });
+    })
+</script>

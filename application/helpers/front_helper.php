@@ -31,21 +31,24 @@ function front_menu()
 	$menu = $CI->db->select('id,name, extra_param,id_ref_module')
 	->get_where('frontend_menu', ['id_parent'=>null])
 	->result_array();
-	foreach ($menu as $key => $value) {
+	foreach ($menu as $key => &$value) {
 		$sub_menu = $CI->db->select('id,name, extra_param,id_ref_module')
 		->get_where('frontend_menu', ['id_parent' => $value['id']])
 		->result_array();
 		$check = !empty($sub_menu);
+		
 		foreach ($sub_menu as $key1 => $value1) {
 			$sub_menu[$key1]['sub_link'] = base_url($value1['extra_param']);
 			$sub_menu[$key1]['sub_name'] = $value1['name'];
 			$sub_menu[$key1]['sub_hide'] = '';
 		}
-		$menu[$key]['link'] = $check ? '#' : base_url($value['extra_param']);
+		$value['link'] = $check ? '#' : base_url($value['extra_param']);
 		if ($check) {
-			$menu[$key]['sub'][$key]['sub_menu'] = $sub_menu ;
+			$value['sub'][$key]['sub_hide'] = in_array($value['id'], ['4', '5', '6']) ? 'right-sub-menu': '';
+			$value['sub'][$key]['sub_menu'] = $sub_menu ;
+			$value['sub'][$key]['sub_menu'] = $sub_menu ;
 		}else{
-			$menu[$key]['sub'][] = ['sub_hide'=>'hide', 'sub_menu'=>[]];
+			$value['sub'][] = ['sub_hide'=>'hide', 'sub_menu'=>[]];
 		}
 	}
 	return $menu;

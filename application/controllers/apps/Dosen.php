@@ -570,7 +570,7 @@ class Dosen extends CI_Controller {
 				"judul"=>"Judul",
 				"jenis"=>"Jenis",
 				"tahun"=>"Tahun",
-				"pendukung"=> "Tingkat	Pendukung"
+				"pendukung"=>"Tingkat Pendukung"
 			];
 			return $this->generate_form($_form);
 		}

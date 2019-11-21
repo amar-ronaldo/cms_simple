@@ -63,3 +63,4 @@ $route['change-password'] = "apps/login/change_pw";
 $route['pages/(:any)'] = "pages/detail/$1";
 $route['gallery/(:any)'] = "gallery/index/$1";
 $route['news/(:any)'] = "news/index/$1";
+$route['dosen/(:any)'] = "dosen/index/$1";

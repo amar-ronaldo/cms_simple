@@ -16,15 +16,34 @@ class Kerjasama extends CI_Controller {
 		render_front('front/kerjasama/index',[],'main-front');
 	}
 
-	function records()
+	public function records_dalam_negeri()
 	{
 		$this->load->model('Kerjasama_model');
 
 		$this->db->order_by('kurun_waktu_awal', 'desc');
-		
-		$data = $this->Kerjasama_model->findBy();
+		$where['id_ref_kerjasama_type'] = 1;
+		$data = $this->Kerjasama_model->findBy($where);
 		if (!$data) {
 			show_404();
+		}
+		foreach ($data as $key => &$value)  {
+			$value['kurun_waktu'] = $value['kurun_waktu_awal'] . " S/d ". $value['kurun_waktu_akhir'];
+		}
+		$ret['data'] = $data;
+		echo \json_encode($ret);
+		exit;
+	}
+	
+	public function records_luar_negeri()
+	{
+		$this->load->model('Kerjasama_model');
+
+		$this->db->order_by('kurun_waktu_awal', 'desc');
+		$where['id_ref_kerjasama_type'] = 2;
+		$data = $this->Kerjasama_model->findBy($where);
+		if (!$data) {
+			echo \json_encode(['data'=>[]]);
+			exit;
 		}
 		foreach ($data as $key => &$value)  {
 			$value['kurun_waktu'] = $value['kurun_waktu_awal'] . " S/d ". $value['kurun_waktu_akhir'];

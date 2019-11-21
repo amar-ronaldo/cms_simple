@@ -17,11 +17,12 @@ class Kerjasama_model extends CI_Model{
 		$alias['search_language'] = 'e.id';
 
 		query_grid($alias, $isTotal);
-		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language");
+		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language,f.name as kerjasama_type");
 		$this->db->join('ref_kerjasama_category b', 'b.id=a.id_ref_kerjasama_category','left');
 		$this->db->join('ref_status_publish c','c.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_auth_user d','d.id=a.id_ref_auth_user_create','left');
 		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
+		$this->db->join('ref_kerjasama_type f','f.id=a.id_ref_kerjasama_type','left');
 		$this->db->where("a.id_ref_delete", 0);
 
 		$query = $this->db->get($this->tableAs);
@@ -57,21 +58,23 @@ class Kerjasama_model extends CI_Model{
 	function findById($id){
 		$where['a.id'] = $id;
 		$where['a.id_ref_delete'] = 0;
-		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language");
+		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language,f.name as kerjasama_type");
 		$this->db->join('ref_kerjasama_category b','b.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_status_publish c','c.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_auth_user d','d.id=a.id_ref_auth_user_create','left');
 		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
+		$this->db->join('ref_kerjasama_type f','f.id=a.id_ref_kerjasama_type','left');
 		return 	$this->db->get_where($this->tableAs,$where)->row_array();
 	}
 	
 	function findBy($where=array(),$is_single_row=0){
 		$where['a.id_ref_delete'] = 0;
-		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language");
+		$this->db->select("a.*,b.name as category,c.name as status,d.fullname as writer,e.name as language,f.name as kerjasama_type");
 		$this->db->join('ref_kerjasama_category b','b.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_status_publish c','c.id=a.id_ref_status_publish','left');
 		$this->db->join('ref_auth_user d','d.id=a.id_ref_auth_user_create','left');
 		$this->db->join('ref_language e','e.id=a.id_ref_language','left');
+		$this->db->join('ref_kerjasama_type f','f.id=a.id_ref_kerjasama_type','left');
 		if($is_single_row==1){
 			return 	$this->db->get_where($this->tableAs,$where)->row_array();
 		}

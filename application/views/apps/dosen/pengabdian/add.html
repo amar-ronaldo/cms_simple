@@ -1,0 +1,29 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<form action='{this_controller}process_{custom_url}/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+					<div class="tab-content">
+						<div class="tab-pane active" id="form-detail" aria-expanded="true">
+							<input type="hidden" name="id_ref_dosen" value="{id_dosen}">
+							{data_custom}
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l0">{value_custom} </label>
+								<div class="col-md-9">
+									<input type="text" class='form-control' id="{key_custom}" name="{key_custom}" value="{data}">
+								</div>
+							</div>
+							{/data_custom}
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

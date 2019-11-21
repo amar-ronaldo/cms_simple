@@ -1,0 +1,46 @@
+<div class='row page-title mb-2'>
+	<div class='page-title-left'>
+		<h4 class='page-title-heading'>{page_title}</h4>
+	</div>
+	{btn_process}
+</div>
+
+<div class="body-table section-row">
+	<div class="row">
+		<div class="widget-bg">
+			<div class="widget-body clearfix">
+				<div class="tabs tabs-bordered">
+					<!-- tab -->
+					<!-- /.nav-tabs -->
+					<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="l0">Name</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="name" id="name" value="{name}">
+							</div>
+						</div>
+						<div class="form-group row {dsp_value}">
+							<label class="col-md-3 col-form-label" for="l0">Value <i class='req'>*</i></label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="value" id="value" value="{value}" data-parsley-required="true">
+							</div>
+						</div>
+						<div class="form-group row {dsp_image}">
+							<label class="col-md-3 col-form-label" for="l0">Image</label>
+							<div class="col-md-9">
+								{img}
+								<div class="notes-image">{lang_notes_image}</div>
+								<a class="delete-image" title="{lang_delete_image}" onclick="delete_image()">{lang_delete_image}</a>
+							</div>
+						</div>
+
+					</form>
+					<!-- /.tab-content -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}

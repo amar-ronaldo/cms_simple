@@ -77,6 +77,9 @@ class Banner extends CI_Controller {
 			$this->db->trans_start();   
 			if($idedit){
 				auth_update();
+				if (!$post['img']) {
+					unset($post['img']);
+				}
 				$ret['message'] = 'Update Success';
 				$act			= "Update News";
 				$this->Banner_model->update($post,$idedit);

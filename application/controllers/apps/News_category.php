@@ -15,7 +15,6 @@ class News_category extends CI_Controller {
 
 	function index(){
 		$data['btn_add'] 		= btn_add();
-		$data['list_genders'] 	= select_list(array('table'=>'ref_gender','title'=>language('select_gender', $lang_name),'id_ref_delete'=>0));
 		render('apps/news-category/index',$data,'main-apps');
 	}
 
@@ -70,6 +69,9 @@ class News_category extends CI_Controller {
 			$this->db->trans_start();   
 			if($idedit){
 				auth_update();
+				if (!$post['img']) {
+					unset($post['img']);
+				}
 				$ret['message'] = 'Update Success';
 				$act			= "Update News Category";
 				$this->News_category_model->update($post,$idedit);

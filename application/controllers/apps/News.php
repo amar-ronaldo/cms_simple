@@ -103,6 +103,9 @@ class News extends CI_Controller {
 			unset($post['img_multi']);
 			if($idedit){
 				auth_update();
+				if (!$post['img']) {
+					unset($post['img']);
+				}
 				$ret['message'] = 'Update Success';
 				$act			= "Update News";
 				$this->News_model->update($post,$idedit);

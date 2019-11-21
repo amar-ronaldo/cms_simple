@@ -46,7 +46,7 @@ $(document).ready(function(){
 	});
 
 	//pages, news
-	$('#title,#uri_path').keyup(function(){
+	$('#title,#uri_path,.uri_path_source').keyup(function(){
 		$('#uri_path').val( convert_to_uri( $(this).val() ) );
 	});
 

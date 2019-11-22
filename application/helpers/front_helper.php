@@ -71,6 +71,7 @@ function front_breadcrumb()
 
 	$uri = $CI->uri->segment_array();
 	$check_page_detail  = ($uri[2] == 'detail');
+	// detail page
 	if ($check_page_detail) {
 		$extra_param = implode('/', [$uri[1], $uri[3]]);
 		switch ($uri[1]) {
@@ -83,22 +84,89 @@ function front_breadcrumb()
 					'name'=> $page_now['name'],
 					'link'=> '#'
 				];
+			break;
+
+			case 'gallery':
+				$extra_param = implode('/', $uri);
+				$CI->load->model('gallery_model');
+				$page_now = $CI->gallery_model->findBy([
+					'a.uri_path' => $uri[4]
+				], 1);
+				
 				break;
+			case 'news':
+				// category
+				switch ($uri[3]) {
+					case 'sejarah':
+						$extra_param ='home';
+						$not_only_home = true;
+						$breadcrumb[] = [
+							'name' => 'Sejarah',
+							'link' => '#'
+						];
+						break;
+					default:
+						$CI->load->model('news_model');
+						$page_now = $CI->news_model->findBy([
+							'a.uri_path' => $uri[4]
+						], 1);
+						$breadcrumb[] = [
+							'name' => $page_now['title'],
+							'link' => '#'
+						];
+					break;
+				}
+				
+			break;
 		}
 	}else{
-		$extra_param = implode('/', $uri);
+		$not_only_home = false;
+		$extra_param = 'home';
+		switch ($uri[2]) {
+			case 'pengumuman':
+				$not_only_home = true;
+				$breadcrumb[] = [
+					'name'=> 'Pengumuman',
+					'link'=> '#'
+				];
+				break;
+			case 'berita':
+				$not_only_home = true;
+				$breadcrumb[] = [
+					'name'=> 'Berita',
+					'link'=> '#'
+				];
+				break;
+			case 'gallery':
+				$not_only_home = true;
+				$breadcrumb[] = [
+					'name'=> 'Gallery',
+					'link'=> '#'
+				];
+				break;
+			case 'sejarah':
+				$not_only_home = true;
+				$breadcrumb[] = [
+					'name'=> 'Sejarah',
+					'link'=> '#'
+				];
+				break;
+			
+			default:
+				$extra_param = implode('/', $uri);
+				break;
+		}
 	}
+	
 	$bread = $CI->Frontend_menu_model->findBy([
 		'a.extra_param'	=>$extra_param
 	],1);
-	if (!$extra_param || !$bread || $extra_param == 'home') {
+	if (!$extra_param || !$bread || ($extra_param == 'home' && !$not_only_home)) {
 		return '';
 	}
 	$id_parent = $bread['id_parent'];
 	$bread['link'] = $bread['extra_param'] ? base_url($bread['extra_param']) : '#';
 	$breadcrumb[] = $bread;
-	// print_r($breadcrumb);
-	// exit;
 	
 	while (
 		$sub_menu = $CI->Frontend_menu_model->findById($id_parent)
@@ -108,10 +176,12 @@ function front_breadcrumb()
 		$breadcrumb[] = $sub_menu;
 	}
 	
-	$breadcrumb[] =[
-		'name'=> 'Home',
-		'link'=> base_url()
-	];
+	if (!$not_only_home) {
+		$breadcrumb[] =[
+			'name'=> 'Home',
+			'link'=> base_url()
+		];
+	}
 
 
 	krsort($breadcrumb);

@@ -70,8 +70,24 @@ function front_breadcrumb()
 	$CI->load->model('Frontend_menu_model');
 
 	$uri = $CI->uri->segment_array();
-	$extra_param = implode('/', $uri);
-	
+	$check_page_detail  = ($uri[2] == 'detail');
+	if ($check_page_detail) {
+		$extra_param = implode('/', [$uri[1], $uri[3]]);
+		switch ($uri[1]) {
+			case 'dosen':
+				$CI->load->model('dosen_model');
+				$page_now = $CI->dosen_model->findBy([
+					'a.uri_path' => $uri[4]
+				],1);
+				$breadcrumb[] = [
+					'name'=> $page_now['name'],
+					'link'=> '#'
+				];
+				break;
+		}
+	}else{
+		$extra_param = implode('/', $uri);
+	}
 	$bread = $CI->Frontend_menu_model->findBy([
 		'a.extra_param'	=>$extra_param
 	],1);
@@ -79,21 +95,26 @@ function front_breadcrumb()
 		return '';
 	}
 	$id_parent = $bread['id_parent'];
-	$bread['link'] = '#';
+	$bread['link'] = $bread['extra_param'] ? base_url($bread['extra_param']) : '#';
 	$breadcrumb[] = $bread;
+	// print_r($breadcrumb);
+	// exit;
 	
 	while (
 		$sub_menu = $CI->Frontend_menu_model->findById($id_parent)
 	) {
-		$sub_menu['link'] = '#';
+		$sub_menu['link'] = $sub_menu['extra_param'] ? base_url($sub_menu['extra_param']):'#';
 		$id_parent = $sub_menu['id_parent'];
 		$breadcrumb[] = $sub_menu;
 	}
+	
 	$breadcrumb[] =[
 		'name'=> 'Home',
 		'link'=> base_url()
 	];
-	sort($breadcrumb);
+
+
+	krsort($breadcrumb);
 	$data['data'] = $breadcrumb;
 	$data['page_name'] = end($breadcrumb)['name'];	
 

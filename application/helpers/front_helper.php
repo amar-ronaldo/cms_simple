@@ -92,20 +92,42 @@ function front_breadcrumb()
 				$page_now = $CI->gallery_model->findBy([
 					'a.uri_path' => $uri[4]
 				], 1);
+				switch ($uri[3]) {
+					case 'gallery':
+						$not_only_home = true;
+						$extra_param = 'home';
+						$breadcrumb[] = [
+							'name' => $page_now['title'],
+							'link' => '#'
+						];
+						$breadcrumb[] = [
+							'name' => 'Gallery',
+							'link' => '#'
+						];
+						break;
+				}
 				
 				break;
 			case 'news':
 				// category
+				$not_only_home = true;
 				switch ($uri[3]) {
 					case 'sejarah':
 						$extra_param ='home';
-						$not_only_home = true;
 						$breadcrumb[] = [
 							'name' => 'Sejarah',
 							'link' => '#'
 						];
 						break;
+					case 'pengumuman':
+						$extra_param ='home';
+						$breadcrumb[] = [
+							'name' => 'Pengumuman',
+							'link' => '#'
+						];
+						break;
 					default:
+						$extra_param = 'home';
 						$CI->load->model('news_model');
 						$page_now = $CI->news_model->findBy([
 							'a.uri_path' => $uri[4]
@@ -113,6 +135,11 @@ function front_breadcrumb()
 						$breadcrumb[] = [
 							'name' => $page_now['title'],
 							'link' => '#'
+						];
+						
+						$breadcrumb[] = [
+							'name' => $page_now['news_category'],
+							'link' => base_url('news/'.$page_now['uri_path_category'])
 						];
 					break;
 				}
@@ -123,6 +150,13 @@ function front_breadcrumb()
 		$not_only_home = false;
 		$extra_param = 'home';
 		switch ($uri[2]) {
+			case 'contact':
+				$not_only_home = true;
+				$breadcrumb[] = [
+					'name'=> 'Hubungin Kami',
+					'link'=> '#'
+				];
+				break;
 			case 'pengumuman':
 				$not_only_home = true;
 				$breadcrumb[] = [

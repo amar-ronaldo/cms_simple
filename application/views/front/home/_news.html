@@ -1,0 +1,47 @@
+<!-- Blog -->
+<section class="flat-row main-content blog pad-bottom60px" style="padding-top: 70px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section style1">
+                    <h1 class="title">{page_name}</h1>
+                    <div class="desc">
+                        <p>{teaser}</p>
+                    </div>
+                </div><!-- /.title-section -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+
+        <div class="flat-divider d50px"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="post-wrap">
+                    {news}
+                    <article class="entry clearfix images-{aligment}">
+                        {image_left}
+
+                        <div class="main-post">
+                            <h2 class="title-post"><a href="{link}">{title}</a></h2>
+                            <div class="meta-post clearfix">
+                                <ul>
+                                    <li class="post-date">{publish_date}</li>
+                                </ul>
+                            </div><!-- /.meta-post -->
+                            <div class="entry-post">
+                                <p>{teaser}</p>
+                                <a class="read-more" href="{link_2}">Read more</a>
+                            </div><!-- /.entry-post -->
+                        </div><!-- /.main-post -->
+                        {image_right}
+                    </article><!-- /.entry -->
+
+                    {/news}
+                </div><!-- /.post-wrap -->
+                <div class="load-more">
+                    <a class="flat-button" href="{base_url}news/{uri_path_category}">Berita Lainnya</a>
+                </div>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>

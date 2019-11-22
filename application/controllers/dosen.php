@@ -41,7 +41,7 @@ class Dosen extends CI_Controller {
 			show_404();
 		}
 		foreach ($data['list_item'] as $key => &$value) {
-			$value['img'] = image($value['img'],'small');				
+			$value['img'] = image($value['img'],'large');				
 			$value['link'] = base_url('dosen/detail/').$value['uri_path_category'].'/'.$value['uri_path'];
 		}
 

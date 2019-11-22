@@ -13,44 +13,45 @@
                         <div class="about-us">
                             <h2 class="title-about-us">{name}</h2>
                             <div class="desc pad-bottom30px">
-                                {page_content}
+                                <!-- {page_content} -->
+                                <table role="table" class="table-data-dosen">
+                                    <tbody>
+                                        <tr>
+                                            <td>NIDN</td>
+                                            <td>{nidn}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tempat Tanggal Lahir</td>
+                                            <td>{ttl}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat Kantor</td>
+                                            <td>{alamat}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>No. Telp Kantor</td>
+                                            <td>{no_telepon}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prodi Homebase</td>
+                                            <td>{prodi}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status Dosen</td>
+                                            <td>{dosen_status}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div><!-- /.about-us -->
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
             </div><!-- /.col-md-8 -->
             <div class="col-md-12">
-                <hr>
-                <div class="about-us pad-top50px">
-                    <h2 class="title-about-us">Data Dosen</h2>
-                    <table role="table" class="table-data-dosen">
-                        <tbody>
-                            <tr>
-                                <td>NIDN</td>
-                                <td>{nidn}</td>
-                            </tr>
-                            <tr>
-                                <td>Tempat Tanggal Lahir</td>
-                                <td>{ttl}</td>
-                            </tr>
-                            <tr>
-                                <td>Alamat Kantor</td>
-                                <td>{alamat}</td>
-                            </tr>
-                            <tr>
-                                <td>No. Telp Kantor</td>
-                                <td>{no_telepon}</td>
-                            </tr>
-                            <tr>
-                                <td>Prodi Homebase</td>
-                                <td>{prodi}</td>
-                            </tr>
-                            <tr>
-                                <td>Status Dosen</td>
-                                <td>{dosen_status}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- <hr> -->
+                <div class="about-us">
+                    <!-- <h2 class="title-about-us">Data Dosen</h2> -->
+                    
                     <div class="{hide_records_riwayat_pendidikan} panel-group  pad-top50px" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">

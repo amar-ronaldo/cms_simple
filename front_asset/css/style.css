@@ -709,7 +709,7 @@ input[type="color"],
 	position: absolute;
 	top: 50%;
 	right: 0;
-	margin-top: -17.5px;
+	margin-top: -20.5px;
 	text-align: center;		
 }
 
@@ -3292,7 +3292,7 @@ ul.flat-socials li a:hover i {
 /* Revolution Slider
 -------------------------------------------------------------- */
 .tp-banner-container{
-	max-height: 789px !important;
+	max-height: 689px !important;
 	width: 100% !important;
 	position: relative;
 	overflow: hidden !important;

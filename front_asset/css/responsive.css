@@ -2,7 +2,7 @@
 -------------------------------------------------------------- */
 @media only screen and (max-width: 1366px) {
 	#header .header-wrap .show-search {
-		display: none;
+		/*display: none;*/
 	}
 }
 

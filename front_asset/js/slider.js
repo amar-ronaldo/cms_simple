@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $('.tp-banner').show().revolution({
         dottedOverlay:"none",
-        delay:6000,
+        delay:5000,
         startwidth:1170,
-        startheight:789,
+        startheight:689,
         hideThumbs:200,
 
         thumbWidth:100,

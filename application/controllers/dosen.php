@@ -31,8 +31,6 @@ class Dosen extends CI_Controller {
 		
 		$get = $this->input->get();
 
-		$page = $get['page']  ? $get['page']  : 0;
-		$this->db->limit(4, $page * 4);
 
 		$data['list_item'] = $this->dosen_model->findBy([
 			'b.uri_path' => $uri_path_category
@@ -45,13 +43,9 @@ class Dosen extends CI_Controller {
 			$value['link'] = base_url('dosen/detail/').$value['uri_path_category'].'/'.$value['uri_path'];
 		}
 
-		$this->db->limit(4, ($page + 1) * 4);
-		$check = $this->dosen_model->findBy([
-			'b.uri_path' => $uri_path_category
-		]);
 		$uri_path_category = $data['list_item'][0]['uri_path_category'] ? $data['list_item'][0]['uri_path_category'] : '-';
-		$data['more']  = $check ? '' : 'hide';
-		$data['link_more']  = $check ? base_url('dosen/detail/'). $uri_path_category.'?=page='.$page : '#';
+		$data['more']  = 'hide';
+		$data['link_more']  = '#';
 
 		$ret['name']  = $data['list_item'][0]['category'];
 

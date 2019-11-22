@@ -24,9 +24,9 @@
 						<li class="nav-item"><a class="nav-link" href="#form-riwayat-mengajar" data-toggle="tab" aria-expanded="false">Riwayat Mengajar</a></li>
 					</ul>
 					<!-- /.nav-tabs -->
-					<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
 					<div class="tab-content">
 						<div class="tab-pane active" id="form-detail" aria-expanded="true">
+								<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label" for="l0">Category <i class='req'>*</i></label>
 									<div class="col-md-9">
@@ -59,22 +59,17 @@
 										<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content" data-parsley-required="true">{page_content}</textarea>
 									</div>
 								</div>
+								
 								<div class="form-group row">
-									<label class="col-md-3 col-form-label" for="l0">Pangkat </label>
+									<label class="col-md-3 col-form-label" for="l0">NIDN </label>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="pangkat" id="pangkat" value="{pangkat}">
+										<input type="text" class="form-control" name="nidn" id="nidn" value="{nidn}">
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-md-3 col-form-label" for="l0">Terhitung Tanggal Pangkat </label>
+									<label class="col-md-3 col-form-label" for="l0">Tempat Tanggal Lahir </label>
 									<div class="col-md-9">
-										<input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="pangkat_date" id="pangkat_date" value="{pangkat_date}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-md-3 col-form-label" for="l0">Jabatan Akademik </label>
-									<div class="col-md-9">
-										<input type="text" class="form-control" name="jabatan" id="jabatan" value="{jabatan}">
+										<input type="text" class="form-control " name="ttl" id="ttl" value="{ttl}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -133,6 +128,8 @@
 										<input type="text" class="form-control" name="meta_keywords" id="meta_keywords" value="{meta_keywords}">
 									</div>
 								</div>
+						</form>
+
 						</div>
 						<div class="tab-pane" id="form-riwayat-pendidikan" aria-expanded="false">
 							{index_riwayat_pendidikan}
@@ -170,7 +167,6 @@
 							{index_riwayat_mengajar}
 						</div>
 					</div>
-									</form>
 
 					<!-- /.tab-content -->
 				</div>

@@ -26,12 +26,22 @@ function front_header()
 }
 function front_menu()
 {
-	
 	$CI =& get_instance();
+	$uri = $CI->uri->segment_array();
+	$extra_param = !empty($uri) ?implode('/', $uri) :'home';
+	$menu = $CI->Frontend_menu_model->findBy(['a.extra_param'=> $extra_param],1);
+	do {
+		$parent_menu = $CI->Frontend_menu_model->findBy(['a.id'=>$menu['id_parent']],1);
+		$menu = $parent_menu;
+	} 
+	while ($menu['id_parent'] != 0);
+	$menu_name = $menu['name'];
+	
 	$menu = $CI->db->select('id,name, extra_param,id_ref_module')
 	->get_where('frontend_menu', ['id_parent'=>null])
 	->result_array();
 	foreach ($menu as $key => &$value) {
+		$value['active'] = $menu_name == $value['name'] ? 'active' : '';
 		$sub_menu = $CI->db->select('id,name, extra_param,id_ref_module')
 		->get_where('frontend_menu', ['id_parent' => $value['id']])
 		->result_array();
@@ -65,7 +75,7 @@ function front_breadcrumb()
 	$bread = $CI->Frontend_menu_model->findBy([
 		'a.extra_param'	=>$extra_param
 	],1);
-	if (!$extra_param || !$bread) {
+	if (!$extra_param || !$bread || $extra_param == 'home') {
 		return '';
 	}
 	$id_parent = $bread['id_parent'];

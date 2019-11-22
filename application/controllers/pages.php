@@ -16,12 +16,24 @@ class Pages extends CI_Controller {
 		],1);
 		
 		if (!$data) {
+			return $this->$uri_path();exit;
 			show_404();
 		}
 		$data['content'] = $data['page_content'];
 		render_front('layout/blank',$data,'main-front');
 	}
-
+	function contact()
+	{
+		render_front('front/contact/index', [], 'main-front');
+	}
+	function proses_contact()
+	{
+		$data = $this->input->post();
+		
+		print_r(
+			$data);
+		exit;
+	}
 }
 
 /*

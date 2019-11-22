@@ -71,12 +71,16 @@ class Dosen extends CI_Controller {
 		if (!$data) {
 			show_404();
 		}
-		
-		$this->session->set_userdata(['detail_id_dosen'=>$data['id']]);
-		
-		
-		
-		
+		$this->session->set_userdata(['detail_id_dosen'=>$data['id']]);	
+		$data['hide_records_buku'] = $this->dosen_model->records_buku($data['id']) ? '' :'hide';
+		$data['hide_records_jurnal'] = $this->dosen_model->records_jurnal($data['id']) ? '' :'hide';
+		$data['hide_records_karya'] = $this->dosen_model->records_karya($data['id']) ? '' :'hide';
+		$data['hide_records_kegiatan_ilmiah'] = $this->dosen_model->records_kegiatan_ilmiah($data['id']) ? '' :'hide';
+		$data['hide_records_penelitian'] = $this->dosen_model->records_penelitian($data['id']) ? '' :'hide';
+		$data['hide_records_pengabdian'] = $this->dosen_model->records_pengabdian($data['id']) ? '' :'hide';
+		$data['hide_records_penghargaan'] = $this->dosen_model->records_penghargaan($data['id']) ? '' :'hide';
+		$data['hide_records_riwayat_mengajar'] = $this->dosen_model->records_riwayat_mengajar($data['id']) ? '' :'hide';
+		$data['hide_records_riwayat_pendidikan'] = $this->dosen_model->records_riwayat_pendidikan($data['id']) ? '' :'hide';
 		
 		$data['pangkat_date'] = iso_date_custom_format($data['pangkat_date'],'d F Y');
 		$data['img'] = image($data['img'],'large');
@@ -90,7 +94,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_jurnal()
 	{
@@ -100,7 +105,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_karya()
 	{
@@ -110,7 +116,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_kegiatan_ilmiah()
 	{
@@ -120,7 +127,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_penelitian()
 	{
@@ -130,7 +138,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_pengabdian()
 	{
@@ -140,7 +149,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_penghargaan()
 	{
@@ -150,7 +160,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 	public function records_riwayat_mengajar()
 	{
@@ -160,10 +171,10 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
-	public function records_riwayat_pendidikan()
-	{
+	public function records_riwayat_pendidikan(){
 		$this->load->model('dosen_model');
 		
 		$data = $this->dosen_model->records_riwayat_pendidikan($this->id_dosen);
@@ -171,7 +182,8 @@ class Dosen extends CI_Controller {
 			echo \json_encode(['data' => []]);exit;
 		}
 		$ret['data'] = $data;
-		echo \json_encode($ret);exit;
+
+			echo \json_encode($ret);exit;
 	}
 }
 

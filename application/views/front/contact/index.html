@@ -1,0 +1,105 @@
+<div class="page-title parallax parallax3" style="background-position: 50% -25px;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Contact Us</h1>
+                </div><!-- /.page-title-captions -->
+
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div>
+<section class="flat-row parallax parallax2" style="background-position: 50% 45px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-contactform-home1">
+                    <form class="flat-contact-form border-radius field-large text-large" id="contactform6" method="post">
+                            <input type="hidden" value="{token_value}" name="{token_name}">
+                        <div class="field clearfix">
+                            <div class="wrap-type-input">
+                                <div class="input-wrap name">
+                                    <input type="text" value="" tabindex="1" placeholder="Your name" name="name" id="name" required="" style="cursor: auto;">
+                                </div>
+                                <div class="input-wrap email">
+                                    <input type="email" value="" tabindex="2" placeholder="Your email" name="email" id="email-contact" required="">
+                                </div>
+                                <div class="input-wrap last Subject">
+                                    <input type="text" value="" placeholder="Subject" name="subject" id="subject">
+                                </div>
+                            </div>
+                            <div class="textarea-wrap">
+                                <textarea class="type-input" tabindex="3" placeholder="Your Message" name="message" id="message-contact" required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-wrap">
+                            <button>send</button>
+                        </div>
+                    </form><!-- /.comment-form -->
+                    <div class="row">
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-2 col-md-offset-3 col-sm-6 col-xs-6">
+                            <div class="flat-information-box">
+                                <span class="icon">
+                                    <i class="icon-Smartphone-4"></i>
+                                </span>
+                                <div class="content">
+                                    <div class="title">Telephone</div>
+                                    <p>{config_phone}</p>
+                                </div>
+                            </div><!-- /.flat-information-box -->
+                        </div><!-- /.col-md-3 -->
+
+                        <div class="col-md-2 col-sm-6 col-xs-6">
+                            <div class="flat-information-box">
+                                <span class="icon">
+                                    <i class="icon-Email"></i>
+                                </span>
+                                <div class="content">
+                                    <div class="title">Email</div>
+                                    <p><a href="mailto:{config_email}">{config_email}</a></p>
+                                </div>
+                            </div><!-- /.flat-information-box -->
+                        </div><!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="flat-information-box">
+                                <span class="icon">
+                                    <i class="icon-Edit-Map"></i>
+                                </span>
+                                <div class="content">
+                                    <div class="title">Address</div>
+                                    <p>{config_address}</p>
+                                </div>
+                            </div><!-- /.flat-information-box -->
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div><!-- /.wrap-contactform-home1 -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<script>
+    $(document).ready(function () {
+        $('#contactform6').submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $(this);
+            var url = this_controller+'proses_contact';
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: form.serialize(), // serializes the form's elements.
+                dataType:'json',
+                processData: false,
+                success: function (data) {
+                    alert(data); // show response from the php script.
+                }
+            });
+        })
+    })
+
+</script>

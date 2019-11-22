@@ -58,7 +58,8 @@ class Dosen extends CI_Controller {
 			$data['uri_path']         = '';
 			$data['name']            = '';
 			$data['pangkat']            = '';
-			$data['pangkat_date']            = '';
+			$data['nidn']            = '';
+			$data['ttl']            = '';
 			$data['jabatan']            = '';
 			$data['alamat']            = '';
 			$data['no_telepon']            = '';

@@ -24,6 +24,7 @@ class Dosen extends CI_Controller {
 	}
 	
 	function records(){
+	
 		$data = $this->dosen_model->records();
 		render('apps/dosen/records',$data,'blank');
 	}
@@ -39,7 +40,15 @@ class Dosen extends CI_Controller {
 		$data['index_karya'] = $this->index_karya($id ? $id :0);
 		$data['index_kegiatan_ilmiah'] = $this->index_kegiatan_ilmiah($id ? $id :0);
 		$data['index_riwayat_mengajar'] = $this->index_riwayat_mengajar($id ? $id :0);
-
+		$data['hide_riwayat_pendidikan'] = $id  ?'' : 'hide';
+		$data['hide_jurnal'] = $id  ?'' : 'hide';
+		$data['hide_buku'] = $id  ?'' : 'hide';
+		$data['hide_penelitian'] = $id  ?'' : 'hide';
+		$data['hide_penghargaan'] = $id  ?'' : 'hide';
+		$data['hide_pengabdian'] = $id  ?'' : 'hide';
+		$data['hide_karya'] = $id  ?'' : 'hide';
+		$data['hide_kegiatan_ilmiah'] = $id  ?'' : 'hide';
+		$data['hide_riwayat_mengajar'] = $id  ?'' : 'hide';
 		$lang_name = lang_data('name');
 		if($id){
 			$check = $this->dosen_model->findById($id);
@@ -176,6 +185,7 @@ class Dosen extends CI_Controller {
 		function records_riwayat_pendidikan($id_dosen)
 		{
 			$this->load->model('dosen_riwayat_pendidikan_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_riwayat_pendidikan_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -280,6 +290,7 @@ class Dosen extends CI_Controller {
 		function records_jurnal($id_dosen)
 		{
 			$this->load->model('dosen_jurnal_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_jurnal_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -384,6 +395,7 @@ class Dosen extends CI_Controller {
 		function records_buku($id_dosen)
 		{
 			$this->load->model('dosen_buku_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_buku_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -485,6 +497,7 @@ class Dosen extends CI_Controller {
 		function records_penelitian($id_dosen)
 		{
 			$this->load->model('dosen_penelitian_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_penelitian_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -586,6 +599,7 @@ class Dosen extends CI_Controller {
 		function records_penghargaan($id_dosen)
 		{
 			$this->load->model('dosen_penghargaan_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_penghargaan_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -688,6 +702,7 @@ class Dosen extends CI_Controller {
 		function records_pengabdian($id_dosen)
 		{
 			$this->load->model('dosen_pengabdian_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_pengabdian_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -789,6 +804,7 @@ class Dosen extends CI_Controller {
 		function records_karya($id_dosen)
 		{
 			$this->load->model('dosen_karya_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_karya_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -891,6 +907,7 @@ class Dosen extends CI_Controller {
 		function records_kegiatan_ilmiah($id_dosen)
 		{
 			$this->load->model('dosen_kegiatan_ilmiah_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_kegiatan_ilmiah_model->records();
 			foreach ($data['data'] as $key => &$value) {
@@ -994,6 +1011,7 @@ class Dosen extends CI_Controller {
 		function records_riwayat_mengajar($id_dosen)
 		{
 			$this->load->model('dosen_riwayat_mengajar_model');
+			$this->db->where('id_ref_dosen', $id_dosen);
 			
 			$data = $this->dosen_riwayat_mengajar_model->records();
 			foreach ($data['data'] as $key => &$value) {

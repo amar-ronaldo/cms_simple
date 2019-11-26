@@ -1,0 +1,19 @@
+<!-- Slider -->
+<div class="tp-banner-container">
+    <div class="tp-banner">
+        <ul>
+            {banner}
+            <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
+                <img src="{base_url}images/article/large/{img}" alt="slider-image" />
+
+                <div class="tp-caption sfb title-slide color-white style1" data-x="15" data-y="254" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">{title}</div>
+                <div class="tp-caption sfb desc-slide color-white" data-x="15" data-y="398" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">
+                    {teaser}</div>
+                <div class="tp-caption sfb center color-white flat-button-slide {hide_link}" data-x="15" data-y="528" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut">
+                    <a href="{link}">Selengkapnya</a>
+                </div>
+            </li>
+            {/banner}
+        </ul>
+    </div>
+</div>

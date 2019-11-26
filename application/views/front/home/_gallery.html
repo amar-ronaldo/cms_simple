@@ -1,0 +1,39 @@
+<!-- Flat courses -->
+<section class="flat-row pad-bottom90px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section style1">
+                    <h1 class="title">{page_name}</h1>
+                    <div class="desc">
+                        <p>{teaser}</p>
+                    </div>
+                </div><!-- /.title-section -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="flat-divider d55px"></div>
+        </div>
+
+        <div class="row">
+            {gallery}
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="flat-courses">
+                    <div class="courses-thumbnail">
+                        <a href="{link}"><img src="{base_url}front_asset/images/{img}" alt="image"></a>
+                        <a class="courses-viewmore" href="{link}">Selengkapnya</a>
+                    </div>
+                    <div class="courses-content">
+                        <a href="{link}">
+                            <h6 class="courses-topic">{title}</h6>
+                        </a>
+                    </div>
+                </div><!-- /.flat-courses -->
+            </div><!-- /.col-md-3 -->
+            {/gallery}
+
+            <div class="col-md-12 text-center"><a href="{base_url}gallery/{uri_path_category}" class="flat-button style1">Gallery Lainnya</a></div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.flat-row -->

@@ -667,8 +667,8 @@
     var retinaLogos = function() {
       var retina = window.devicePixelRatio > 1 ? true : false;
         if( retina ) {
-            $( '.header .logo' ).find('img').attr( {src:'./images/logo@2x.png',width:'156',height:'102'} );   
-            $( '.title-section .icon' ).find('img').attr( {src:'./images/icon/line@2x.png',width:'282',height:'24'} );
+            // $( '.header .logo' ).find('img').attr( {src:'./images/logo@2x.png',width:'156',height:'102'} );   
+            // $( '.title-section .icon' ).find('img').attr( {src:'./images/icon/line@2x.png',width:'282',height:'24'} );
         }
     };    
     
@@ -697,7 +697,7 @@
 
    	// Dom Ready
 	$(function() { 
-        if ( matchMedia( 'only screen and (min-width: 991px)' ).matches ) {
+        if ( matchMedia( 'only screen and (min-width: 320px)' ).matches ) {
             headerFixed();
         } 
         flatGallery();

@@ -678,6 +678,7 @@
         -ms-transition: all 0.6s;
          -o-transition: all 0.6s;
             transition: all 0.6s;
+            width: 100%;
 }
 
 .flat-courses:hover .courses-thumbnail img {
@@ -2497,6 +2498,7 @@
     float: left;
     padding-right: 30px;
     margin-bottom: 48px;
+    width: 50%;
 }
 
 .course-list > ul > li {

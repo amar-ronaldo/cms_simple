@@ -972,9 +972,10 @@ input[type="color"],
    	display: block;
    	margin: 0 auto;
    	width: 100%;
-   	position: absolute;
+   	position: fixed;
    	background-color: #2b3341;
    	z-index: 1000;
+   	top: 77px;
 }
 
 #mainnav-mobi ul {
@@ -996,7 +997,7 @@ input[type="color"],
    	text-decoration: none;
    	height: 50px;
    	line-height: 50px;
-   	padding: 0 50px;
+   	padding: 0 15px;
    	color: #fff;
 }
 
@@ -1111,7 +1112,7 @@ input[type="color"],
 
 .btn-submenu {
    position: absolute;
-   right: 20px;
+   right: 0;
    top: 0;
    font: 20px/50px 'FontAwesome';
    text-align: center;
@@ -1780,7 +1781,7 @@ input[type="color"],
 .main-content.blog-single-sidebar .entry .main-post {
 	margin-bottom: 0;
 	/*border-bottom: 2px solid #eeeeee;*/
-	margin-right: 100px;
+	/*margin-right: 100px;*/
 	padding-top: 10px;
 }
 
@@ -3569,6 +3570,7 @@ table.table-resp td:last-child {
 	display: inline-block;
 	float: left;
 	padding: 15px 50px;
+	width: 50%;
 }
 .akreditasi-list li a img {
 	max-width: 250px;
@@ -3761,4 +3763,7 @@ table.table-data-dosen td:first-child {
 }
 .flat-contact-form {
 	padding-bottom: 100px;
+}
+.ft-dosen {
+	padding: 30px;
 }

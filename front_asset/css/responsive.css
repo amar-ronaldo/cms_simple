@@ -7,27 +7,58 @@
 }
 
 /* Smaller than standard 1200 */
-@media only screen and (max-width: 1199px) {
-	
+@media screen and (max-width: 1199px) {
+	.header-wrap .container {
+		width: 100%;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	#mainnav > ul > li > a {
+		padding: 0 20px;
+	}
 }
 
+@media screen and (max-width: 1040px) {
+	.header-wrap .container {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.header .header-wrap .logo img {
+		height: 51px;
+	}
+	#mainnav > ul > li > a {
+		height: 80px;
+		line-height: 80px;
+	}
+	.header .header-wrap .logo span {
+		font-size: 14px;
+		line-height: 18px;
+	}
+	.header .header-wrap .logo {
+		margin: 14px 0 15px 0;
+	}
+	.is-sticky .header .header-wrap .logo span {
+		margin-top: 8px;
+	}
+	#header-sticky-wrapper {
+		max-height: 80px;
+	}
+}
 /* Smaller than standard 992 */
-@media only screen and (max-width: 991px) {
+@media screen and (max-width: 991px) {
 	#mainnav {
 		display: none;
 	}
 
 	.btn-menu {
 		display: block ;
+		margin: 30px 0;
+		margin-right: 30px;
 	}
 
 	.header .header-wrap .logo {
 		float: left;
-		margin: 15px 0px 15px 0px;
-	}
-
-	.btn-menu {
-		margin: 30px 0;
+		margin: 14px 0px 0px 0px;
 	}
 
 	.flat-information > li {
@@ -179,8 +210,7 @@
 	.flat-contact-form.fillter-courses .wrap-type-input .wrap,
 	.main-content.blog-single-sidebar .entry .feature-post img,
 	.flat-list.left,
-	.course-list .list-content,
-	.course-list .thumb {
+	.course-list .list-content {
 		padding-right: 0;
 	}
 
@@ -237,7 +267,7 @@
 	}
 
 	.header .header-wrap:after,
-	.flat-about-us .about-us-img .v1 {
+	.flat-about-us .about-us-img .v1, .flat-about-us .about-us-img .v2 {
 		display: none;
 	}
 
@@ -246,11 +276,13 @@
 	}
 
 	.flat-contact-form.fillter-courses .all-categories button,
-	.wrap-form-event button,
-	.blog-single .entry .main-post {
+	.wrap-form-event button {
 		padding: 17px 20px;
 	}
-
+	.blog-single .entry .main-post {
+		padding: 0;
+	}
+	
 	button, input[type="button"], 
 	input[type="reset"], 
 	input[type="submit"] {
@@ -299,7 +331,7 @@
 	}
 
 	.flat-team.style1 {
-	    padding: 30px 0px 30px 20px;
+	    padding: 50px 0px 30px 20px;
 	}
 
 	.flat-information-box.inf1,
@@ -322,8 +354,16 @@
 	    width: 90%;
 	}
 
+	.flat-teammember .team-image {
+		text-align: center;
+	}
+
 	.flat-teammember .team-image img {
 		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		max-width: 100%;
 	}
 
 	.flat-grid.margin55px {
@@ -332,6 +372,28 @@
 
 	.flat-login .create-account .link-submit-wrap a {
 		font-size: 13px;
+	}
+	#mainnav-mobi ul.submenu {
+		background: #1d222b;
+	}
+	.flat-about-us .about-us-img {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	.flat-about-us .about-us-img .v3 {
+		position: relative;
+		left: auto;
+		top: auto;
+		width: 100%;
+	}
+	.flat-about-us .about-us-img .v3 img {
+		width: 100%;
+	}
+	.flat-team.style1 .descritption blockquote:before {
+		top: -17px;
+	}
+	.widget.widget-recent-post.style1 ul li .thumb {
+		margin-bottom: 15px;
 	}
 	
 }
@@ -347,7 +409,7 @@
 }
 
 /* All Mobile Sizes */
-@media only screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
 	.blog .entry .feature-post,
 	.blog .entry .main-post,
 	.wrap-contactform-home1 .input-wrap,
@@ -361,11 +423,20 @@
 	}
 
 	.blog .entry .feature-post,
-	.blog .entry .main-post,
-	.course-list .thumb {
+	.blog .entry .main-post {
 		float: none;
 	}
-
+	.course-list .thumb {
+		float: none;
+		width: 100%;
+		padding-right: 0;
+	}
+	.course-list .thumb img {
+		width: 100%;
+	}
+	.blog .entry .feature-post img {
+		width: 100%;
+	}
 	.flat-courses {
 		text-align: center;
 		margin-bottom: 30px;
@@ -512,8 +583,7 @@
 	}
 
 	.flat-contact-form.fillter-courses .all-categories button, 
-	.wrap-form-event button, 
-	.blog-single .entry .main-post {
+	.wrap-form-event button {
 		padding: 17px 40px;
 	}
 
@@ -528,6 +598,38 @@
 	.wrap-form-event {
 		position: relative;
 		top: -15px;
+	}
+	.btn-menu {
+		margin-right: 15px;
+	}
+	.blog .entry .main-post {
+		padding: 43px 40px 15px 15px;
+	}
+	.akreditasi-list li a img {
+		max-width: 100%;
+		max-height: 130px;
+	}
+	.thumb-content-box {
+		margin-bottom: 30px;
+	}
+	.ft-dosen {
+		padding: 0;
+		padding-bottom: 30px;
+	}
+	.flat-team.style3 .team-image img {
+		height: 300px;
+	}
+	.img-dtl-dosen {
+		text-align: center;
+	}
+	.title-section .title {
+		padding-bottom: 0;
+	}
+	#fasilitasGallery.owl-theme .owl-dots .owl-dot span {
+		width: 20px;
+	}
+	#fasilitasGallery.owl-carousel .owl-dots {
+		padding-bottom: 0;
 	}
 
 }
@@ -661,7 +763,13 @@
 	.flat-countdown-event {
 	    padding: 50px 0 65px 0;
 	}
-
+	.akreditasi-list li {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.akreditasi-list li a img {
+		max-height: none;
+	}
 }
 
 @media (max-width: 320px) {	

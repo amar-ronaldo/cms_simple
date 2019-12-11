@@ -3767,3 +3767,6 @@ table.table-data-dosen td:first-child {
 .ft-dosen {
 	padding: 30px;
 }
+.dataTables_wrapper {
+	overflow: auto;
+}

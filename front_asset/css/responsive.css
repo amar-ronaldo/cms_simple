@@ -617,7 +617,7 @@
 		padding-bottom: 30px;
 	}
 	.flat-team.style3 .team-image img {
-		height: 300px;
+		height: auto;
 	}
 	.img-dtl-dosen {
 		text-align: center;
@@ -630,6 +630,17 @@
 	}
 	#fasilitasGallery.owl-carousel .owl-dots {
 		padding-bottom: 0;
+	}
+	.flat-iconbox .content .title a {
+		line-height: normal;
+	}
+	.flat-team.style3 {
+		min-height: none;
+		padding: 0;
+		padding-bottom: 15px;
+	}
+	.flat-team.style3 .entry {
+		margin-bottom: 0;
 	}
 
 }
@@ -802,7 +813,7 @@
 	}
 }
 
-@media screen and (max-width: 760px) {
+/*@media screen and (max-width: 760px) {
 	table.table-resp, table.table-resp thead, table.table-resp tbody, table.table-resp th,  table.table-resp td, table.table-resp tr {
 		display: block;
 	}
@@ -816,7 +827,6 @@
 	}
     
 	table.table-resp td {
-		/* Behave  like a "row" */
 		border: none;
 		border-bottom: 1px solid #eee;
 		position: relative;
@@ -824,9 +834,7 @@
 	}
 
 	table.table-resp td:before {
-		/* Now like a table header */
 		position: absolute;
-		/* Top/left values mimic padding */
 		top: 18;
 		left: 15px;
 		width: 125px;
@@ -841,4 +849,4 @@
 	table.table-resp td:last-child {
 		text-align: left;
 	}
-}
+}*/

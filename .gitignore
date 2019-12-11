@@ -16,3 +16,6 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 application/config/database.php
+*/images/*
+!*/images/index.html
+!*/images/.htaccess

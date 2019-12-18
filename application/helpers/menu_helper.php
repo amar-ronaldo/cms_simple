@@ -20,8 +20,6 @@ function menus(){
 	$id_group  = $user_sess['admin_id_ref_auth_user_group'];
 	$id_user   = $user_sess['admin_id'];
 	$query     = $CI->Menu_admin_model->GetMenuAdminByGroup($id_group,0);
-	// print_r($CI->db->last_query());exit;
-
 
 	foreach($query->result_array() as $row){
 		$query2 			= $CI->Menu_admin_model->GetMenuAdminByGroup($id_group,$row['id']);
@@ -253,7 +251,5 @@ function menu_frontend()
 {
 	$CI = &get_instance();
 	$data 	= $CI->db->get_where('frontend_menu',['id_parent'=>null])->result_array();
-	print_r($data);
-	exit;
 
 }

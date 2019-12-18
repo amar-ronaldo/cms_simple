@@ -20,7 +20,7 @@ ini_set('display_errors', 0);
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html
 
 $config = array();
-$folder = '/ptiq/';
+$folder = '/ptiq';
 
 /*============================ Enable PHP Connector HERE ==============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication

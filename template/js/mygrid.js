@@ -243,7 +243,8 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 							my_grid(order_id);
 						})
 						
-						$('.hapus').click(function(event){
+				$('.hapus').click(function(event){
+							var reload = $(this).parents('div.col-md-12.text-right').find('a.reload');
 							var idx = $(this).attr('id');
 							var link = $(this).attr('data-url-rm');
 							var base_link = $(this).attr('data-base-url');
@@ -260,11 +261,11 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 										data 		: 'iddel='+ idx,
 										type 		: 'POST',
 										success		: function(msg){
+											reload.click()
 											show_notify(page_name,success_delete);
 											loadingcomplete();
 										}
 									})
-									my_grid(order_id);
 								} else {
 									swalAlert('Your data is save(?)','success');
 								}

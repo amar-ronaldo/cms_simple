@@ -3770,3 +3770,18 @@ table.table-data-dosen td:first-child {
 .dataTables_wrapper {
 	overflow: auto;
 }
+table.dataTable thead th, table.dataTable thead td, table.dataTable.no-footer {
+	border-bottom: 1px solid #ddd !important;
+}
+.list-akreditasi {
+	display: inline-block;
+	margin: 0 auto;
+}
+.list-akreditasi a {
+	display: inline-block;
+	float: left;
+	margin: 10px;
+}
+.dataTables_wrapper .dataTables_filter input {
+	margin-left: 0;	
+}

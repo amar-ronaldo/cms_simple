@@ -260,17 +260,17 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 										data 		: 'iddel='+ idx,
 										type 		: 'POST',
 										success		: function(msg){
-										    my_grid(order_id);
 											show_notify(page_name,success_delete);
-										    loadingcomplete();
+											loadingcomplete();
 										}
 									})
+									my_grid(order_id);
 								} else {
 									swalAlert('Your data is save(?)','success');
 								}
 					        });
-							event.preventDefault();
 						})
+						// event.preventDefault();
 						$('.perpage').select2();
                     }
         });

@@ -185,9 +185,9 @@ class Dosen extends CI_Controller {
 		function records_riwayat_pendidikan($id_dosen)
 		{
 			$this->load->model('dosen_riwayat_pendidikan_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_riwayat_pendidikan_model->records();
+			
+			$data = $this->dosen_riwayat_pendidikan_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'riwayat_pendidikan';
@@ -290,9 +290,9 @@ class Dosen extends CI_Controller {
 		function records_jurnal($id_dosen)
 		{
 			$this->load->model('dosen_jurnal_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_jurnal_model->records();
+			
+			$data = $this->dosen_jurnal_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'jurnal';
@@ -395,9 +395,9 @@ class Dosen extends CI_Controller {
 		function records_buku($id_dosen)
 		{
 			$this->load->model('dosen_buku_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_buku_model->records();
+			
+			$data = $this->dosen_buku_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'buku';
@@ -497,9 +497,9 @@ class Dosen extends CI_Controller {
 		function records_penelitian($id_dosen)
 		{
 			$this->load->model('dosen_penelitian_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_penelitian_model->records();
+			
+			$data = $this->dosen_penelitian_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'penelitian';
@@ -599,9 +599,9 @@ class Dosen extends CI_Controller {
 		function records_penghargaan($id_dosen)
 		{
 			$this->load->model('dosen_penghargaan_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_penghargaan_model->records();
+			
+			$data = $this->dosen_penghargaan_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'penghargaan';
@@ -702,9 +702,9 @@ class Dosen extends CI_Controller {
 		function records_pengabdian($id_dosen)
 		{
 			$this->load->model('dosen_pengabdian_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_pengabdian_model->records();
+			
+			$data = $this->dosen_pengabdian_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'pengabdian';
@@ -804,9 +804,9 @@ class Dosen extends CI_Controller {
 		function records_karya($id_dosen)
 		{
 			$this->load->model('dosen_karya_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_karya_model->records();
+			
+			$data = $this->dosen_karya_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'karya';
@@ -907,9 +907,9 @@ class Dosen extends CI_Controller {
 		function records_kegiatan_ilmiah($id_dosen)
 		{
 			$this->load->model('dosen_kegiatan_ilmiah_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_kegiatan_ilmiah_model->records();
+			
+			$data = $this->dosen_kegiatan_ilmiah_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'kegiatan_ilmiah';
@@ -1011,9 +1011,9 @@ class Dosen extends CI_Controller {
 		function records_riwayat_mengajar($id_dosen)
 		{
 			$this->load->model('dosen_riwayat_mengajar_model');
-			$this->db->where('id_ref_dosen', $id_dosen);
 			
-			$data = $this->dosen_riwayat_mengajar_model->records();
+			
+			$data = $this->dosen_riwayat_mengajar_model->records(['id_ref_dosen'=>$id_dosen]);
 			foreach ($data['data'] as $key => &$value) {
 				$value['id_dosen'] = $id_dosen;
 				$value['custom_url'] = 'riwayat_mengajar';

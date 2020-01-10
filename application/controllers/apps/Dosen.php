@@ -270,12 +270,11 @@ class Dosen extends CI_Controller {
 		private function generate_form_jurnal()
 		{
 			$_form = [
-				"jurnal"=>"Jurnal",
-				"judul"=>"Judul",
-				"tahun"=>"Tahun",
-				"deskripsi"=>"Deskripsi",
-				"issn"=>"ISSN",
-				"volume"=>"Volume"
+				"judul_artikel"=>"Judul Artikel",
+				"nama_jurnal"=>"Nama Jurnal",
+				"penerbit"=>"Penerbit",
+				"tahun_terbit"=>"Tahun Terbit",
+				"no_issn"=>"No. ISSN",
 			];
 			return $this->generate_form($_form);
 		}
@@ -375,12 +374,10 @@ class Dosen extends CI_Controller {
 		private function generate_form_buku()
 		{
 			$_form = [
-				"judul" => "Judul Buku",
-				"isbn" => "ISBN",
-				"tahun" => "Tahun",
+				"judul_artikel" => "Judul Artikel",
 				"penerbit" => "Penerbit",
-				"klasifikasi" => "Klasifikasi",
-				"tingkat" => "Tingkat"
+				"tahun_terbit" => "Tahun Terbit",
+				"no_issn" => "No. ISSN",
 			];
 			return $this->generate_form($_form);
 		}

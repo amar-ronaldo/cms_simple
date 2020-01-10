@@ -95,12 +95,11 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <td>Jurnal</td>
-                                                <td>Judul</td>
-                                                <td>Tahun</td>
-                                                <td>Deskripsi</td>
-                                                <td>ISSN</td>
-                                                <td>Volume</td>
+                                                <td>Judul Artikel</td>
+                                                <td>Nama Jurnal</td>
+                                                <td>Penerbit</td>
+                                                <td>Tahun Terbit</td>
+                                                <td>No. ISSN</td>
                                             </tr>
                                         </thead>
                                     </table>
@@ -121,12 +120,10 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Judul Buku</th>
-                                                <th>ISBN</th>
-                                                <th>Tahun</th>
+                                                <th>Judul Artikel</th>
                                                 <th>Penerbit</th>
-                                                <th>Klasifikasi</th>
-                                                <th>Tingkat</th>
+                                                <th>Tahun Terbit</th>
+                                                <th>No. ISSN</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -327,12 +324,11 @@
                 order: [[ 1, 'asc' ]],
                 "columns": [
                     { "data": null },
-                    { "data": "jurnal" },
-                    { "data": "judul" },
-                    { "data": "tahun" },
-                    { "data": "deskripsi" },
-                    { "data": "issn" },
-                    { "data": "volume" }
+                    { "data": "judul_artikel" },
+                    { "data": "nama_jurnal" },
+                    { "data": "penerbit" },
+                    { "data": "tahun_terbit" },
+                    { "data": "no_issn" },
                 ]
             });
             t2.on('order.dt search.dt', function () {
@@ -487,12 +483,10 @@
                 order: [[ 1, 'asc' ]],
                 "columns": [
                     { "data": null },
-                    { "data": "judul" },
-                    { "data": "isbn" },
-                    { "data": "tahun" },
+                    { "data": "judul_artikel" },
                     { "data": "penerbit" },
-                    { "data": "klasifikasi" },
-                    { "data": "tingkat" }
+                    { "data": "tahun_terbit" },
+                    { "data": "no_issn" },
                 ]
             });
             t3.on('order.dt search.dt', function () {

@@ -943,7 +943,7 @@ input[type="color"],
     color: #9c9c9c;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 0 0 0 26px;
+    padding: 0 0 0 15px;
     line-height: 50px;
     -webkit-transition: all 0.3s ease-in-out;
 	   -moz-transition: all 0.3s ease-in-out;

@@ -169,8 +169,7 @@ class Dosen extends CI_Controller {
 				'jenjang' => 'Jenjang',
 				'instansi' => 'Instansi',
 				'bidang' => 'Bidang',
-				'tahun' => 'Tahun Ijazah',
-				'skripsi_dll' => 'Skripsi/Tesis/Disertasi'
+				'tahun' => 'Tahun Ijazah'
 			];
 			return $this->generate_form($_form);
 		}

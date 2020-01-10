@@ -79,6 +79,7 @@ class Dosen extends CI_Controller {
 			$data['meta_description'] = '';
 			$data['meta_keywords']    = '';
 			$data['youtube_link']     = '';
+			$data['jabatan_akademik']     = '';
 		}
 		
 		

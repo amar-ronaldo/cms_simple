@@ -26,7 +26,7 @@
 					<!-- /.nav-tabs -->
 					<div class="tab-content">
 						<div class="tab-pane active" id="form-detail" aria-expanded="true">
-								<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+							<form action='{this_controller}process/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label" for="l0">Category <i class='req'>*</i></label>
 									<div class="col-md-9">
@@ -56,10 +56,10 @@
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label" for="l0">Detail </label>
 									<div class="col-md-9">
-										<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content" >{page_content}</textarea>
+										<textarea type="text" class="form-control ckeditor" name="page_content" id="page_content">{page_content}</textarea>
 									</div>
 								</div>
-								
+
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label" for="l0">NIDN </label>
 									<div class="col-md-9">
@@ -96,7 +96,12 @@
 										<select class='form-control' id="id_ref_dosen_status" name="id_ref_dosen_status" data-parsley-required="true">{list_dosen_status}</select>
 									</div>
 								</div>
-
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label" for="l0">Jabatan Akademik </label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" name="jabatan_akademik" id="jabatan_akademik" value="{jabatan_akademik}">
+									</div>
+								</div>
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label" for="l0">{lang_publish_date} <i class='req'>*</i></label>
 									<div class="col-md-9">
@@ -128,7 +133,7 @@
 										<input type="text" class="form-control" name="meta_keywords" id="meta_keywords" value="{meta_keywords}">
 									</div>
 								</div>
-						</form>
+							</form>
 
 						</div>
 						<div class="tab-pane" id="form-riwayat-pendidikan" aria-expanded="false">

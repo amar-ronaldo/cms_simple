@@ -25,6 +25,7 @@
     <script>
         $(document).ready(function () {
             var t = $('#example').DataTable({
+                'dom': "t",
                 "ajax": "akreditasi/records",
                 "columnDefs": [{
                     "searchable": false,

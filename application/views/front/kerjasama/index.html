@@ -64,6 +64,7 @@
     <script>
         $(document).ready(function () {
             var t = $('#example').DataTable({
+                'dom': "t",
                 "ajax": "kerjasama/records_dalam_negeri",
                 "columnDefs": [{
                     "searchable": false,
@@ -85,6 +86,7 @@
 
             var t2 = $('#example1').DataTable({
                 "ajax": "kerjasama/records_luar_negeri",
+                'dom': "t",
                 "columnDefs": [{
                     "searchable": false,
                     "orderable": false,

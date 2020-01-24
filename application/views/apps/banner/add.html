@@ -61,11 +61,3 @@
 </div>
 {imagemanager_config}
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#tags").select2({tags: [{tags_data}],tokenSeparators: [","]});
-		var selectedValues = "{tags}".split(',');
-		$("#tags").select2('val',selectedValues);
-
-	});
-</script>

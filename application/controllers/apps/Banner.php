@@ -45,8 +45,9 @@ class Banner extends CI_Controller {
 			$data['page_content']     = '';
 			$data['seo_title']        = '';
 			$data['meta_description'] = '';
-			$data['meta_keywords']    = '';
 			$data['youtube_link']     = '';
+			$data['meta_keywords']    = '';
+			$data['link']    = '';
 		}
 
 

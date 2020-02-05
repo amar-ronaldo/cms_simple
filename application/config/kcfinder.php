@@ -37,8 +37,8 @@ $config['authentication'] = function () {
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = 'localhost';
-$config['licenseKey']  = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
+$config['licenseName'] = 'https://tarbiyah-ptiq.ac.id/';
+$config['licenseKey']  = '*H?K-*1**-F**M-*G**-*L**-Z*D*-3**R';
 
 /*============================ CKFinder Internal Directory ============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir
